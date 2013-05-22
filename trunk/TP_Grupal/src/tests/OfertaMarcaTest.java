@@ -6,7 +6,7 @@ import ofertas.OfertaMarcaFactory;
 
 import org.junit.Test;
 
-public class OfertaFactoryTest {
+public class OfertaMarcaTest {
 
 	@Test
 	public void testFactory() {
