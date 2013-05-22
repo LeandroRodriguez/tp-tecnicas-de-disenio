@@ -1,29 +1,39 @@
 package ofertas;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class OfertaMarcaFactory extends OfertaFactory {
 
 	private String nombreArchivo = "ofertas_marca.json";
+	private ArrayList<OfertaMarca> ofertas = new ArrayList<OfertaMarca>();
 	
 	public OfertaMarcaFactory() {
-		File datos = new File(nombreArchivo);
+		InputStream    fis;
+		BufferedReader br;
+		String         line;
+		Gson gson = new Gson();
 		try {
-			FileWriter fileWriter = new FileWriter(datos);
-			BufferedWriter bw = new BufferedWriter(fileWriter);			
-			PrintWriter writer = new PrintWriter(bw);  
-			OfertaMarca oferta = new OfertaMarca("coca",10);
-		
-			Gson gson = new Gson();
-			String ser = gson.toJson(oferta);
-			writer.write(ser);
-			
-			writer.close();
-			bw.close();
-
+			fis = new FileInputStream(nombreArchivo);
+			br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+			while ((line = br.readLine()) != null) {
+				OfertaMarca oferta = gson.fromJson(line, OfertaMarca.class);
+				ofertas.add(oferta);
+			}
+			br.close();
+			br = null;
+			fis = null;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
