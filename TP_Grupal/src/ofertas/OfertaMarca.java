@@ -10,4 +10,20 @@ public class OfertaMarca extends Oferta {
 		this.descuento = descuento;
 	}
 	
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public float getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(float descuento) {
+		this.descuento = descuento;
+	}
+	
 }
