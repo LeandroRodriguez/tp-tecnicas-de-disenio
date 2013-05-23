@@ -1,6 +1,6 @@
 package modelo;
 
-public interface Beneficio {
+public interface Descuento {
 
 	public float getDescuento();
 
