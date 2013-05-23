@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import ofertas.OfertaPorMarcaYCategoria;
 import ofertas.OfertaPorMarcaYCategoriaFactory;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class OfertaPorMarcaYCategoriaTest {
