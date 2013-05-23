@@ -1,6 +1,6 @@
 package ofertas;
 
-import productos.Producto;
+import modelo.Producto;
 
 public class ProductoDummy implements Producto {
 	

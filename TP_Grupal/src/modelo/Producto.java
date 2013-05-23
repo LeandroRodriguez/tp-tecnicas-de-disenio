@@ -1,4 +1,4 @@
-package productos;
+package modelo;
 
 public interface Producto {
 
