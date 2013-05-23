@@ -8,12 +8,12 @@ public class Venta {
 
 	private String medioDePago;
 	private ArrayList<Producto> productos;
-	private ArrayList<Beneficio> beneficios;
+	private ArrayList<Descuento> beneficios;
 	
 	public Venta() {
 		medioDePago = "";
 		productos = new ArrayList<Producto>();
-		beneficios = new ArrayList<Beneficio>();
+		beneficios = new ArrayList<Descuento>();
 	}
 	
 	public void agregarProducto(Producto prod) {
@@ -42,7 +42,7 @@ public class Venta {
 
 	public float getTotalDescuentos() {
 		float total = 0;
-		for (Beneficio bene : this.beneficios) {
+		for (Descuento bene : this.beneficios) {
 			total += bene.getDescuento();
 		}
 		return total;
