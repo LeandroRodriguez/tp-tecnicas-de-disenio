@@ -125,6 +125,9 @@ public class Caja {
 	
 	public Map<String, Float> getTotalPorMedioDePago() {
 		HashMap<String, Float> res = new HashMap<String, Float>();
+		for (Venta ven : this.ventas) {
+			res.put(ven.getMedioDePago(), ven.getTotal() );
+		}
 		return res;
 	}
 }

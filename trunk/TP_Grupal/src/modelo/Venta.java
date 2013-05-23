@@ -1,37 +1,57 @@
 package modelo;
 
+import java.util.ArrayList;
+
 import ofertas.Oferta;
 
 public class Venta {
 
+	private String medioDePago;
+	private ArrayList<Producto> productos;
+	private ArrayList<Beneficio> beneficios;
+	
+	public Venta() {
+		medioDePago = "";
+		productos = new ArrayList<Producto>();
+		beneficios = new ArrayList<Beneficio>();
+	}
+	
 	public void agregarProducto(Producto prod) {
-		// TODO Auto-generated method stub
-		
+		productos.add(prod);
 	}
 
 	public void setMedioDePago(String medio) {
-		// TODO Auto-generated method stub
-		
+		medioDePago = medio;
+	}
+	
+	public String getMedioDePago() {
+		return medioDePago;
 	}
 
+	// En algún momento este método tenía sentido y ahora no recuerdo por qué
 	public void finalizarVenta() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public float getTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		float total = 0;
+		for (Producto prod : this.productos) {
+			total += prod.getPrecio();
+		}
+		return total;
 	}
 
 	public float getTotalDescuentos() {
-		// TODO Auto-generated method stub
-		return 0;
+		float total = 0;
+		for (Beneficio bene : this.beneficios) {
+			total += bene.getDescuento();
+		}
+		return total;
 	}
 
 	public void aplicarOferta(Oferta oferta) {
-		// TODO Auto-generated method stub
-		
+		// Algo tiene que devolver estas ofertas para poder calcular 
+		// los descuentos posteriormente
+		oferta.aplicarOfertas(this.productos);
 	}
 
 }
