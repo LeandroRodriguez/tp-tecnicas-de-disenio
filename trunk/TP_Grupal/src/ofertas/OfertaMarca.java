@@ -1,8 +1,10 @@
 package ofertas;
 
+import java.util.ArrayList;
+
 import productos.Producto;
 
-public class OfertaMarca extends Oferta {
+public class OfertaMarca implements Oferta {
 
 	private String marca;
 	private float descuento;
@@ -28,12 +30,13 @@ public class OfertaMarca extends Oferta {
 		this.descuento = descuento;
 	}
 
-	public boolean esAplicable(Producto producto) {
+	public boolean encajaEnOferta(Producto producto) {
 		return (producto.getMarca().equals(marca));
 	}
 
-	public void aplicarSobre(ProductoDummy producto) {
-		if (esAplicable(producto)){
+	public void aplicarOfertas(ArrayList<Producto> productos) {
+		for (Producto producto : productos)
+		if (encajaEnOferta(producto)){
 			producto.setPrecio(producto.getPrecio()*((double)(100-descuento)/100.0));
 		}
 	}
