@@ -38,5 +38,4 @@ public class OfertaMarcaTest extends TestCase{
 		oferta.aplicarOfertas(productos);
 		assertTrue(coca.getPrecio()==81);
 	}
-
 }
