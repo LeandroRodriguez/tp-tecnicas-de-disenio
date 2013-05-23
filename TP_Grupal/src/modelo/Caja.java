@@ -48,9 +48,9 @@ public class Caja {
 		ofertas.remove(of);
 	}
 	
-	/* En caso de que ya exista una venta iniciada, devuelve false. */
+	/* En caso de que ya exista una venta iniciada o la caja no esté abierta, devuelve false. */
 	public boolean iniciarVenta() {
-		if (ventaActual != null) {
+		if (! abierta || ventaActual != null) {
 			return false;
 		}
 		ventaActual = new Venta();
@@ -62,9 +62,9 @@ public class Caja {
 			ventaActual.aplicarOferta(oferta);
 	}
 	
-	/* En caso de que no exista una venta iniciada, devuelve false. */
+	/* En caso de que no exista una venta iniciada o la caja no esté abierta, devuelve false. */
 	public boolean finalizarVenta() {
-		if (ventaActual == null) {
+		if (! abierta || ventaActual == null) {
 			return false;
 		}
 		ventaActual.finalizarVenta();
@@ -73,35 +73,35 @@ public class Caja {
 		return true;
 	}
 	
-	/* En caso de que no exista una venta iniciada, devuelve false. */
+	/* En caso de que no exista una venta iniciada o la caja no esté abierta, devuelve false. */
 	public boolean agregarProducto(Producto prod) {
-		if (ventaActual == null) {
+		if (! abierta || ventaActual == null) {
 			return false;
 		}
 		ventaActual.agregarProducto(prod);
 		return true;
 	}
 	
-	/* En caso de que no exista una venta iniciada, devuelve false. */
+	/* En caso de que no exista una venta iniciada o la caja no esté abierta, devuelve false. */
 	public boolean setMedioDePago(String medio) {
-		if (ventaActual == null) {
+		if (! abierta || ventaActual == null) {
 			return false;
 		}
 		ventaActual.setMedioDePago(medio);
 		return true;
 	}
 	
-	/* En caso de que no exista una venta iniciada, devuelve -1. */
+	/* En caso de que no exista una venta iniciada o la caja no esté abierta, devuelve -1. */
 	public float getTotalVenta() {
-		if (ventaActual == null) {
+		if (! abierta || ventaActual == null) {
 			return -1;
 		}
 		return ventaActual.getTotal();
 	}
 	
-	/* En caso de que no exista una venta iniciada, devuelve -1. */
+	/* En caso de que no exista una venta iniciada o la caja no esté abierta, devuelve -1. */
 	public float getTotalDescuentosVenta() {
-		if (ventaActual == null) {
+		if (! abierta || ventaActual == null) {
 			return -1;
 		}
 		return ventaActual.getTotalDescuentos();
@@ -126,7 +126,12 @@ public class Caja {
 	public Map<String, Float> getTotalPorMedioDePago() {
 		HashMap<String, Float> res = new HashMap<String, Float>();
 		for (Venta ven : this.ventas) {
-			res.put(ven.getMedioDePago(), ven.getTotal() );
+			if ( res.containsKey(ven.getMedioDePago() ) ) {
+				float actual = res.get(ven.getMedioDePago());
+				res.put(ven.getMedioDePago(), actual + ven.getTotal() );
+			} else {
+				res.put(ven.getMedioDePago(), ven.getTotal() );
+			}
 		}
 		return res;
 	}
