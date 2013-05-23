@@ -2,10 +2,12 @@ package ofertas;
 
 import java.util.ArrayList;
 
-import modelo.Producto;
+import productos.Producto;
+
+//import modelo.Producto;
 
 
-public class OfertaPorMarcaYCategoria extends Oferta {
+public class OfertaPorMarcaYCategoria implements Oferta {
 
 	private ArrayList<String> marcas = new ArrayList<String>();
 	private ArrayList<String> categorias = new ArrayList<String>();
