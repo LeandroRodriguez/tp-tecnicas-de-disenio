@@ -37,6 +37,7 @@ public class OfertaPorVolumenYMarca implements Oferta {
 				contados++;
 				if (contados == cantidad) {
 					bonificados+=bonificacion;
+					contados=0;
 				}
 				productosDeLaMarca.add(producto);
 			}
