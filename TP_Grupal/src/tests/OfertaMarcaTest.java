@@ -13,5 +13,5 @@ public class OfertaMarcaTest {
 		// TODO Auto-generated method stub
 		OfertaMarcaFactory f = new OfertaMarcaFactory();
 	}
-
+	//
 }
