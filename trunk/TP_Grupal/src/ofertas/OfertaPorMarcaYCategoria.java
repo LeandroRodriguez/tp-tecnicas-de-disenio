@@ -2,7 +2,8 @@ package ofertas;
 
 import java.util.ArrayList;
 
-import productos.Producto;
+import modelo.Producto;
+
 
 //import modelo.Producto;
 

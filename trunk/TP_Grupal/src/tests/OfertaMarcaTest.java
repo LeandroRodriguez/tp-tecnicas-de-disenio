@@ -3,12 +3,12 @@ package tests;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
+import modelo.Producto;
 import ofertas.OfertaMarca;
 import ofertas.ProductoDummy;
 
 import org.junit.Test;
 
-import productos.Producto;
 
 public class OfertaMarcaTest extends TestCase{
 
