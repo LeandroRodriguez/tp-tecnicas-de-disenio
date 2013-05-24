@@ -8,7 +8,7 @@ import modelo.Producto;
 //import modelo.Producto;
 
 
-public class OfertaPorMarcaYCategoria implements Oferta {
+public class OfertaPorMarcaYCategoria {
 
 	private ArrayList<String> marcas = new ArrayList<String>();
 	private ArrayList<String> categorias = new ArrayList<String>();
