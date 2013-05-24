@@ -330,7 +330,7 @@ public class CajaTest {
 	@Test
 	public void testGetTotalPorMedioDePagoDosMedios() {
 		String medioDePago1 = "Efectivo";
-		String medioDePago2 = "Débito";
+		String medioDePago2 = "Debito";
 		float precio1 = (float) 10;
 		float precio2 = (float) 15;
 		Caja c = new Caja();
