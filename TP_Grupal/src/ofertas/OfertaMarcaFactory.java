@@ -9,12 +9,14 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
+import ofertas.criterios.Criterio;
+
 import com.google.gson.Gson;
 
 public class OfertaMarcaFactory extends OfertaFactory {
 
 	private String nombreArchivo = "ofertas_marca.json";
-	private ArrayList<OfertaMarca> ofertas = new ArrayList<OfertaMarca>();
+	private ArrayList<Criterio> ofertas = new ArrayList<Criterio>();
 	
 	public OfertaMarcaFactory() {
 		InputStream    fis;
@@ -25,7 +27,7 @@ public class OfertaMarcaFactory extends OfertaFactory {
 			fis = new FileInputStream(nombreArchivo);
 			br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {
-				OfertaMarca oferta = gson.fromJson(line, OfertaMarca.class);
+				Criterio oferta = gson.fromJson(line, Criterio.class);
 				ofertas.add(oferta);
 			}
 			br.close();

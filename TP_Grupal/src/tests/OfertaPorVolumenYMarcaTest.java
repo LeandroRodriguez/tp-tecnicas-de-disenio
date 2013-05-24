@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import junit.framework.TestCase;
 import modelo.Producto;
-import ofertas.OfertaPorVolumenYMarca;
+import ofertas.OfertaPorVolumen;
 import ofertas.ProductoDummy;
 
 import org.junit.Test;
@@ -15,9 +15,9 @@ public class OfertaPorVolumenYMarcaTest extends TestCase{
 
 	@Test
 	public void testAplicarSobreProductos() {
-		OfertaPorVolumenYMarca oferta;
+		OfertaPorVolumen oferta;
 		try {
-			oferta = new OfertaPorVolumenYMarca("coca", 2, 1);
+			oferta = new OfertaPorVolumen("coca", 2, 1);
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("coca", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("coca", "bebidas");
@@ -36,9 +36,9 @@ public class OfertaPorVolumenYMarcaTest extends TestCase{
 
 	@Test
 	public void testAplicarSobreProductosDeOtraMarca() {
-		OfertaPorVolumenYMarca oferta;
+		OfertaPorVolumen oferta;
 		try {
-			oferta = new OfertaPorVolumenYMarca("CocaCola", 2, 1);
+			oferta = new OfertaPorVolumen("CocaCola", 2, 1);
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("Cordoba", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("InkaCola", "bebidas");
@@ -58,9 +58,9 @@ public class OfertaPorVolumenYMarcaTest extends TestCase{
 
 	@Test
 	public void testAplicarSobreProductosMultiple() {
-		OfertaPorVolumenYMarca oferta;
+		OfertaPorVolumen oferta;
 		try {
-			oferta = new OfertaPorVolumenYMarca("CocaCola", 2, 1);
+			oferta = new OfertaPorVolumen("CocaCola", 2, 1);
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("CocaCola", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("CocaCola", "bebidas");

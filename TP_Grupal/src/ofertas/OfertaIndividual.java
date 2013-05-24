@@ -5,18 +5,24 @@ import java.util.List;
 
 import modelo.Descuento;
 import modelo.Producto;
+import ofertas.criterios.Criterio;
 
-public class OfertaIndividual implements Oferta {
+public class OfertaIndividual {
 	
-	private ArrayList<Oferta> ofertas;
+	private ArrayList<Criterio> criterios;
 	private float valor;
 	
-	public OfertaIndividual(ArrayList<Oferta> ofertas, float valor){
-		this.ofertas = ofertas;
+	public OfertaIndividual(Criterio criterio, float valor){
+		this.criterios = new ArrayList<Criterio>();
+		criterios.add( criterio);
+		this.valor = valor;
+	}
+	
+	public OfertaIndividual(ArrayList<Criterio> criterios, float valor){
+		this.criterios = criterios;
 		this.valor = valor;
 	}
 
-	@Override
 	public List<Descuento> aplicarOfertas(ArrayList<Producto> productos) {
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 		for (Producto producto : productos) {
@@ -27,10 +33,9 @@ public class OfertaIndividual implements Oferta {
 		return descuentos;
 	}
 
-	@Override
 	public boolean encajaEnOferta(Producto producto) {
-		for (Oferta oferta : ofertas) {
-			if (!oferta.encajaEnOferta(producto)) {
+		for (Criterio criterio : criterios) {
+			if (!criterio.aplicaSobre(producto)) {
 				return false;
 			}
 		}
