@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import modelo.Producto;
 import ofertas.criterios.Criterio;
+import ofertas.criterios.SeleccionarPorCategoria;
+import ofertas.criterios.SeleccionarPorDia;
+import ofertas.criterios.SeleccionarPorMarca;
 import excepciones.ExcepcionCantidadInvalida;
 
 public class OfertaPorVolumen {
@@ -12,13 +15,25 @@ public class OfertaPorVolumen {
 	private int cantidad;
 	private int bonificacion;
 	
-	public OfertaPorVolumen(ArrayList<Criterio> criterios, int cantidad, int bonificacion) throws ExcepcionCantidadInvalida{
+	public OfertaPorVolumen(int cantidad, int bonificacion) throws ExcepcionCantidadInvalida{
 		if (bonificacion >= cantidad) {
 			throw new ExcepcionCantidadInvalida();
 		}
-		this.criterios = criterios;
+		this.criterios = new ArrayList<Criterio>();
 		this.cantidad = cantidad;
 		this.bonificacion = bonificacion;
+	}
+	
+	public void agregarMarca(String marca){
+		criterios.add(new SeleccionarPorMarca(marca));
+	}
+	
+	public void agregarCategoria(String categoria){
+		criterios.add(new SeleccionarPorCategoria(categoria));
+	}
+	
+	public void agregarDia(String dia){
+		criterios.add(new SeleccionarPorDia(dia));
 	}
 
 	public void aplicarOfertas(ArrayList<Producto> productos) {

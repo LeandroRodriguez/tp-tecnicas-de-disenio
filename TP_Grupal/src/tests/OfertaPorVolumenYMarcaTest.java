@@ -17,7 +17,8 @@ public class OfertaPorVolumenYMarcaTest extends TestCase{
 	public void testAplicarSobreProductos() {
 		OfertaPorVolumen oferta;
 		try {
-			oferta = new OfertaPorVolumen("coca", 2, 1);
+			oferta = new OfertaPorVolumen(2, 1);
+			oferta.agregarMarca("coca");
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("coca", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("coca", "bebidas");
@@ -38,7 +39,8 @@ public class OfertaPorVolumenYMarcaTest extends TestCase{
 	public void testAplicarSobreProductosDeOtraMarca() {
 		OfertaPorVolumen oferta;
 		try {
-			oferta = new OfertaPorVolumen("CocaCola", 2, 1);
+			oferta = new OfertaPorVolumen(2, 1);
+			oferta.agregarMarca("CocaCola");
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("Cordoba", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("InkaCola", "bebidas");
@@ -60,7 +62,8 @@ public class OfertaPorVolumenYMarcaTest extends TestCase{
 	public void testAplicarSobreProductosMultiple() {
 		OfertaPorVolumen oferta;
 		try {
-			oferta = new OfertaPorVolumen("CocaCola", 2, 1);
+			oferta = new OfertaPorVolumen(2, 1);
+			oferta.agregarMarca("CocaCola");
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("CocaCola", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("CocaCola", "bebidas");
