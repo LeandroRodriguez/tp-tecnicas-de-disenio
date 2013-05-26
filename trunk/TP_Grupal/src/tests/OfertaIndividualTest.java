@@ -9,7 +9,6 @@ import modelo.Producto;
 import ofertas.OfertaIndividual;
 import ofertas.ProductoDummy;
 import ofertas.criterios.Criterio;
-import ofertas.criterios.SeleccionarPorCategoria;
 import ofertas.criterios.SeleccionarPorMarca;
 
 import org.junit.Test;
@@ -19,20 +18,18 @@ public class OfertaIndividualTest extends TestCase{
 
 	@Test
 	public void testAplicarSobreMarca() {
-		ArrayList<Criterio> criterios = new ArrayList<Criterio>();
-		Criterio criterio = new SeleccionarPorMarca("coca");
-		criterios.add(criterio);
-		OfertaIndividual oferta = new OfertaIndividual(criterios,10);
+		OfertaIndividual oferta = new OfertaIndividual();
+		oferta.agregarMarca("coca");
+		oferta.setValor(10);
 		Producto coca = new ProductoDummy("coca","bebidas");
 		assertTrue(oferta.encajaEnOferta(coca));
 	}
 
 	@Test
 	public void testAplicarSobreCategoria() {
-		ArrayList<Criterio> criterios = new ArrayList<Criterio>();
-		Criterio criterio = new SeleccionarPorCategoria("bebidas");
-		criterios.add(criterio);
-		OfertaIndividual oferta = new OfertaIndividual(criterios,10);
+		OfertaIndividual oferta = new OfertaIndividual();
+		oferta.setValor(10);
+		oferta.agregarCategoria("bebidas");
 		Producto coca = new ProductoDummy("coca","bebidas");
 		assertTrue(oferta.encajaEnOferta(coca));
 	}
@@ -42,7 +39,9 @@ public class OfertaIndividualTest extends TestCase{
 		ArrayList<Criterio> criterios = new ArrayList<Criterio>();
 		Criterio criterio = new SeleccionarPorMarca("coca");
 		criterios.add(criterio);
-		OfertaIndividual oferta = new OfertaIndividual(criterios,10);
+		OfertaIndividual oferta = new OfertaIndividual();
+		oferta.setValor(10);
+		oferta.agregarMarca("coca");
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		ProductoDummy coca = new ProductoDummy("coca","bebidas");
 		productos.add(coca);
