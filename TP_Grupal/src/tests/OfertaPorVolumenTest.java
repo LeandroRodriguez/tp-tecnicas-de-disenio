@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import excepciones.ExcepcionCantidadInvalida;
 
-public class OfertaPorVolumenYMarcaTest extends TestCase{
+public class OfertaPorVolumenTest extends TestCase{
 
 	@Test
 	public void testAplicarSobreProductos() {

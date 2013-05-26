@@ -10,21 +10,23 @@ import ofertas.criterios.SeleccionarPorCategoria;
 import ofertas.criterios.SeleccionarPorDia;
 import ofertas.criterios.SeleccionarPorMarca;
 
-public class OfertaIndividual {
+public class OfertaIndividual{
 	
 	private ArrayList<Criterio> criterios;
-	private float valor;
 	
+	private float valor;
+
 	public OfertaIndividual(){
 		this.criterios = new ArrayList<Criterio>();
 		this.valor = 0;
 	}
 	
-	/** Agrega una marca a la oferta. Pueden ser varias
-	 * @param marca nombre de la marca del producto
-	 */
-	public void agregarMarca(String marca){
-		criterios.add(new SeleccionarPorMarca(marca));
+	public boolean equals(OfertaIndividual oferta){
+		boolean comp = (this.valor == oferta.valor);
+		if (!comp) return false;
+		comp = (this.criterios.size() == oferta.criterios.size());
+		if (!comp) return false;
+		return true;
 	}
 	
 	/** Agrega una categoria a la oferta
@@ -34,11 +36,15 @@ public class OfertaIndividual {
 		criterios.add(new SeleccionarPorCategoria(categoria));
 	}
 	
-	/** Establece el valor de la oferta, en porcentaje
-	 * @param valor
+	public void agregarDia(String dia) {
+		criterios.add(new SeleccionarPorDia(dia));
+	}
+	
+	/** Agrega una marca a la oferta. Pueden ser varias
+	 * @param marca nombre de la marca del producto
 	 */
-	public void setValor(float valor){
-		this.valor = valor;
+	public void agregarMarca(String marca){
+		criterios.add(new SeleccionarPorMarca(marca));
 	}
 	
 	public List<Descuento> aplicarOfertas(ArrayList<Producto> productos) {
@@ -50,7 +56,7 @@ public class OfertaIndividual {
 		}
 		return descuentos;
 	}
-
+	
 	public boolean encajaEnOferta(Producto producto) {
 		for (Criterio criterio : criterios) {
 			if (!criterio.aplicaSobre(producto)) {
@@ -59,9 +65,24 @@ public class OfertaIndividual {
 		}
 		return true;
 	}
+	
+	public ArrayList<Criterio> getCriterios() {
+		return criterios;
+	}
 
-	public void agregarDia(String dia) {
-		criterios.add(new SeleccionarPorDia(dia));
+	public float getValor() {
+		return valor;
+	}
+
+	public void setCriterios(ArrayList<Criterio> criterios) {
+		this.criterios = criterios;
+	}
+
+	/** Establece el valor de la oferta, en porcentaje
+	 * @param valor
+	 */
+	public void setValor(float valor){
+		this.valor = valor;
 	}
 
 }
