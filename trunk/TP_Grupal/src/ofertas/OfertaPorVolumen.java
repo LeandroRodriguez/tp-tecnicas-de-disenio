@@ -15,6 +15,11 @@ public class OfertaPorVolumen {
 	private int cantidad;
 	private int bonificacion;
 	
+	/**
+	 * @param cantidad El total de productos que es necesario comprar
+	 * @param bonificacion Cuantos productos seran gratis
+	 * @throws ExcepcionCantidadInvalida
+	 */
 	public OfertaPorVolumen(int cantidad, int bonificacion) throws ExcepcionCantidadInvalida{
 		if (bonificacion >= cantidad) {
 			throw new ExcepcionCantidadInvalida();

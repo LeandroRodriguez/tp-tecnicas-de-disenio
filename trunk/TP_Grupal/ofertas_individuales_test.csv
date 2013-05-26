@@ -1,0 +1,3 @@
+[{"marca":"CocaCola"},{"marca":"7Up"},{"marca":"Cordoba"}]#ofertas.criterios.SeleccionarPorMarca;ofertas.criterios.SeleccionarPorMarca;ofertas.criterios.SeleccionarPorMarca;#15.0
+[{"categoria":"lacteos"},{"categoria":"congelados"},{"categoria":"pastas"}]#ofertas.criterios.SeleccionarPorCategoria;ofertas.criterios.SeleccionarPorCategoria;ofertas.criterios.SeleccionarPorCategoria;#10.0
+[{"categoria":"bebidas"},{"marca":"7Up"},{"categoria":"almacen"}]#ofertas.criterios.SeleccionarPorCategoria;ofertas.criterios.SeleccionarPorMarca;ofertas.criterios.SeleccionarPorCategoria;#5.0

@@ -6,6 +6,11 @@ public class SeleccionarPorCategoria implements Criterio {
 	
 	private String categoria;
 	
+	public SeleccionarPorCategoria(){
+		
+	}
+
+	
 	public SeleccionarPorCategoria(String categoria){
 		this.categoria = categoria;
 	}

@@ -6,6 +6,11 @@ public class SeleccionarPorMarca implements Criterio {
 	
 	private String marca;
 	
+	public SeleccionarPorMarca(){
+		
+	}
+
+	
 	public SeleccionarPorMarca(String marca){
 		this.marca = marca;
 	}
