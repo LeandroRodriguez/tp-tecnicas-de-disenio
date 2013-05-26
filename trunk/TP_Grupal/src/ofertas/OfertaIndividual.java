@@ -16,6 +16,9 @@ public class OfertaIndividual{
 	
 	private float valor;
 
+	/**
+	 * Oferta que se aplica sobre un solo producto, ejemplo: 10 % de descuento en almacen.
+	 */
 	public OfertaIndividual(){
 		this.criterios = new ArrayList<Criterio>();
 		this.valor = 0;
