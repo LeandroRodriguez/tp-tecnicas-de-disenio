@@ -8,8 +8,6 @@ import modelo.Descuento;
 import modelo.Producto;
 import ofertas.OfertaIndividual;
 import ofertas.ProductoDummy;
-import ofertas.criterios.Criterio;
-import ofertas.criterios.SeleccionarPorMarca;
 
 import org.junit.Test;
 
@@ -34,20 +32,33 @@ public class OfertaIndividualTest extends TestCase{
 		assertTrue(oferta.encajaEnOferta(coca));
 	}
 
+
+	@Test
+	public void testAplicarSobreMarcaYCategoria() {
+		OfertaIndividual oferta = new OfertaIndividual();
+		oferta.setValor(10);
+		oferta.agregarMarca("CocaCola");
+		oferta.agregarCategoria("bebidas");
+		Producto coca = new ProductoDummy("CocaCola","bebidas");
+		Producto coca2 = new ProductoDummy("CocaCola","bebidas dieteticas");
+		Producto coca3 = new ProductoDummy("CocaCola Zero","bebidas");
+		assertTrue(oferta.encajaEnOferta(coca));
+		assertFalse(oferta.encajaEnOferta(coca2));
+		assertFalse(oferta.encajaEnOferta(coca3));
+	}
+
 	@Test
 	public void testAplicarDescuento() {
-		ArrayList<Criterio> criterios = new ArrayList<Criterio>();
-		Criterio criterio = new SeleccionarPorMarca("coca");
-		criterios.add(criterio);
 		OfertaIndividual oferta = new OfertaIndividual();
 		oferta.setValor(10);
 		oferta.agregarMarca("coca");
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		ProductoDummy coca = new ProductoDummy("coca","bebidas");
-		productos.add(coca);
 		coca.setPrecio(100);
+		productos.add(coca);
 		List<Descuento> descuentos = oferta.aplicarOfertas(productos);
 		assertTrue(descuentos.get(0).getDescuento()==10);
+		assertTrue(descuentos.get(0).getProducto().equals(coca));
 	}
 
 }
