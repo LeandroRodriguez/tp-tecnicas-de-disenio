@@ -3,16 +3,12 @@ package persistencia;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import ofertas.OfertaIndividual;
 import ofertas.criterios.Criterio;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class SerializarOfertas {
 	
