@@ -1,6 +1,6 @@
 package ofertas.criterios;
 
-import modelo.Producto;
+import modelo.ProductosVendidos;
 
 public class CriterioPorDia implements Criterio {
 	
@@ -21,7 +21,7 @@ public class CriterioPorDia implements Criterio {
 	}
 
 	@Override
-	public boolean aplicaSobre(Producto producto) {
+	public boolean aplicaSobre(ProductosVendidos producto) {
 		if (incluyente)
 			return (dia.equals(calendario.getDiaCorriente()));
 		else

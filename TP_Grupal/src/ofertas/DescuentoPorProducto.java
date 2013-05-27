@@ -1,15 +1,15 @@
 package ofertas;
 
 import modelo.Descuento;
-import modelo.Producto;
+import modelo.ProductosVendidos;
 
 public class DescuentoPorProducto implements Descuento {
 	
 	private float valor;
-	private Producto producto;
+	private ProductosVendidos productoVendido;
 
-	public Producto getProducto() {
-		return producto;
+	public ProductosVendidos getProducto() {
+		return productoVendido;
 	}
 	
 	@Override
@@ -17,8 +17,8 @@ public class DescuentoPorProducto implements Descuento {
 		return valor;
 	}
 	
-	public DescuentoPorProducto(Producto producto, float valor){
-		this.producto = producto;
+	public DescuentoPorProducto(ProductosVendidos producto, float valor){
+		this.productoVendido = producto;
 		this.valor = valor;
 	}
 
