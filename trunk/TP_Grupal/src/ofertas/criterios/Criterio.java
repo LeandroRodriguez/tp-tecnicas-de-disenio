@@ -4,7 +4,7 @@ import modelo.ProductosVendidos;
 
 public interface Criterio {
 	
-	public boolean aplicaSobre(ProductosVendidos producto);
+	public abstract boolean aplicaSobre(ProductosVendidos producto);
 	
 	public void setExcluyente();
 	

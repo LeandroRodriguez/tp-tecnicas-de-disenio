@@ -15,10 +15,14 @@ public class ProductoDummy implements Producto {
 		this.precio = precio;
 	}
 
-	public ProductoDummy(String marca, String categoria){
+	public ProductoDummy(String nombre, String marca, String categoria){
 		this.marca = marca;
 		this.categoria = categoria;
-		this.nombre = "Dummy";
+		this.nombre = nombre;
+	}
+	
+	public ProductoDummy(String marca, String categoria){
+		this("Dummy", marca, categoria);
 	}
 
 	@Override
