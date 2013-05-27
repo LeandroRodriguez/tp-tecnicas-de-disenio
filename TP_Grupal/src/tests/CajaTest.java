@@ -179,21 +179,23 @@ public class CajaTest {
 	
 	@Test
 	public void testGetTotalVentaDosProductos() {
-		float precio1 = (float) 10;
-		float precio2 = (float) 15;
+		float precio1 = (float) 1;
+		float precio2 = (float) 55;
 		Caja c = new Caja();
 		c.abrirCaja();
 		c.iniciarVenta();
-		ProductoDummy prod1 = getProductoDummy(precio1);
+		ProductoDummy prod1 = getProductoDummy(precio1, "Producto 1");
 		c.agregarProducto(prod1);
-		ProductoDummy prod2 = getProductoDummy(precio2);
+		ProductoDummy prod2 = getProductoDummy(precio2, "Producto 2");
 		c.agregarProducto(prod2);
 		
 		float res = c.getTotalVenta();
 		
+		assertEquals(1, prod1.getPrecio(), 0.001);
+		assertEquals(55, prod2.getPrecio(), 0.001);
 		float esperado = precio1 + precio2;
 		float delta = (float) 0.001;
-		assertEquals(res, esperado, delta);
+		assertEquals(esperado, res, delta);
 	}
 	
 	@Test
@@ -354,10 +356,14 @@ public class CajaTest {
 		assertEquals(res, esperado, delta);
 	}
 	
-	public ProductoDummy getProductoDummy(double precio) {
-		ProductoDummy prod = new ProductoDummy("Marca","Categoria");
+	public ProductoDummy getProductoDummy(double precio, String nombre) {
+		ProductoDummy prod = new ProductoDummy(nombre, "Marca","Categoria");
 		prod.setPrecio(precio);
 		return prod;
+	}
+	
+	public ProductoDummy getProductoDummy(double precio) {
+		return getProductoDummy(precio, "Dummy");
 	}
 	
 }
