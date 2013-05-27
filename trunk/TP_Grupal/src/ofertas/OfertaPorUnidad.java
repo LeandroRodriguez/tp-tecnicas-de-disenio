@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Descuento;
-import modelo.Producto;
+import modelo.ProductosVendidos;
 import ofertas.criterios.Criterio;
 
 public class OfertaPorUnidad extends Oferta {
@@ -25,9 +25,9 @@ public class OfertaPorUnidad extends Oferta {
 		return true;
 	}
 	
-	public List<Descuento> aplicarOfertas(ArrayList<Producto> productos) {
+	public List<Descuento> aplicarOferta(ArrayList<ProductosVendidos> productos) {
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
-		for (Producto producto : productos) {
+		for (ProductosVendidos producto : productos) {
 			if (encajaEnOferta(producto)){
 				descuentos.add(new DescuentoPorProducto(producto,porcentajeDescuento));
 			}
@@ -35,9 +35,9 @@ public class OfertaPorUnidad extends Oferta {
 		return descuentos;
 	}
 
-	public boolean encajaEnOferta(Producto producto) {
+	public boolean encajaEnOferta(ProductosVendidos producto) {
 		for (Criterio criterio : criterios) {
-			if (!criterio.aplicaSobre(producto)) {
+			if ( ! criterio.aplicaSobre(producto)) {
 				return false;
 			}
 		}
@@ -64,5 +64,4 @@ public class OfertaPorUnidad extends Oferta {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }

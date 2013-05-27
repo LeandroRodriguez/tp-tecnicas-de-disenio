@@ -6,6 +6,8 @@ import java.util.List;
 import junit.framework.TestCase;
 import modelo.Descuento;
 import modelo.Producto;
+import modelo.ProductoVendido;
+import modelo.ProductosVendidos;
 import ofertas.OfertaPorUnidad;
 import ofertas.ProductoDummy;
 import ofertas.criterios.CriterioPorCategoria;
@@ -22,7 +24,8 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.agregarCriterio(new CriterioPorMarca("coca", true));
 		oferta.setPorcentajeDescuento(10);
 		Producto coca = new ProductoDummy("coca","bebidas");
-		assertTrue(oferta.encajaEnOferta(coca));
+		ProductosVendidos vendido = new ProductoVendido(coca);
+		assertTrue(oferta.encajaEnOferta(vendido));
 	}
 
 	@Test
@@ -31,7 +34,8 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
 		Producto coca = new ProductoDummy("coca","bebidas");
-		assertTrue(oferta.encajaEnOferta(coca));
+		ProductosVendidos vendido = new ProductoVendido(coca);
+		assertTrue(oferta.encajaEnOferta(vendido));
 	}
 
 
@@ -45,9 +49,12 @@ public class OfertaPorUnidadTest extends TestCase{
 		Producto coca = new ProductoDummy("CocaCola","bebidas");
 		Producto coca2 = new ProductoDummy("CocaCola","bebidas dieteticas");
 		Producto coca3 = new ProductoDummy("CocaCola Zero","bebidas");
-		assertTrue(oferta.encajaEnOferta(coca));
-		assertFalse(oferta.encajaEnOferta(coca2));
-		assertFalse(oferta.encajaEnOferta(coca3));
+		ProductosVendidos vendido1 = new ProductoVendido(coca);
+		ProductosVendidos vendido2 = new ProductoVendido(coca2);
+		ProductosVendidos vendido3 = new ProductoVendido(coca3);
+		assertTrue(oferta.encajaEnOferta(vendido1));
+		assertFalse(oferta.encajaEnOferta(vendido2));
+		assertFalse(oferta.encajaEnOferta(vendido3));
 	}
 
 	@Test
@@ -55,13 +62,14 @@ public class OfertaPorUnidadTest extends TestCase{
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorMarca("coca", true));
-		ArrayList<Producto> productos = new ArrayList<Producto>();
+		ArrayList<ProductosVendidos> productos = new ArrayList<ProductosVendidos>();
 		ProductoDummy coca = new ProductoDummy("coca","bebidas");
 		coca.setPrecio(100);
-		productos.add(coca);
-		List<Descuento> descuentos = oferta.aplicarOfertas(productos);
+		ProductosVendidos vendido = new ProductoVendido(coca);
+		productos.add(vendido);
+		List<Descuento> descuentos = oferta.aplicarOferta(productos);
 		assertTrue(descuentos.get(0).getDescuento()==10);
-		assertTrue(descuentos.get(0).getProducto().equals(coca));
+		assertTrue(descuentos.get(0).getProducto().equals(vendido));
 	}
 
 	@Test
@@ -70,7 +78,7 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
 		oferta.agregarCriterio(new CriterioPorMarca("Chandon", false));
-		ArrayList<Producto> productos = new ArrayList<Producto>();
+		ArrayList<ProductosVendidos> productos = new ArrayList<ProductosVendidos>();
 		ProductoDummy bebida1 = new ProductoDummy("CocaCola","bebidas");
 		ProductoDummy bebida2 = new ProductoDummy("Chandon","bebidas");
 		ProductoDummy bebida3 = new ProductoDummy("Cordoba","bebidas");
@@ -81,20 +89,25 @@ public class OfertaPorUnidadTest extends TestCase{
 		bebida3.setPrecio(100);
 		bebida4.setPrecio(100);
 		bebida5.setPrecio(100);
-		productos.add(bebida1);
-		productos.add(bebida2);
-		productos.add(bebida3);
-		productos.add(bebida4);
-		productos.add(bebida5);
-		List<Descuento> descuentos = oferta.aplicarOfertas(productos);
+		ProductosVendidos vendido1 = new ProductoVendido(bebida1);
+		ProductosVendidos vendido2 = new ProductoVendido(bebida2);
+		ProductosVendidos vendido3 = new ProductoVendido(bebida3);
+		ProductosVendidos vendido4 = new ProductoVendido(bebida4);
+		ProductosVendidos vendido5 = new ProductoVendido(bebida5);
+		productos.add(vendido1);
+		productos.add(vendido2);
+		productos.add(vendido3);
+		productos.add(vendido4);
+		productos.add(vendido5);
+		List<Descuento> descuentos = oferta.aplicarOferta(productos);
 		assertTrue(descuentos.get(0).getDescuento()==10);
-		assertTrue(descuentos.get(0).getProducto()==bebida1);
+		assertTrue(descuentos.get(0).getProducto()==vendido1);
 		assertTrue(descuentos.get(1).getDescuento()==10);
-		assertTrue(descuentos.get(1).getProducto()==bebida3);
+		assertTrue(descuentos.get(1).getProducto()==vendido3);
 		assertTrue(descuentos.get(2).getDescuento()==10);
-		assertTrue(descuentos.get(2).getProducto()==bebida4);
+		assertTrue(descuentos.get(2).getProducto()==vendido4);
 		assertTrue(descuentos.get(3).getDescuento()==10);
-		assertTrue(descuentos.get(3).getProducto()==bebida5);
+		assertTrue(descuentos.get(3).getProducto()==vendido5);
 	}
 
 	@Test
@@ -103,7 +116,7 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorCategoria("retornable", false));
 		oferta.agregarCriterio(new CriterioPorMarca("CocaCola", true));
-		ArrayList<Producto> productos = new ArrayList<Producto>();
+		ArrayList<ProductosVendidos> productos = new ArrayList<ProductosVendidos>();
 		ProductoDummy bebida1 = new ProductoDummy("CocaCola","bebidas");
 		ProductoDummy bebida2 = new ProductoDummy("CocaCola","retornable");
 		ProductoDummy bebida3 = new ProductoDummy("CocaCola","bebidas");
@@ -114,18 +127,23 @@ public class OfertaPorUnidadTest extends TestCase{
 		bebida3.setPrecio(100);
 		bebida4.setPrecio(100);
 		bebida5.setPrecio(100);
-		productos.add(bebida1);
-		productos.add(bebida2);
-		productos.add(bebida3);
-		productos.add(bebida4);
-		productos.add(bebida5);
-		List<Descuento> descuentos = oferta.aplicarOfertas(productos);
+		ProductosVendidos vendido1 = new ProductoVendido(bebida1);
+		ProductosVendidos vendido2 = new ProductoVendido(bebida2);
+		ProductosVendidos vendido3 = new ProductoVendido(bebida3);
+		ProductosVendidos vendido4 = new ProductoVendido(bebida4);
+		ProductosVendidos vendido5 = new ProductoVendido(bebida5);
+		productos.add(vendido1);
+		productos.add(vendido2);
+		productos.add(vendido3);
+		productos.add(vendido4);
+		productos.add(vendido5);
+		List<Descuento> descuentos = oferta.aplicarOferta(productos);
 		assertTrue(descuentos.get(0).getDescuento()==10);
-		assertTrue(descuentos.get(0).getProducto()==bebida1);
+		assertTrue(descuentos.get(0).getProducto()==vendido1);
 		assertTrue(descuentos.get(1).getDescuento()==10);
-		assertTrue(descuentos.get(1).getProducto()==bebida3);
+		assertTrue(descuentos.get(1).getProducto()==vendido3);
 		assertTrue(descuentos.get(2).getDescuento()==10);
-		assertTrue(descuentos.get(2).getProducto()==bebida5);
+		assertTrue(descuentos.get(2).getProducto()==vendido5);
 	}
 
 }

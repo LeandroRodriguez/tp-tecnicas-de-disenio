@@ -5,7 +5,8 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import modelo.Descuento;
-import modelo.Producto;
+import modelo.ProductoVendido;
+import modelo.ProductosVendidos;
 import ofertas.OfertaPorUnidad;
 import ofertas.ProductoDummy;
 import ofertas.criterios.CriterioPorDia;
@@ -21,9 +22,10 @@ public class OfertaPorDiaTest extends TestCase{
 		oferta.agregarCriterio(new CriterioPorDia("domingo", true, "domingo"));
 		ProductoDummy producto = new ProductoDummy("Coca","Bebidas");
 		producto.setPrecio(100);
-		ArrayList<Producto> productos = new ArrayList<Producto>();
-		productos.add(producto);
-		List<Descuento> descuentos = oferta.aplicarOfertas(productos);
+		ProductosVendidos vendido = new ProductoVendido(producto);
+		ArrayList<ProductosVendidos> productos = new ArrayList<ProductosVendidos>();
+		productos.add(vendido);
+		List<Descuento> descuentos = oferta.aplicarOferta(productos);
 		assertEquals(descuentos.get(0).getDescuento(), 10.0f);
 	}
 

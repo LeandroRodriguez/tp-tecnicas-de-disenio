@@ -7,5 +7,6 @@ public interface ProductosVendidos {
 	public double getPrecioTotal();
 	public int getCantidadDeProductos();
 	public Producto getProducto();
-
+	public void agregarUnidad();
+	public boolean equals(ProductosVendidos otro);
 }

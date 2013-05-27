@@ -4,7 +4,7 @@ import modelo.Producto;
 
 public class ProductoDummy implements Producto {
 	
-	private String marca, categoria; 
+	private String marca, categoria, nombre; 
 	private double precio;
 	
 	public double getPrecio() {
@@ -18,6 +18,7 @@ public class ProductoDummy implements Producto {
 	public ProductoDummy(String marca, String categoria){
 		this.marca = marca;
 		this.categoria = categoria;
+		this.nombre = "Dummy";
 	}
 
 	@Override
@@ -28,6 +29,11 @@ public class ProductoDummy implements Producto {
 	@Override
 	public String getCategoria() {
 		return categoria;
+	}
+
+	@Override
+	public String getNombre() {
+		return nombre;
 	}
 
 }

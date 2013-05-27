@@ -7,17 +7,25 @@ import ofertas.OfertaPorUnidad;
 public class Venta {
 
 	private String medioDePago;
-	private ArrayList<Producto> productos;
+	private ArrayList<ProductosVendidos> productos;
 	private ArrayList<Descuento> beneficios;
 	
 	public Venta() {
 		medioDePago = "";
-		productos = new ArrayList<Producto>();
+		productos = new ArrayList<ProductosVendidos>();
 		beneficios = new ArrayList<Descuento>();
 	}
 	
+	/* Si ya lo tiene, modifica la cantidad. Caso contrario lo agrega. */
 	public void agregarProducto(Producto prod) {
-		productos.add(prod);
+		ProductosVendidos nuevo = new ProductoVendido(prod);
+		for (ProductosVendidos vendido : this.productos){
+			if ( vendido.equals(nuevo) ) {
+				vendido.agregarUnidad();
+				return;
+			}
+		}
+		productos.add(nuevo);
 	}
 
 	public void setMedioDePago(String medio) {
@@ -34,8 +42,8 @@ public class Venta {
 
 	public float getTotal() {
 		float total = 0;
-		for (Producto prod : this.productos) {
-			total += prod.getPrecio();
+		for (ProductosVendidos prod : this.productos) {
+			total += prod.getPrecioTotal();
 		}
 		return total;
 	}
@@ -51,7 +59,7 @@ public class Venta {
 	public void aplicarOferta(OfertaPorUnidad oferta) {
 		// Algo tiene que devolver estas ofertas para poder calcular 
 		// los descuentos posteriormente
-		oferta.aplicarOfertas(this.productos);
+		oferta.aplicarOferta(this.productos);
 	}
 
 }

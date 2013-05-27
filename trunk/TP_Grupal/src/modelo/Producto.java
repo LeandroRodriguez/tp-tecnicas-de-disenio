@@ -1,7 +1,9 @@
 package modelo;
 
 public interface Producto {
-
+	
+	public String getNombre();
+	
 	public String getMarca();
 	
 	public String getCategoria();
