@@ -5,11 +5,15 @@ public class ProductoVendido implements ProductosVendidos {
 	int cantidad;
 	Producto producto;
 	
-	public ProductoVendido(Producto p) {
-		producto = p;
-		cantidad = 1;
+	public ProductoVendido(Producto producto, int cantidad) {
+		this.producto = producto;
+		this.cantidad = cantidad;
 	}
 	
+	public ProductoVendido(Producto producto) {
+		this(producto, 1);
+	}
+
 	public int getCantidadDeProductos() {
 		return cantidad;
 	}
@@ -35,13 +39,11 @@ public class ProductoVendido implements ProductosVendidos {
 	}
 	
 	public boolean equals(ProductosVendidos otro) {
-		if (otro instanceof ProductoVendido) {
-			ProductoVendido o = (ProductoVendido) otro;
-			if ( this.getCategoria().equals( o.getCategoria() ) &&
-					this.getMarca().equals(o.getMarca()) &&
-					producto.getNombre().equals( o.producto.getNombre() )) 
-				return true;
-	    }
-		return false;
+		
+		if ( this.getCategoria().equals( otro.getCategoria() ) &&
+				this.getMarca().equals(otro.getMarca()) &&
+				producto.getNombre().equals( otro.getProducto().getNombre() )) 
+			return true;
+	    return false;
 	}
 }
