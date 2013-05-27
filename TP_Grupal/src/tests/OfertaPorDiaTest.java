@@ -6,8 +6,9 @@ import java.util.List;
 import junit.framework.TestCase;
 import modelo.Descuento;
 import modelo.Producto;
-import ofertas.OfertaIndividual;
+import ofertas.OfertaPorUnidad;
 import ofertas.ProductoDummy;
+import ofertas.criterios.SeleccionarPorDia;
 
 import org.junit.Test;
 
@@ -15,9 +16,9 @@ public class OfertaPorDiaTest extends TestCase{
 
 	@Test
 	public void testDia() {
-		OfertaIndividual oferta = new OfertaIndividual();
-		oferta.setValor(10);
-		oferta.agregarDia("domingo", true);
+		OfertaPorUnidad oferta = new OfertaPorUnidad();
+		oferta.setPorcentajeDescuento(10);
+		oferta.agregarCriterio(new SeleccionarPorDia("domingo", true));
 		ProductoDummy producto = new ProductoDummy("Coca","Bebidas");
 		producto.setPrecio(100);
 		ArrayList<Producto> productos = new ArrayList<Producto>();
