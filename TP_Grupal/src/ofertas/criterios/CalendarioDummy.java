@@ -9,7 +9,7 @@ public class CalendarioDummy implements Calendario {
 	}
 
 	@Override
-	public String getDia() {
+	public String getDiaCorriente() {
 		return dia;
 	}
 	
