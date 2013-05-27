@@ -7,9 +7,6 @@ import modelo.Descuento;
 import modelo.Producto;
 import ofertas.criterios.Criterio;
 import ofertas.criterios.ListaDeCriterios;
-import ofertas.criterios.CriterioPorCategoria;
-import ofertas.criterios.CriterioPorDia;
-import ofertas.criterios.CriterioPorMarca;
 import excepciones.ExcepcionCantidadInvalida;
 
 public class OfertaPorVolumen extends Oferta {
