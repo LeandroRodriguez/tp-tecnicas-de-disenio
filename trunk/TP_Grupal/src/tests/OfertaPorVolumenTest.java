@@ -18,7 +18,7 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarMarca("coca");
+			oferta.agregarMarca("coca", true);
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("coca", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("coca", "bebidas");
@@ -39,7 +39,7 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarMarca("CocaCola");
+			oferta.agregarMarca("CocaCola", true);
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("Cordoba", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("InkaCola", "bebidas");
@@ -60,7 +60,7 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarCategoria("bebidas");
+			oferta.agregarCategoria("bebidas", true);
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("Cordoba", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("InkaCola", "bebidas");
@@ -81,8 +81,8 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarCategoria("bebidas");
-			oferta.agregarMarca("CocaCola");
+			oferta.agregarCategoria("bebidas", true);
+			oferta.agregarMarca("CocaCola", true);
 			oferta.cumplirTodosLosCriterios();
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("CocaCola", "bebidas");
@@ -112,8 +112,8 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarCategoria("bebidas");
-			oferta.agregarCategoria("almacen");
+			oferta.agregarCategoria("bebidas", true);
+			oferta.agregarCategoria("almacen", true);
 			oferta.cumplirAlgunCriterio();
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("CocaCola", "bebidas");
@@ -160,7 +160,7 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarMarca("CocaCola");
+			oferta.agregarMarca("CocaCola", true);
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("CocaCola", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("CocaCola", "bebidas");

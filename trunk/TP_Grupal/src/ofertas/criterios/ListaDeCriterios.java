@@ -18,6 +18,10 @@ public class ListaDeCriterios {
 		cumplirTodos = true;
 	}
 	
+	public boolean equals(ListaDeCriterios lista){
+		return (criterios.size() == lista.criterios.size());
+	}
+	
 	public void agregarCriterio(Criterio criterio){
 		criterios.add(criterio);
 	}
@@ -55,6 +59,14 @@ public class ListaDeCriterios {
 
 	public void cumplirAlguno() {
 		cumplirTodos = false;
+	}
+
+	public ArrayList<Criterio> getLista() {
+		return criterios;
+	}
+
+	public void setLista(ArrayList<Criterio> criterios) {
+		this.criterios = criterios;
 	}
 
 }

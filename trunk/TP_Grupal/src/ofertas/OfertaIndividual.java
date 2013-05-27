@@ -6,13 +6,14 @@ import java.util.List;
 import modelo.Descuento;
 import modelo.Producto;
 import ofertas.criterios.Criterio;
+import ofertas.criterios.ListaDeCriterios;
 import ofertas.criterios.SeleccionarPorCategoria;
 import ofertas.criterios.SeleccionarPorDia;
 import ofertas.criterios.SeleccionarPorMarca;
 
 public class OfertaIndividual{
 	
-	private ArrayList<Criterio> criterios;
+	private ListaDeCriterios criterios;
 	
 	private float valor;
 
@@ -20,14 +21,14 @@ public class OfertaIndividual{
 	 * Oferta que se aplica sobre un solo producto, ejemplo: 10 % de descuento en almacen.
 	 */
 	public OfertaIndividual(){
-		this.criterios = new ArrayList<Criterio>();
+		this.criterios = new ListaDeCriterios();
 		this.valor = 0;
 	}
 	
 	public boolean equals(OfertaIndividual oferta){
 		boolean comp = (this.valor == oferta.valor);
 		if (!comp) return false;
-		comp = (this.criterios.size() == oferta.criterios.size());
+		comp = (this.criterios.equals(oferta.criterios));
 		if (!comp) return false;
 		return true;
 	}
@@ -36,19 +37,19 @@ public class OfertaIndividual{
 	 * @param categoria nombre de la categoria
 	 */
 	
-	public void agregarCategoria(String categoria){
-		criterios.add(new SeleccionarPorCategoria(categoria));
+	public void agregarCategoria(String categoria, boolean incluyente){
+		criterios.agregarCriterio(new SeleccionarPorCategoria(categoria, incluyente));
 	}
 	
-	public void agregarDia(String dia) {
-		criterios.add(new SeleccionarPorDia(dia));
+	public void agregarDia(String dia, boolean incluyente) {
+		criterios.agregarCriterio(new SeleccionarPorDia(dia, incluyente));
 	}
 	
 	/** Agrega una marca a la oferta. Pueden ser varias
 	 * @param marca nombre de la marca del producto
 	 */
-	public void agregarMarca(String marca){
-		criterios.add(new SeleccionarPorMarca(marca));
+	public void agregarMarca(String marca, boolean incluyente){
+		criterios.agregarCriterio(new SeleccionarPorMarca(marca, incluyente));
 	}
 	
 	public List<Descuento> aplicarOfertas(ArrayList<Producto> productos) {
@@ -62,16 +63,11 @@ public class OfertaIndividual{
 	}
 	
 	public boolean encajaEnOferta(Producto producto) {
-		for (Criterio criterio : criterios) {
-			if (!criterio.aplicaSobre(producto)) {
-				return false;
-			}
-		}
-		return true;
+		return (criterios.aplica(producto));
 	}
 	
 	public ArrayList<Criterio> getCriterios() {
-		return criterios;
+		return criterios.getLista();
 	}
 
 	public float getValor() {
@@ -79,7 +75,7 @@ public class OfertaIndividual{
 	}
 
 	public void setCriterios(ArrayList<Criterio> criterios) {
-		this.criterios = criterios;
+		this.criterios.setLista(criterios);
 	}
 
 	/** Establece el valor de la oferta, en porcentaje
@@ -87,6 +83,10 @@ public class OfertaIndividual{
 	 */
 	public void setValor(float valor){
 		this.valor = valor;
+	}
+
+	public void cumplirTodosLosCriterios() {
+		criterios.cumplirTodo();
 	}
 
 }
