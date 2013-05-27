@@ -16,21 +16,21 @@ public class OfertaIndividualFactoryTest extends TestCase{
 	public void testPersistir() {
 		OfertaIndividual ofertaInd1 = new OfertaIndividual();
 		ofertaInd1.setValor(15);
-		ofertaInd1.agregarMarca("CocaCola");
-		ofertaInd1.agregarMarca("7Up");
-		ofertaInd1.agregarMarca("Cordoba");
+		ofertaInd1.agregarMarca("CocaCola", true);
+		ofertaInd1.agregarMarca("7Up", true);
+		ofertaInd1.agregarMarca("Cordoba", true);
 
 		OfertaIndividual ofertaInd2 = new OfertaIndividual();
 		ofertaInd2.setValor(10);
-		ofertaInd2.agregarCategoria("lacteos");
-		ofertaInd2.agregarCategoria("congelados");
-		ofertaInd2.agregarCategoria("pastas");
+		ofertaInd2.agregarCategoria("lacteos", true);
+		ofertaInd2.agregarCategoria("congelados", true);
+		ofertaInd2.agregarCategoria("pastas", true);
 
 		OfertaIndividual ofertaInd3 = new OfertaIndividual();
 		ofertaInd3.setValor(5);
-		ofertaInd3.agregarCategoria("bebidas");
-		ofertaInd3.agregarMarca("7Up");
-		ofertaInd3.agregarCategoria("almacen");
+		ofertaInd3.agregarCategoria("bebidas", true);
+		ofertaInd3.agregarMarca("7Up", true);
+		ofertaInd3.agregarCategoria("almacen", true);
 		
 		ArrayList<OfertaIndividual> ofertas = new ArrayList<OfertaIndividual>();
 		ofertas.add(ofertaInd1);

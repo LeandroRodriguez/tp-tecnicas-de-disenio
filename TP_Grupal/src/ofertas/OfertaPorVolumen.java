@@ -37,16 +37,16 @@ public class OfertaPorVolumen {
 		criterios.cumplirAlguno();
 	}
 	
-	public void agregarMarca(String marca){
-		criterios.agregarCriterio(new SeleccionarPorMarca(marca));
+	public void agregarMarca(String marca, boolean incluyente){
+		criterios.agregarCriterio(new SeleccionarPorMarca(marca, incluyente));
 	}
 	
-	public void agregarCategoria(String categoria){
-		criterios.agregarCriterio(new SeleccionarPorCategoria(categoria));
+	public void agregarCategoria(String categoria, boolean incluyente){
+		criterios.agregarCriterio(new SeleccionarPorCategoria(categoria, incluyente));
 	}
 	
-	public void agregarDia(String dia){
-		criterios.agregarCriterio(new SeleccionarPorDia(dia));
+	public void agregarDia(String dia, boolean incluyente){
+		criterios.agregarCriterio(new SeleccionarPorDia(dia, incluyente));
 	}
 
 	public void aplicarOfertas(ArrayList<Producto> productos) {

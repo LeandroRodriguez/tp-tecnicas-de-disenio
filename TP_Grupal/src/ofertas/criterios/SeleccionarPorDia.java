@@ -6,20 +6,36 @@ public class SeleccionarPorDia implements Criterio {
 	
 	private String dia;
 	private Calendario calendario;
+	private boolean incluyente;
 	
-	public SeleccionarPorDia(String dia){
+	public SeleccionarPorDia(String dia, boolean incluyente){
 		this.dia = dia;
 		calendario = new CalendarioDia();
+		this.incluyente = true;
 	}
 	
 	public SeleccionarPorDia(String dia, String diaDummy){
 		this.dia = dia;
 		calendario = new CalendarioDummy(diaDummy);
+		this.incluyente = true;
 	}
 
 	@Override
 	public boolean aplicaSobre(Producto producto) {
-		return (dia.equals(calendario.getDiaCorriente()));
+		if (incluyente)
+			return (dia.equals(calendario.getDiaCorriente()));
+		else
+			return (!dia.equals(calendario.getDiaCorriente()));
+	}
+
+	@Override
+	public void setExcluyente() {
+		incluyente = false;
+	}
+
+	@Override
+	public void setIncluyente() {
+		incluyente = true;
 	}
 
 }
