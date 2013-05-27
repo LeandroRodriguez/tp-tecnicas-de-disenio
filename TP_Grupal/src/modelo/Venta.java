@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
-import ofertas.OfertaIndividual;
+import ofertas.OfertaPorUnidad;
 
 public class Venta {
 
@@ -48,7 +48,7 @@ public class Venta {
 		return total;
 	}
 
-	public void aplicarOferta(OfertaIndividual oferta) {
+	public void aplicarOferta(OfertaPorUnidad oferta) {
 		// Algo tiene que devolver estas ofertas para poder calcular 
 		// los descuentos posteriormente
 		oferta.aplicarOfertas(this.productos);
