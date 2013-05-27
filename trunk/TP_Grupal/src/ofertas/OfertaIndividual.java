@@ -35,6 +35,7 @@ public class OfertaIndividual{
 	/** Agrega una categoria a la oferta
 	 * @param categoria nombre de la categoria
 	 */
+	
 	public void agregarCategoria(String categoria){
 		criterios.add(new SeleccionarPorCategoria(categoria));
 	}
