@@ -15,12 +15,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-public class OfertaIndividualFactory extends OfertaFactory {
+public class OfertaPorUnidadFactory extends OfertaFactory {
 
 	private String nombreArchivo;
-	private ArrayList<OfertaIndividual> ofertas = new ArrayList<OfertaIndividual>();
+	private ArrayList<OfertaPorUnidad> ofertas = new ArrayList<OfertaPorUnidad>();
 	
-	public ArrayList<OfertaIndividual> getOfertas() {
+	public ArrayList<OfertaPorUnidad> getOfertas() {
 		return ofertas;
 	}
 	
@@ -28,7 +28,7 @@ public class OfertaIndividualFactory extends OfertaFactory {
 		this.nombreArchivo = nombreArchivo;
 	}
 	
-	public OfertaIndividualFactory() {
+	public OfertaPorUnidadFactory() {
 		nombreArchivo = "ofertas_individuales.csv";
 	}
 
@@ -71,9 +71,12 @@ public class OfertaIndividualFactory extends OfertaFactory {
 			br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {
 				String atributos[] = line.split("#");				
-				OfertaIndividual oferta = new OfertaIndividual();
-				oferta.setCriterios(crearCriterios(atributos[0], atributos[1]));
-				oferta.setValor(Float.parseFloat(atributos[2]));
+				OfertaPorUnidad oferta = new OfertaPorUnidad();
+				ArrayList<Criterio> criterios = crearCriterios(atributos[0], atributos[1]);
+				for (Criterio criterio : criterios){
+					oferta.agregarCriterio(criterio);
+				}
+				oferta.setPorcentajeDescuento(Float.parseFloat(atributos[2]));
 				ofertas.add(oferta);
 			}
 			br.close();

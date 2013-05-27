@@ -6,28 +6,30 @@ import java.util.List;
 import junit.framework.TestCase;
 import modelo.Descuento;
 import modelo.Producto;
-import ofertas.OfertaIndividual;
+import ofertas.OfertaPorUnidad;
 import ofertas.ProductoDummy;
+import ofertas.criterios.SeleccionarPorCategoria;
+import ofertas.criterios.SeleccionarPorMarca;
 
 import org.junit.Test;
 
 
-public class OfertaIndividualTest extends TestCase{
+public class OfertaPorUnidadTest extends TestCase{
 
 	@Test
 	public void testAplicarSobreMarca() {
-		OfertaIndividual oferta = new OfertaIndividual();
-		oferta.agregarMarca("coca", true);
-		oferta.setValor(10);
+		OfertaPorUnidad oferta = new OfertaPorUnidad();
+		oferta.agregarCriterio(new SeleccionarPorMarca("coca", true));
+		oferta.setPorcentajeDescuento(10);
 		Producto coca = new ProductoDummy("coca","bebidas");
 		assertTrue(oferta.encajaEnOferta(coca));
 	}
 
 	@Test
 	public void testAplicarSobreCategoria() {
-		OfertaIndividual oferta = new OfertaIndividual();
-		oferta.setValor(10);
-		oferta.agregarCategoria("bebidas", true);
+		OfertaPorUnidad oferta = new OfertaPorUnidad();
+		oferta.setPorcentajeDescuento(10);
+		oferta.agregarCriterio(new SeleccionarPorCategoria("bebidas", true));
 		Producto coca = new ProductoDummy("coca","bebidas");
 		assertTrue(oferta.encajaEnOferta(coca));
 	}
@@ -35,10 +37,10 @@ public class OfertaIndividualTest extends TestCase{
 
 	@Test
 	public void testAplicarSobreMarcaYCategoria() {
-		OfertaIndividual oferta = new OfertaIndividual();
-		oferta.setValor(10);
-		oferta.agregarMarca("CocaCola", true);
-		oferta.agregarCategoria("bebidas", true);
+		OfertaPorUnidad oferta = new OfertaPorUnidad();
+		oferta.setPorcentajeDescuento(10);
+		oferta.agregarCriterio(new SeleccionarPorMarca("CocaCola", true));
+		oferta.agregarCriterio(new SeleccionarPorCategoria("bebidas", true));
 		oferta.cumplirTodosLosCriterios();
 		Producto coca = new ProductoDummy("CocaCola","bebidas");
 		Producto coca2 = new ProductoDummy("CocaCola","bebidas dieteticas");
@@ -50,9 +52,9 @@ public class OfertaIndividualTest extends TestCase{
 
 	@Test
 	public void testAplicarDescuento() {
-		OfertaIndividual oferta = new OfertaIndividual();
-		oferta.setValor(10);
-		oferta.agregarMarca("coca", true);
+		OfertaPorUnidad oferta = new OfertaPorUnidad();
+		oferta.setPorcentajeDescuento(10);
+		oferta.agregarCriterio(new SeleccionarPorMarca("coca", true));
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		ProductoDummy coca = new ProductoDummy("coca","bebidas");
 		coca.setPrecio(100);
@@ -64,10 +66,10 @@ public class OfertaIndividualTest extends TestCase{
 
 	@Test
 	public void testAplicarACategoriaExceptoMarca() {
-		OfertaIndividual oferta = new OfertaIndividual();
-		oferta.setValor(10);
-		oferta.agregarCategoria("bebidas", true);
-		oferta.agregarMarca("Chandon", false);
+		OfertaPorUnidad oferta = new OfertaPorUnidad();
+		oferta.setPorcentajeDescuento(10);
+		oferta.agregarCriterio(new SeleccionarPorCategoria("bebidas", true));
+		oferta.agregarCriterio(new SeleccionarPorMarca("Chandon", false));
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		ProductoDummy bebida1 = new ProductoDummy("CocaCola","bebidas");
 		ProductoDummy bebida2 = new ProductoDummy("Chandon","bebidas");
@@ -97,10 +99,10 @@ public class OfertaIndividualTest extends TestCase{
 
 	@Test
 	public void testAplicarAMarcaExceptoCategoria() {
-		OfertaIndividual oferta = new OfertaIndividual();
-		oferta.setValor(10);
-		oferta.agregarCategoria("retornable", false);
-		oferta.agregarMarca("CocaCola", true);
+		OfertaPorUnidad oferta = new OfertaPorUnidad();
+		oferta.setPorcentajeDescuento(10);
+		oferta.agregarCriterio(new SeleccionarPorCategoria("retornable", false));
+		oferta.agregarCriterio(new SeleccionarPorMarca("CocaCola", true));
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		ProductoDummy bebida1 = new ProductoDummy("CocaCola","bebidas");
 		ProductoDummy bebida2 = new ProductoDummy("CocaCola","retornable");

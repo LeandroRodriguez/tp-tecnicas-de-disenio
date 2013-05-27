@@ -59,5 +59,10 @@ public class OfertaPorUnidad {
 	public void setPorcentajeDescuento(float porcentajeDescuento){
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
+
+	public void cumplirTodosLosCriterios() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

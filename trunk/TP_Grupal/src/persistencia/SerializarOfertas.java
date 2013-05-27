@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import ofertas.OfertaIndividual;
+import ofertas.OfertaPorUnidad;
 import ofertas.criterios.Criterio;
 
 import com.google.gson.Gson;
@@ -33,19 +33,19 @@ public class SerializarOfertas {
 	 * @param ofertas
 	 * @param apend
 	 */
-	public void serializarOfertasIndividuales(ArrayList<OfertaIndividual> ofertas, boolean apend){
+	public void serializarOfertasPorUnidad(ArrayList<OfertaPorUnidad> ofertas, boolean apend){
 		BufferedWriter out = null;
 		Gson gson = new Gson();
 		
 		try {
 		    out = new BufferedWriter(new FileWriter(nombreArchivo, apend));
-		    for (OfertaIndividual oferta : ofertas){
+		    for (OfertaPorUnidad oferta : ofertas){
 		    	ArrayList<Criterio> criterios = oferta.getCriterios();
 		    	out.write(gson.toJson(criterios));
 		    	out.write("#");
 		    	out.write(grabarTipos(criterios));
 		    	out.write("#");
-		    	out.write(Float.toString(oferta.getValor()));
+		    	out.write(Float.toString(oferta.getPorcentajeDescuento()));
 		    	out.write("\n");    	
 		    }
 	        out.close();
