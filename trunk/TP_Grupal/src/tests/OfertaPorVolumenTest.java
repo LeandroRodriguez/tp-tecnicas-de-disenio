@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 import modelo.Producto;
 import ofertas.OfertaPorVolumen;
 import ofertas.ProductoDummy;
+import ofertas.criterios.*;
 
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarMarca("coca", true);
+			oferta.agregarCriterio(new CriterioPorMarca("coca", true));
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("coca", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("coca", "bebidas");
@@ -39,7 +40,7 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarMarca("CocaCola", true);
+			oferta.agregarCriterio(new CriterioPorMarca("CocaCola", true));
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("Cordoba", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("InkaCola", "bebidas");
@@ -60,7 +61,7 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarCategoria("bebidas", true);
+			oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("Cordoba", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("InkaCola", "bebidas");
@@ -81,8 +82,8 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarCategoria("bebidas", true);
-			oferta.agregarMarca("CocaCola", true);
+			oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
+			oferta.agregarCriterio(new CriterioPorMarca("CocaCola", true));
 			oferta.cumplirTodosLosCriterios();
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("CocaCola", "bebidas");
@@ -112,8 +113,8 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarCategoria("bebidas", true);
-			oferta.agregarCategoria("almacen", true);
+			oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
+			oferta.agregarCriterio(new CriterioPorCategoria("almacen", true));
 			oferta.cumplirAlgunCriterio();
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("CocaCola", "bebidas");
@@ -160,7 +161,7 @@ public class OfertaPorVolumenTest extends TestCase{
 		OfertaPorVolumen oferta;
 		try {
 			oferta = new OfertaPorVolumen(2, 1);
-			oferta.agregarMarca("CocaCola", true);
+			oferta.agregarCriterio(new CriterioPorMarca("CocaCola", true));
 			ArrayList<Producto> productos = new ArrayList<Producto>();
 			ProductoDummy coca1 = new ProductoDummy("CocaCola", "bebidas");
 			ProductoDummy coca2 = new ProductoDummy("CocaCola", "bebidas");

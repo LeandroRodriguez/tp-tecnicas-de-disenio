@@ -1,15 +1,18 @@
 package ofertas;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import modelo.Descuento;
 import modelo.Producto;
+import ofertas.criterios.Criterio;
 import ofertas.criterios.ListaDeCriterios;
-import ofertas.criterios.SeleccionarPorCategoria;
-import ofertas.criterios.SeleccionarPorDia;
-import ofertas.criterios.SeleccionarPorMarca;
+import ofertas.criterios.CriterioPorCategoria;
+import ofertas.criterios.CriterioPorDia;
+import ofertas.criterios.CriterioPorMarca;
 import excepciones.ExcepcionCantidadInvalida;
 
-public class OfertaPorVolumen {
+public class OfertaPorVolumen extends Oferta {
 	
 	private ListaDeCriterios criterios;
 	private int cantidad;
@@ -37,19 +40,11 @@ public class OfertaPorVolumen {
 		criterios.cumplirAlguno();
 	}
 	
-	public void agregarMarca(String marca, boolean incluyente){
-		criterios.agregarCriterio(new SeleccionarPorMarca(marca, incluyente));
-	}
-	
-	public void agregarCategoria(String categoria, boolean incluyente){
-		criterios.agregarCriterio(new SeleccionarPorCategoria(categoria, incluyente));
-	}
-	
-	public void agregarDia(String dia, boolean incluyente){
-		criterios.agregarCriterio(new SeleccionarPorDia(dia, incluyente));
+	public void agregarCriterio(Criterio criterio) {
+		this.criterios.agregarCriterio(criterio);
 	}
 
-	public void aplicarOfertas(ArrayList<Producto> productos) {
+	public List<Descuento> aplicarOfertas(ArrayList<Producto> productos) {
 		ArrayList<Producto> productosCoincidentes = new ArrayList<Producto>();
 		int contados = 0;
 		int bonificados = 0;
@@ -69,6 +64,10 @@ public class OfertaPorVolumen {
 			if (bonificados == 0)
 				break;
 		}
+		
+		//TODO guardar descuentos
+		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
+		return descuentos;
 	}
 
 	public boolean encajaEnOferta(Producto producto) {

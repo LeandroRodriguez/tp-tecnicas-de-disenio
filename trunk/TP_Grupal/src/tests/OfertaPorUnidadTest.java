@@ -8,8 +8,8 @@ import modelo.Descuento;
 import modelo.Producto;
 import ofertas.OfertaPorUnidad;
 import ofertas.ProductoDummy;
-import ofertas.criterios.SeleccionarPorCategoria;
-import ofertas.criterios.SeleccionarPorMarca;
+import ofertas.criterios.CriterioPorCategoria;
+import ofertas.criterios.CriterioPorMarca;
 
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class OfertaPorUnidadTest extends TestCase{
 	@Test
 	public void testAplicarSobreMarca() {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
-		oferta.agregarCriterio(new SeleccionarPorMarca("coca", true));
+		oferta.agregarCriterio(new CriterioPorMarca("coca", true));
 		oferta.setPorcentajeDescuento(10);
 		Producto coca = new ProductoDummy("coca","bebidas");
 		assertTrue(oferta.encajaEnOferta(coca));
@@ -29,7 +29,7 @@ public class OfertaPorUnidadTest extends TestCase{
 	public void testAplicarSobreCategoria() {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
-		oferta.agregarCriterio(new SeleccionarPorCategoria("bebidas", true));
+		oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
 		Producto coca = new ProductoDummy("coca","bebidas");
 		assertTrue(oferta.encajaEnOferta(coca));
 	}
@@ -39,8 +39,8 @@ public class OfertaPorUnidadTest extends TestCase{
 	public void testAplicarSobreMarcaYCategoria() {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
-		oferta.agregarCriterio(new SeleccionarPorMarca("CocaCola", true));
-		oferta.agregarCriterio(new SeleccionarPorCategoria("bebidas", true));
+		oferta.agregarCriterio(new CriterioPorMarca("CocaCola", true));
+		oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
 		oferta.cumplirTodosLosCriterios();
 		Producto coca = new ProductoDummy("CocaCola","bebidas");
 		Producto coca2 = new ProductoDummy("CocaCola","bebidas dieteticas");
@@ -54,7 +54,7 @@ public class OfertaPorUnidadTest extends TestCase{
 	public void testAplicarDescuento() {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
-		oferta.agregarCriterio(new SeleccionarPorMarca("coca", true));
+		oferta.agregarCriterio(new CriterioPorMarca("coca", true));
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		ProductoDummy coca = new ProductoDummy("coca","bebidas");
 		coca.setPrecio(100);
@@ -68,8 +68,8 @@ public class OfertaPorUnidadTest extends TestCase{
 	public void testAplicarACategoriaExceptoMarca() {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
-		oferta.agregarCriterio(new SeleccionarPorCategoria("bebidas", true));
-		oferta.agregarCriterio(new SeleccionarPorMarca("Chandon", false));
+		oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
+		oferta.agregarCriterio(new CriterioPorMarca("Chandon", false));
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		ProductoDummy bebida1 = new ProductoDummy("CocaCola","bebidas");
 		ProductoDummy bebida2 = new ProductoDummy("Chandon","bebidas");
@@ -101,8 +101,8 @@ public class OfertaPorUnidadTest extends TestCase{
 	public void testAplicarAMarcaExceptoCategoria() {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
-		oferta.agregarCriterio(new SeleccionarPorCategoria("retornable", false));
-		oferta.agregarCriterio(new SeleccionarPorMarca("CocaCola", true));
+		oferta.agregarCriterio(new CriterioPorCategoria("retornable", false));
+		oferta.agregarCriterio(new CriterioPorMarca("CocaCola", true));
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		ProductoDummy bebida1 = new ProductoDummy("CocaCola","bebidas");
 		ProductoDummy bebida2 = new ProductoDummy("CocaCola","retornable");
