@@ -7,7 +7,7 @@ import modelo.Descuento;
 import modelo.Producto;
 import ofertas.criterios.Criterio;
 
-public class OfertaPorUnidad {
+public class OfertaPorUnidad extends Oferta {
 	
 	private ArrayList<Criterio> criterios;
 	private float porcentajeDescuento;
