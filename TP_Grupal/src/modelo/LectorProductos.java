@@ -17,6 +17,10 @@ public class LectorProductos {
 		nombreArchivo = "productos.csv";
 	}
 	
+	public void setArchivo(String nombre) {
+		nombreArchivo = nombre;
+	}
+	
 	public ArrayList<Producto> cargarProductos() {
 		InputStream fis;
 		BufferedReader br;
