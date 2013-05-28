@@ -62,7 +62,7 @@ public class Vista {
 		int eleccionUsuario = pedirNumeroEntre(1, len);
 		switch(eleccionUsuario) {
 		case 1:
-			ejecutarVenta();
+			mercado.ejecutarVenta();
 			break;
 		case 2:
 			verTotalVentas();
@@ -93,13 +93,41 @@ public class Vista {
 	private void verTotalVentas() {
 		float total = mercado.getTotalVentas();
 		System.out.format("Hasta el momento el total de las ventas es: $%.2f", total);
+	}	
+	
+	public void mostrarDescuentosAplicados() {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void ejecutarVenta() {
+	public String obtenerMedioDePago() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void mostrarTotalVentaActual(float total) {
+		System.out.format("Hasta el momento el subtotal de las venta actual es: $%.2f", total);
+	}
+
+	public void agregarProducto() {
 		mostrarProductos();
 		int producto = pedirNumeroProducto() - 1; //resto porque es el indice
 		int cantidad = pedirCantidadProducto();
-		mercado.agregarProducto(producto, cantidad);
+		if (mercado.agregarProducto(producto, cantidad) )
+			System.out.println("Producto agregado con éxito");
+		else 
+			System.out.println("ERROR");
+	}
+
+	public boolean continuarVenta() {
+		ArrayList<String> menu = new ArrayList<String>(Arrays.asList(
+				"Continuar agregando productos",
+				"Finalizar venta"));
+		imprimirListado(menu);
+		int ingresado = pedirNumeroEntre(1,2);
+		if (ingresado == 1)
+			return true;
+		return false;
 	}
 	
 	private int pedirNumeroProducto() {
