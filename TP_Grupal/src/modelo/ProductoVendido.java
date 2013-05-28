@@ -34,10 +34,6 @@ public class ProductoVendido implements ProductosVendidos {
 		return producto;
 	}
 	
-	public void agregarUnidad(){
-		cantidad += 1;
-	}
-	
 	public boolean equals(ProductosVendidos otro) {
 		// El método se define para poder ser comparado con elementos de cualquier otra clase
 		if (otro instanceof ProductoVendido) { 
@@ -47,5 +43,9 @@ public class ProductoVendido implements ProductosVendidos {
 				return true;
 		}
 		return false;
+	}
+
+	public void agregarUnidades(int cantidad) {
+		this.cantidad += cantidad;
 	}
 }

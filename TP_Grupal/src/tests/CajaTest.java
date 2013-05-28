@@ -167,7 +167,7 @@ public class CajaTest {
 		c.abrirCaja();
 		c.iniciarVenta();
 		Producto prod = getProductoDummy(precio);
-		c.agregarProducto(prod);
+		c.agregarProducto(prod,1);
 		
 		float res = c.getTotalVenta();
 		
@@ -184,9 +184,9 @@ public class CajaTest {
 		c.abrirCaja();
 		c.iniciarVenta();
 		Producto prod1 = getProductoDummy(precio1, "Producto 1");
-		c.agregarProducto(prod1);
+		c.agregarProducto(prod1,1);
 		Producto prod2 = getProductoDummy(precio2, "Producto 2");
-		c.agregarProducto(prod2);
+		c.agregarProducto(prod2,1);
 		
 		float res = c.getTotalVenta();
 		
@@ -240,7 +240,7 @@ public class CajaTest {
 		c.abrirCaja();
 		c.iniciarVenta();
 		Producto prod = getProductoDummy(precio);
-		c.agregarProducto(prod);
+		c.agregarProducto(prod,1);
 		c.finalizarVenta();
 		
 		float res = c.getTotalVentas();
@@ -258,11 +258,11 @@ public class CajaTest {
 		c.abrirCaja();
 		c.iniciarVenta();
 		Producto prod1 = getProductoDummy(precio1);
-		c.agregarProducto(prod1);
+		c.agregarProducto(prod1,1);
 		c.finalizarVenta();
 		c.iniciarVenta();
 		Producto prod2 = getProductoDummy(precio2);
-		c.agregarProducto(prod2);
+		c.agregarProducto(prod2,1);
 		c.finalizarVenta();
 		
 		float res = c.getTotalVentas();
