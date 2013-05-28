@@ -30,8 +30,8 @@ public class Mercado {
 		return sucursal.getProductos();
 	}
 
-	public void agregarProducto(int producto, int cantidad) {
-		sucursal.agregarProducto(producto, cantidad);
+	public boolean agregarProducto(int producto, int cantidad) {
+		return sucursal.agregarProducto(producto, cantidad);
 	}
 
 	public void salir() {
@@ -44,6 +44,30 @@ public class Mercado {
 
 	public float getTotalVentas() {
 		return sucursal.getTotalVentas();
+	}
+	
+	public void ejecutarVenta() {
+		sucursal.iniciarVenta();
+		boolean done = false;
+		while ( ! done) {
+			agregarProducto();
+			vista.mostrarTotalVentaActual(sucursal.getTotalVentaActual());
+			if ( ! vista.continuarVenta() )
+				done = true;
+		}
+		sucursal.setMedioDePago( vista.obtenerMedioDePago() );
+		aplicarOfertas();
+		vista.mostrarDescuentosAplicados();
+		sucursal.finalizarVenta();
+	}
+
+	private void aplicarOfertas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void agregarProducto() {
+		vista.agregarProducto();
 	}
 
 }

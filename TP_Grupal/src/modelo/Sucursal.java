@@ -9,6 +9,7 @@ public class Sucursal {
 	
 	public Sucursal() {
 		caja = new Caja();
+		caja.abrirCaja();
 		cargarProductos();
 	}
 	
@@ -25,8 +26,8 @@ public class Sucursal {
 		return caja;
 	}
 
-	public void agregarProducto(int indiceProducto, int cantidad) {
-		caja.agregarProducto( productos.get(indiceProducto), cantidad);
+	public boolean agregarProducto(int indiceProducto, int cantidad) {
+		return caja.agregarProducto( productos.get(indiceProducto), cantidad);
 	}
 
 	public float getTotalDescuentos() {
@@ -35,5 +36,21 @@ public class Sucursal {
 
 	public float getTotalVentas() {
 		return caja.getTotalVentas();
+	}
+
+	public void iniciarVenta() {
+		caja.iniciarVenta();
+	}
+
+	public float getTotalVentaActual() {
+		return caja.getTotalVenta();
+	}
+
+	public void finalizarVenta() {
+		caja.finalizarVenta();
+	}
+
+	public void setMedioDePago(String medio) {
+		caja.setMedioDePago(medio);
 	}
 }
