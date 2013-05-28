@@ -40,7 +40,7 @@ public class SerializarOfertas {
 		try {
 		    out = new BufferedWriter(new FileWriter(nombreArchivo, apend));
 		    for (OfertaPorUnidad oferta : ofertas){
-		    	ArrayList<Criterio> criterios = oferta.getCriterios();
+		    	ArrayList<Criterio> criterios = oferta.getCriterios().getLista();
 		    	out.write(gson.toJson(criterios));
 		    	out.write("#");
 		    	out.write(grabarTipos(criterios));

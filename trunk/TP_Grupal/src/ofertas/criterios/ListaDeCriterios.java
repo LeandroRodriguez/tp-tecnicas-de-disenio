@@ -18,8 +18,11 @@ public class ListaDeCriterios {
 		cumplirTodos = true;
 	}
 	
-	public boolean equals(ListaDeCriterios lista){
-		return (criterios.size() == lista.criterios.size());
+	public boolean equals(Object lista){
+		if(!(lista instanceof ListaDeCriterios))
+			return false;
+		ListaDeCriterios _lista = (ListaDeCriterios) lista;
+		return (criterios.size() == _lista.criterios.size());
 	}
 	
 	public void agregarCriterio(Criterio criterio){

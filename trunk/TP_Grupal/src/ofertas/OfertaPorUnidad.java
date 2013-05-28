@@ -6,21 +6,22 @@ import java.util.List;
 import modelo.Descuento;
 import modelo.ProductosVendidos;
 import ofertas.criterios.Criterio;
+import ofertas.criterios.ListaDeCriterios;
 
 public class OfertaPorUnidad extends Oferta {
 	
-	private ArrayList<Criterio> criterios;
+	private ListaDeCriterios criterios;
 	private float porcentajeDescuento;
 	
 	public OfertaPorUnidad(){
-		this.criterios = new ArrayList<Criterio>();
+		this.criterios = new ListaDeCriterios();
 		this.porcentajeDescuento = 0;
 	}
 
 	public boolean equals(OfertaPorUnidad oferta){
 		boolean comp = (this.porcentajeDescuento == oferta.getPorcentajeDescuento());
 		if (!comp) return false;
-		comp = (this.criterios.size() == oferta.getCriterios().size());
+		comp = (this.criterios.equals(oferta.getCriterios()));
 		if (!comp) return false;
 		return true;
 	}
@@ -36,15 +37,10 @@ public class OfertaPorUnidad extends Oferta {
 	}
 
 	public boolean encajaEnOferta(ProductosVendidos producto) {
-		for (Criterio criterio : criterios) {
-			if ( ! criterio.aplicaSobre(producto)) {
-				return false;
-			}
-		}
-		return true;
+		return criterios.aplica(producto);
 	}
 
-	public ArrayList<Criterio> getCriterios() {
+	public ListaDeCriterios getCriterios() {
 		return criterios;
 	}
 
@@ -53,7 +49,7 @@ public class OfertaPorUnidad extends Oferta {
 	}
 	
 	public void agregarCriterio(Criterio criterio) {
-		this.criterios.add(criterio);
+		this.criterios.agregarCriterio(criterio);
 	}
 
 	public void setPorcentajeDescuento(float porcentajeDescuento){
