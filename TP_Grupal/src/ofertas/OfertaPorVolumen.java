@@ -42,10 +42,21 @@ public class OfertaPorVolumen extends Oferta {
 	}
 
 	public List<Descuento> aplicarOferta(ArrayList<ProductosVendidos> productos) {
-		ArrayList<ProductosVendidos> productosCoincidentes = new ArrayList<ProductosVendidos>();
+		/*ArrayList<ProductosVendidos> productosCoincidentes = new ArrayList<ProductosVendidos>();
 		int contados = 0;
-		int bonificados = 0;
-		for (ProductosVendidos producto : productos) {
+		int bonificados = 0;*/
+		int bonificaciones = 0;
+		
+		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
+		for(ProductosVendidos productosVendidos: productos) {
+			if(encajaEnOferta(productosVendidos)) {
+				bonificaciones = (int) productosVendidos.getCantidadDeProductos() / cantidad;
+				float valorDescuento = (float) productosVendidos.getProducto().getPrecio() * bonificaciones * bonificacion;
+				DescuentoPorProducto descuento = new DescuentoPorProducto(productosVendidos, valorDescuento);
+				descuentos.add(descuento);
+			}
+		}
+		/*for (ProductosVendidos producto : productos) {
 			if (criterios.aplica(producto)) {
 				contados++;
 				if (contados == cantidad) {
@@ -61,10 +72,10 @@ public class OfertaPorVolumen extends Oferta {
 			bonificados--;
 			if (bonificados == 0)
 				break;
-		}
+		}*/
 		
 		//TODO guardar descuentos
-		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
+		//ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 		return descuentos;
 	}
 

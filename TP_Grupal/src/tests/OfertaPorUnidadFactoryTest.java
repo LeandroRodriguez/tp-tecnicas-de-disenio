@@ -57,7 +57,7 @@ public class OfertaPorUnidadFactoryTest extends TestCase{
 				break;
 			}
 		}
-		assertTrue(comparacion);		
+		assertTrue(comparacion);	
 	}
 
 }
