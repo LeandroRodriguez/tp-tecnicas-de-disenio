@@ -5,8 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Map;
 
 import modelo.Caja;
-
-import ofertas.ProductoDummy;
+import modelo.Producto;
 
 import org.junit.Test;
 
@@ -167,7 +166,7 @@ public class CajaTest {
 		Caja c = new Caja();
 		c.abrirCaja();
 		c.iniciarVenta();
-		ProductoDummy prod = getProductoDummy(precio);
+		Producto prod = getProductoDummy(precio);
 		c.agregarProducto(prod);
 		
 		float res = c.getTotalVenta();
@@ -184,9 +183,9 @@ public class CajaTest {
 		Caja c = new Caja();
 		c.abrirCaja();
 		c.iniciarVenta();
-		ProductoDummy prod1 = getProductoDummy(precio1, "Producto 1");
+		Producto prod1 = getProductoDummy(precio1, "Producto 1");
 		c.agregarProducto(prod1);
-		ProductoDummy prod2 = getProductoDummy(precio2, "Producto 2");
+		Producto prod2 = getProductoDummy(precio2, "Producto 2");
 		c.agregarProducto(prod2);
 		
 		float res = c.getTotalVenta();
@@ -240,7 +239,7 @@ public class CajaTest {
 		Caja c = new Caja();
 		c.abrirCaja();
 		c.iniciarVenta();
-		ProductoDummy prod = getProductoDummy(precio);
+		Producto prod = getProductoDummy(precio);
 		c.agregarProducto(prod);
 		c.finalizarVenta();
 		
@@ -258,11 +257,11 @@ public class CajaTest {
 		Caja c = new Caja();
 		c.abrirCaja();
 		c.iniciarVenta();
-		ProductoDummy prod1 = getProductoDummy(precio1);
+		Producto prod1 = getProductoDummy(precio1);
 		c.agregarProducto(prod1);
 		c.finalizarVenta();
 		c.iniciarVenta();
-		ProductoDummy prod2 = getProductoDummy(precio2);
+		Producto prod2 = getProductoDummy(precio2);
 		c.agregarProducto(prod2);
 		c.finalizarVenta();
 		
@@ -290,7 +289,7 @@ public class CajaTest {
 		Caja c = new Caja();
 		c.abrirCaja();
 		c.iniciarVenta();
-		ProductoDummy prod1 = getProductoDummy(precio1);
+		Producto prod1 = getProductoDummy(precio1);
 		c.agregarProducto(prod1);
 		c.setMedioDePago(medioDePago);
 		c.finalizarVenta();
@@ -311,12 +310,12 @@ public class CajaTest {
 		Caja c = new Caja();
 		c.abrirCaja();
 		c.iniciarVenta();
-		ProductoDummy prod1 = getProductoDummy(precio1);
+		Producto prod1 = getProductoDummy(precio1);
 		c.agregarProducto(prod1);
 		c.setMedioDePago(medioDePago);
 		c.finalizarVenta();
 		c.iniciarVenta();
-		ProductoDummy prod2 = getProductoDummy(precio2);
+		Producto prod2 = getProductoDummy(precio2);
 		c.agregarProducto(prod2);
 		c.setMedioDePago(medioDePago);
 		c.finalizarVenta();
@@ -338,12 +337,12 @@ public class CajaTest {
 		Caja c = new Caja();
 		c.abrirCaja();
 		c.iniciarVenta();
-		ProductoDummy prod1 = getProductoDummy(precio1);
+		Producto prod1 = getProductoDummy(precio1);
 		c.agregarProducto(prod1);
 		c.setMedioDePago(medioDePago1);
 		c.finalizarVenta();
 		c.iniciarVenta();
-		ProductoDummy prod2 = getProductoDummy(precio2);
+		Producto prod2 = getProductoDummy(precio2);
 		c.agregarProducto(prod2);
 		c.setMedioDePago(medioDePago2);
 		c.finalizarVenta();
@@ -356,13 +355,11 @@ public class CajaTest {
 		assertEquals(res, esperado, delta);
 	}
 	
-	public ProductoDummy getProductoDummy(double precio, String nombre) {
-		ProductoDummy prod = new ProductoDummy(nombre, "Marca","Categoria");
-		prod.setPrecio(precio);
-		return prod;
+	public Producto getProductoDummy(double precio, String nombre) {
+		return new Producto(nombre, "Marca","Categoria", precio);
 	}
 	
-	public ProductoDummy getProductoDummy(double precio) {
+	public Producto getProductoDummy(double precio) {
 		return getProductoDummy(precio, "Dummy");
 	}
 	

@@ -8,7 +8,7 @@ import modelo.Descuento;
 import modelo.ProductoVendido;
 import modelo.ProductosVendidos;
 import ofertas.OfertaPorUnidad;
-import ofertas.ProductoDummy;
+import modelo.Producto;
 import ofertas.criterios.CriterioPorDia;
 
 import org.junit.Test;
@@ -20,8 +20,7 @@ public class OfertaPorDiaTest extends TestCase{
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorDia("domingo", true, "domingo"));
-		ProductoDummy producto = new ProductoDummy("Coca","Bebidas");
-		producto.setPrecio(100);
+		Producto producto = new Producto("Coca Cola 1.5L", "Coca","Bebidas", 100.0);
 		ProductosVendidos vendido = new ProductoVendido(producto);
 		ArrayList<ProductosVendidos> productos = new ArrayList<ProductosVendidos>();
 		productos.add(vendido);

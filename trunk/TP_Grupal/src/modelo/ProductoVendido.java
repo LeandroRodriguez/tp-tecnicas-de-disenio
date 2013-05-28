@@ -39,11 +39,13 @@ public class ProductoVendido implements ProductosVendidos {
 	}
 	
 	public boolean equals(ProductosVendidos otro) {
-		
-		if ( this.getCategoria().equals( otro.getCategoria() ) &&
-				this.getMarca().equals(otro.getMarca()) &&
-				producto.getNombre().equals( otro.getProducto().getNombre() )) 
-			return true;
-	    return false;
+		// El método se define para poder ser comparado con elementos de cualquier otra clase
+		if (otro instanceof ProductoVendido) { 
+			if ( this.getCategoria().equals( otro.getCategoria() ) &&
+					this.getMarca().equals(otro.getMarca()) &&
+					producto.getNombre().equals( otro.getProducto().getNombre() )) 
+				return true;
+		}
+		return false;
 	}
 }
