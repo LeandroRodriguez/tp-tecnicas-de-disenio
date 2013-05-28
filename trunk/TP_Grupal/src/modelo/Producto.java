@@ -31,4 +31,16 @@ public class Producto {
 		this.precio = precio;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Producto))
+			return false;
+		Producto producto = (Producto) obj;
+		if(this.nombre == producto.getNombre() && this.marca == producto.getMarca())
+			return true;
+		return false;
+	}
+	
+	
+
 }
