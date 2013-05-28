@@ -1,15 +1,34 @@
 package modelo;
 
-public interface Producto {
+public class Producto {
+	double precio;
+	String nombre, marca, categoria;
 	
-	public String getNombre();
+	public Producto(String nombre, String marca, String categoria, double precio) {
+		this.nombre = nombre;
+		this.marca = marca;
+		this.categoria = categoria;
+		this.precio = precio;
+	}
 	
-	public String getMarca();
+	public String getNombre() {
+		return nombre;
+	}
 	
-	public String getCategoria();
+	public String getMarca() {
+		return marca;
+	}
 	
-	public double getPrecio();
+	public String getCategoria() {
+		return categoria;
+	}
+	
+	public double getPrecio() {
+		return precio;
+	}
 
-	public void setPrecio(double precio);
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
 
 }
