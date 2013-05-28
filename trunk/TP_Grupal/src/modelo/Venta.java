@@ -17,11 +17,11 @@ public class Venta {
 	}
 	
 	/* Si ya lo tiene, modifica la cantidad. Caso contrario lo agrega. */
-	public void agregarProducto(Producto prod) {
-		ProductosVendidos nuevo = new ProductoVendido(prod);
+	public void agregarProducto(Producto prod, int cantidad) {
+		ProductosVendidos nuevo = new ProductoVendido(prod, cantidad);
 		for (ProductosVendidos vendido : this.productos){
 			if ( vendido.equals(nuevo) ) {
-				vendido.agregarUnidad();
+				vendido.agregarUnidades(cantidad);
 				return;
 			}
 		}

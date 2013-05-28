@@ -74,12 +74,16 @@ public class Caja {
 	}
 	
 	/* En caso de que no exista una venta iniciada o la caja no esté abierta, devuelve false. */
-	public boolean agregarProducto(Producto prod) {
+	public boolean agregarProducto(Producto prod, int cantidad) {
 		if (! abierta || ventaActual == null) {
 			return false;
 		}
-		ventaActual.agregarProducto(prod);
+		ventaActual.agregarProducto(prod, cantidad);
 		return true;
+	}
+	
+	public boolean agregarProducto(Producto prod) {
+		return agregarProducto(prod, 1);
 	}
 	
 	/* En caso de que no exista una venta iniciada o la caja no esté abierta, devuelve false. */
