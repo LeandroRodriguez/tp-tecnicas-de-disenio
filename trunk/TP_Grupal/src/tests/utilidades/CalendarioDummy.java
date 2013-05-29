@@ -1,4 +1,6 @@
-package ofertas.criterios;
+package tests.utilidades;
+
+import ofertas.criterios.Calendario;
 
 public class CalendarioDummy implements Calendario {
 	
