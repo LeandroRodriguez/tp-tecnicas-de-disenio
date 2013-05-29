@@ -68,7 +68,6 @@ public class OfertaPorUnidadTest extends TestCase{
 		productos.add(vendido);
 		List<Descuento> descuentos = oferta.aplicarOferta(productos);
 		assertTrue(descuentos.get(0).getDescuento()==10);
-		assertTrue(descuentos.get(0).getProducto().equals(vendido));
 	}
 
 	@Test
@@ -95,13 +94,9 @@ public class OfertaPorUnidadTest extends TestCase{
 		productos.add(vendido5);
 		List<Descuento> descuentos = oferta.aplicarOferta(productos);
 		assertTrue(descuentos.get(0).getDescuento()==10);
-		assertTrue(descuentos.get(0).getProducto()==vendido1);
 		assertTrue(descuentos.get(1).getDescuento()==10);
-		assertTrue(descuentos.get(1).getProducto()==vendido3);
 		assertTrue(descuentos.get(2).getDescuento()==10);
-		assertTrue(descuentos.get(2).getProducto()==vendido4);
 		assertTrue(descuentos.get(3).getDescuento()==10);
-		assertTrue(descuentos.get(3).getProducto()==vendido5);
 	}
 
 	@Test
@@ -133,11 +128,8 @@ public class OfertaPorUnidadTest extends TestCase{
 		productos.add(vendido5);
 		List<Descuento> descuentos = oferta.aplicarOferta(productos);
 		assertTrue(descuentos.get(0).getDescuento()==10);
-		assertTrue(descuentos.get(0).getProducto()==vendido1);
 		assertTrue(descuentos.get(1).getDescuento()==10);
-		assertTrue(descuentos.get(1).getProducto()==vendido3);
 		assertTrue(descuentos.get(2).getDescuento()==10);
-		assertTrue(descuentos.get(2).getProducto()==vendido5);
 	}
 
 }
