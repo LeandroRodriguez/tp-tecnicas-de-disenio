@@ -1,8 +1,12 @@
-package modelo;
+package vista;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Scanner;
+
+import modelo.Mercado;
+import modelo.Producto;
 
 public class Vista {
 	
@@ -12,7 +16,7 @@ public class Vista {
 		this.mercado = mercado;
 	}
 	
-	public int pedirNumeroEntre(int menor, int mayor) {
+	private int pedirNumeroEntre(int menor, int mayor) {
 		Scanner sc = new Scanner(System.in);
 		int i = -1;
 		boolean done = false;
@@ -22,19 +26,24 @@ public class Vista {
 				i = Integer.parseInt(aux);
 				if (i >= menor && i <= mayor)
 					done = true;
+				else
+					System.out.format("ERROR: Debe ingresar un valor numérico entre %d y %d\n",
+							menor, mayor);
 			} catch (NumberFormatException e){
-				continue;
+				System.out.println("ERROR: Debe ingresar valores numéricos");
 			}
 		}
 		return i;
 	}
 	
-	public void mostrarProductos() {
+	private void mostrarProductos() {
 		ArrayList<Producto> productos = mercado.getProductos();
+		int i = 1;
 		System.out.println("Listado de productos disponibles (Nombre - Marca - Precio):");
 		for (Producto producto : productos) {
-			System.out.format("%s - %s - $%.2f\n", producto.getNombre(), producto.getMarca(),
+			System.out.format("%d - %s - %s - $%.2f\n", i, producto.getNombre(), producto.getMarca(),
 					producto.getPrecio() );
+			i += 1;
 		}
 	}
 	
@@ -46,7 +55,7 @@ public class Vista {
 		}
 	}
 	
-	public int mostrarMenuVenta() {
+	private int mostrarMenuVenta() {
 		ArrayList<String> menu = new ArrayList<String>(Arrays.asList(
 				"Iniciar Venta",
 				"Visualizar total de ventas",
@@ -57,7 +66,7 @@ public class Vista {
 		return menu.size();
 	}
 	
-	public void vistaVenta() {
+	public void ejecutarVistaVenta() {
 		int len = mostrarMenuVenta();
 		int eleccionUsuario = pedirNumeroEntre(1, len);
 		switch(eleccionUsuario) {
@@ -81,32 +90,46 @@ public class Vista {
 	}
 	
 	private void verTotalPorMedioDePago() {
-		// TODO Auto-generated method stub
-
+		Map<String,Float> total = mercado.getTotalPorMedioDePago();
+		if (total.size() == 0) {
+			System.out.println("Aún no se ha realizado ningún pago\n");
+			return;
+		}
+		System.out.println("Total por medio de pago:");
+		for(String clave : total.keySet()) {
+			System.out.format("%s: $%.2f\n", clave, total.get(clave));
+		}
+		System.out.println("");
 	}
 
 	private void verTotalDescuentos() {
 		float total = mercado.getTotalDescuentos();
-		System.out.format("Hasta el momento el total de los descuentos es: $%.2f", total);
+		System.out.format("Hasta el momento el total de los descuentos es: $%.2f\n\n", total);
 	}
 
 	private void verTotalVentas() {
 		float total = mercado.getTotalVentas();
-		System.out.format("Hasta el momento el total de las ventas es: $%.2f", total);
+		System.out.format("Hasta el momento el total de las ventas es: $%.2f\n\n", total);
 	}	
 	
 	public void mostrarDescuentosAplicados() {
-		// TODO Auto-generated method stub
-		
+		float total = mercado.getDescuentosAplicados();
+		System.out.format("El total de descuentos de esta venta es: $%.2f\n\n", total);	
 	}
 
 	public String obtenerMedioDePago() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> medios = new ArrayList<String>(Arrays.asList(
+				"Efectivo",
+				"Crédito",
+				"Débito"));
+		System.out.println("Ingrese el medio de pago a utilizar:");
+		imprimirListado(medios);
+		int indice = pedirNumeroEntre(1,medios.size()) - 1;
+		return medios.get(indice);
 	}
 
 	public void mostrarTotalVentaActual(float total) {
-		System.out.format("Hasta el momento el subtotal de las venta actual es: $%.2f", total);
+		System.out.format("Hasta el momento el subtotal de las venta actual es: $%.2f\n\n", total);
 	}
 
 	public void agregarProducto() {
@@ -114,7 +137,7 @@ public class Vista {
 		int producto = pedirNumeroProducto() - 1; //resto porque es el indice
 		int cantidad = pedirCantidadProducto();
 		if (mercado.agregarProducto(producto, cantidad) )
-			System.out.println("Producto agregado con éxito");
+			System.out.println("Producto agregado con éxito\n");
 		else 
 			System.out.println("ERROR");
 	}

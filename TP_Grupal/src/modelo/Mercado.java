@@ -1,6 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import vista.Vista;
 
 public class Mercado {
 	
@@ -15,17 +18,11 @@ public class Mercado {
 	}
 	
 	public void correr() {
-		vista.mostrarProductos();
-		vista.mostrarMenuVenta();
+		while ( ! this.done) {
+			vista.ejecutarVistaVenta();
+		}
 	}
 	
-	public void pideNumero() {
-		System.out.println("ingrese un numero");
-		Vista v = new Vista(this);
-		int i = v.pedirNumeroEntre(1, 5);
-		System.out.format("El numero ingresado es: %d \n", i);
-	}
-
 	public ArrayList<Producto> getProductos() {
 		return sucursal.getProductos();
 	}
@@ -52,7 +49,7 @@ public class Mercado {
 		while ( ! done) {
 			agregarProducto();
 			vista.mostrarTotalVentaActual(sucursal.getTotalVentaActual());
-			if ( ! vista.continuarVenta() )
+			if ( ! continuarVenta() )
 				done = true;
 		}
 		sucursal.setMedioDePago( vista.obtenerMedioDePago() );
@@ -62,12 +59,23 @@ public class Mercado {
 	}
 
 	private void aplicarOfertas() {
-		// TODO Auto-generated method stub
-		
+		sucursal.aplicarOfertas();
 	}
 
 	private void agregarProducto() {
 		vista.agregarProducto();
+	}
+	
+	private boolean continuarVenta() {
+		return vista.continuarVenta();
+	}
+
+	public Map<String,Float> getTotalPorMedioDePago() {
+		return sucursal.getTotalPorMedioDePago();
+	}
+
+	public float getDescuentosAplicados() {
+		return sucursal.getDescuentosAplicados();
 	}
 
 }

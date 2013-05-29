@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Sucursal {
 	
@@ -52,5 +53,17 @@ public class Sucursal {
 
 	public void setMedioDePago(String medio) {
 		caja.setMedioDePago(medio);
+	}
+
+	public void aplicarOfertas() {
+		caja.aplicarOfertas();
+	}
+
+	public Map<String,Float> getTotalPorMedioDePago() {
+		return caja.getTotalPorMedioDePago();
+	}
+
+	public float getDescuentosAplicados() {
+		return caja.getTotalDescuentosVenta();
 	}
 }
