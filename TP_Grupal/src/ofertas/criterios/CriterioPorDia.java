@@ -1,5 +1,6 @@
 package ofertas.criterios;
 
+import tests.utilidades.CalendarioDummy;
 import modelo.ProductosVendidos;
 
 public class CriterioPorDia implements Criterio {
