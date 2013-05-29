@@ -40,6 +40,8 @@ public class Sucursal {
 	}
 
 	public void iniciarVenta() {
+		cargarProductos(); // Antes de iniciar cada venta carga nuevamente los productos
+		// por si hubo modificaciones
 		caja.iniciarVenta();
 	}
 

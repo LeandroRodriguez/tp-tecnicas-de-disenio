@@ -1,0 +1,59 @@
+% Facultad de Ingeniería, Universidad de Buenos Aires
+% 75.10 Técnicas de diseño
+
+\documentclass[12pt]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\graphicspath{{../}}
+
+\usepackage{listingsutf8}
+
+\title{75.10 Técnicas de Diseño, TP Grupal}
+\author{Awad, Lucas \and Choque, Javier \and López, Federico \and Rodriguez, Leandro}
+
+
+\begin{document}
+
+\section{Hipótesis y supuestos}
+
+Para la realización del trabajo práctico se tomaron las siguientes hipótesis:
+\begin{itemize}
+	\item Cada producto puede aplicar sólo para una oferta. 
+	\item Cada oferta genera un descuento monetario sobre el valor final de la venta.
+	\item Existe una única sucursal, con una única caja.
+	\item No se persiste ninguno de los datos generados durante la ejecución del programa.
+\end{itemize}
+
+\section{Ofertas}
+
+\subsection{Tipos}
+Las ofertas fueron clasificadas en 3 categorías:
+\begin{itemize}
+	\item Por unidad, ya sea marca, categoría o producto.
+	\item Por volumen.
+	\item Por medio de pago.
+\end{itemize}
+
+\subsection{Generación de ofertas}
+La casa central del hypermercado, que es la generadora de ofertas, las envía a cada sucursal para su aplicación. Dado que la modelización de dicho comportamiento no es parte del alcance del presente trabajo práctico, las ofertas están representadas en ficheros de texto. Para el agregado de nuevas ofertas se deben modificar dichos ficheros, que son cargados periódicamente durante la ejecución del programa.
+Por cada tipo de oferta existe un fichero distinto.
+
+\subsection{Aplicación de ofertas}
+Las condiciones que se deben cumplir para poder aplicar las ofertas en cada caso son diferentes. Debido a la necesidad de variar el comportamiento se implemento el patrón $Strategy$.
+ACA CHAMUYEN UN POCO SOBRE QUE HICIERON CON LAS OFERTAS!!!!!!!!!!!!!!!!!!!!!!
+
+\begin{figure}[h!]
+\begin{center}
+	\includegraphics[scale=0.4]{diagramaOfertas.png}
+	\caption{Diagrama del patrón $Strategy$ aplicado a las ofertas.}
+\end{center}
+\end{figure}
+
+
+\section{Extensión del sistema}
+Tras el objetivo de cumplir (tanto como sea posible) con el principio de una implementación clausurada ante cambios y abierta a extensiones, se desarrolló una jerárquia de ofertas en conjunto con la aplicación de patrón $Strategy$. 
+Se buscó que la aparición de nuevos tipos de ofertas pueda ser tratada agregando las clases correspondientes, y sin modificar las preexistentes.  
+
+\end{document}
