@@ -1,8 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,12 +10,13 @@ public class Caja {
 
 	private boolean abierta = false;
 	private ArrayList<Venta> ventas;
-	private LinkedList<Oferta> ofertas;
+	private ArrayList<Oferta> ofertasPorUnidad;
+	private ArrayList<Oferta> ofertasPorVolumen;
+	private ArrayList<Oferta> ofertasPorVentaTotal;
 	private Venta ventaActual = null;
 	
 	public Caja() {
 		ventas = new ArrayList<Venta>();
-		ofertas = new LinkedList<Oferta>();
 	}
 	
 	/* En caso de que la caja ya esté abierta, devuelve false. */
@@ -37,17 +36,7 @@ public class Caja {
 		abierta = false;
 		return true;
 	}
-	
-	public void setOfertas(List<Oferta> ofertasNuevas) {
-		for(Oferta nueva : ofertasNuevas) {
-			this.ofertas.add(nueva);
-		}
-	}
-	
-	public void removerOferta(Oferta of) {
-		ofertas.remove(of);
-	}
-	
+		
 	/* En caso de que ya exista una venta iniciada o la caja no esté abierta, devuelve false. */
 	public boolean iniciarVenta() {
 		if (! abierta || ventaActual != null) {
@@ -58,7 +47,13 @@ public class Caja {
 	}
 	
 	public void aplicarOfertas() {
-		for (Oferta oferta : this.ofertas)
+		if (! abierta || ventaActual != null)
+			return;
+		for (Oferta oferta : this.ofertasPorUnidad)
+			ventaActual.aplicarOferta(oferta);
+		for (Oferta oferta : this.ofertasPorVolumen)
+			ventaActual.aplicarOferta(oferta);
+		for (Oferta oferta : this.ofertasPorVentaTotal)
 			ventaActual.aplicarOferta(oferta);
 	}
 	
@@ -67,7 +62,6 @@ public class Caja {
 		if (! abierta || ventaActual == null) {
 			return false;
 		}
-		ventaActual.finalizarVenta();
 		ventas.add(ventaActual);
 		ventaActual = null;
 		return true;
@@ -138,5 +132,18 @@ public class Caja {
 			}
 		}
 		return res;
+	}
+
+	public void cargarOfertasUnidad(ArrayList<Oferta> ofertasNuevas) {
+		ofertasPorUnidad = ofertasNuevas;
+		System.out.format("Cantidad de ofertas por unidad agregadas: %d\n", ofertasNuevas.size());
+	}
+
+	public void cargarOfertasVolumen(ArrayList<Oferta> ofertasNuevas) {
+		ofertasPorVolumen = ofertasNuevas;
+	}
+	
+	public void cargarOfertasVentaTotal(ArrayList<Oferta> ofertasNuevas) {
+		ofertasPorVentaTotal = ofertasNuevas;
 	}
 }
