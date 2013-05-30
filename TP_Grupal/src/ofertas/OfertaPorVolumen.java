@@ -57,6 +57,8 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 	public List<Descuento> aplicarOferta(List<ProductoVendido> productos) {
 		int bonificacionesAplicables = -1; 
 		for(ProductoVendido productosVendidos: productos) {
+			if(productosVendidos.getDescuentosAplicados().size() > 0)
+				continue;
 			if(cantidadesPorProducto.containsKey(productosVendidos.getProducto())) {
 				int bonificacionesPosibles = getBonificacionesPosibles(productosVendidos);
 				if(bonificacionesAplicables == -1)
