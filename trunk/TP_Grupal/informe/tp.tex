@@ -16,6 +16,8 @@
 
 \begin{document}
 
+\maketitle
+
 \section{Hipótesis y supuestos}
 
 Para la realización del trabajo práctico se tomaron las siguientes hipótesis:
@@ -42,7 +44,8 @@ Por cada tipo de oferta existe un fichero distinto.
 
 \subsection{Aplicación de ofertas}
 Las condiciones que se deben cumplir para poder aplicar las ofertas en cada caso son diferentes. Debido a la necesidad de variar el comportamiento se implemento el patrón $Strategy$.
-ACA CHAMUYEN UN POCO SOBRE QUE HICIERON CON LAS OFERTAS!!!!!!!!!!!!!!!!!!!!!!
+
+En las ofertas, el comportamiento que varia es la decisión sobre si la oferta puede o no aplicarse a un producto. Entonces, cada oferta tiene una colección de criteriós de selección de productos (por marca, por categoria de producto, etc).
 
 \begin{figure}[h!]
 \begin{center}
