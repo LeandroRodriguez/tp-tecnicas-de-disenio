@@ -1,8 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import ofertas.OfertaPorUnidad;
+import ofertas.Oferta;
 
 public class Venta {
 
@@ -26,6 +27,10 @@ public class Venta {
 			}
 		}
 		productos.add(nuevo);
+	}
+	
+	public List<ProductoVendido> getProductosVendidos() {
+		return productos;
 	}
 
 	public void setMedioDePago(String medio) {
@@ -56,10 +61,10 @@ public class Venta {
 		return total;
 	}
 
-	public void aplicarOferta(OfertaPorUnidad oferta) {
+	public void aplicarOferta(Oferta oferta) {
 		// Algo tiene que devolver estas ofertas para poder calcular 
 		// los descuentos posteriormente
-		oferta.aplicarOferta(this.productos);
+		oferta.aplicarOferta(this);
 	}
 
 }

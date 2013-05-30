@@ -1,8 +1,8 @@
 package modelo;
 
 
-public interface Descuento {
+public abstract class Descuento {
 
-	public float getDescuento();
+	public abstract float getDescuento();
 
 }
