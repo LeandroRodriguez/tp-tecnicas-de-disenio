@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Descuento;
-import modelo.ProductosVendidos;
+import modelo.ProductoVendido;
 
 public abstract class Oferta {
 
-	public abstract List<Descuento> aplicarOferta(ArrayList<ProductosVendidos> productos);
+	public abstract List<Descuento> aplicarOferta(ArrayList<ProductoVendido> productos);
 
-	public abstract boolean encajaEnOferta(ProductosVendidos producto);
+	public abstract boolean encajaEnOferta(ProductoVendido producto);
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Descuento;
-import modelo.ProductosVendidos;
+import modelo.ProductoVendido;
 import ofertas.criterios.Criterio;
 import ofertas.criterios.ListaDeCriterios;
 
@@ -26,9 +26,9 @@ public class OfertaPorUnidad extends Oferta {
 		return true;
 	}
 	
-	public List<Descuento> aplicarOferta(ArrayList<ProductosVendidos> productos) {
+	public List<Descuento> aplicarOferta(ArrayList<ProductoVendido> productos) {
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
-		for (ProductosVendidos producto : productos) {
+		for (ProductoVendido producto : productos) {
 			if (encajaEnOferta(producto)){
 				descuentos.add(new DescuentoPorProducto(producto,porcentajeDescuento));
 			}
@@ -36,7 +36,7 @@ public class OfertaPorUnidad extends Oferta {
 		return descuentos;
 	}
 
-	public boolean encajaEnOferta(ProductosVendidos producto) {
+	public boolean encajaEnOferta(ProductoVendido producto) {
 		return criterios.aplica(producto);
 	}
 

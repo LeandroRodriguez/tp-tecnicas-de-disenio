@@ -1,10 +1,10 @@
 package ofertas.criterios;
 
-import modelo.ProductosVendidos;
+import modelo.ProductoVendido;
 
 public interface Criterio {
 	
-	public abstract boolean aplicaSobre(ProductosVendidos producto);
+	public abstract boolean aplicaSobre(ProductoVendido producto);
 	
 	public void setExcluyente();
 	

@@ -1,7 +1,7 @@
 package ofertas.criterios;
 
 
-import modelo.ProductosVendidos;
+import modelo.ProductoVendido;
 
 public class CriterioPorCategoria implements Criterio {
 	
@@ -18,7 +18,7 @@ public class CriterioPorCategoria implements Criterio {
 	}
 
 	@Override
-	public boolean aplicaSobre(ProductosVendidos producto) {
+	public boolean aplicaSobre(ProductoVendido producto) {
 		if (incluyente)
 			return (producto.getCategoria().equals(categoria));
 		else

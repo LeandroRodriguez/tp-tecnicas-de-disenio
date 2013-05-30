@@ -7,7 +7,7 @@ import java.util.Map;
 
 import modelo.Descuento;
 import modelo.Producto;
-import modelo.ProductosVendidos;
+import modelo.ProductoVendido;
 import excepciones.ExcepcionCantidadInvalida;
 
 public class OfertaPorVolumen extends Oferta {
@@ -34,7 +34,7 @@ public class OfertaPorVolumen extends Oferta {
 		bonificacionesPorProducto.put(producto, bonificacion);
 	}
 	
-	public int getBonificacionesPosibles(ProductosVendidos productosVendidos) {
+	public int getBonificacionesPosibles(ProductoVendido productosVendidos) {
 		return productosVendidos.getCantidadDeProductos() / cantidadesPorProducto.get(productosVendidos.getProducto());
 	}
 	
@@ -46,9 +46,9 @@ public class OfertaPorVolumen extends Oferta {
 		return valor;
 	}
 
-	public List<Descuento> aplicarOferta(ArrayList<ProductosVendidos> productos) {
+	public List<Descuento> aplicarOferta(ArrayList<ProductoVendido> productos) {
 		int bonificacionesAplicables = -1; 
-		for(ProductosVendidos productosVendidos: productos) {
+		for(ProductoVendido productosVendidos: productos) {
 			if(cantidadesPorProducto.containsKey(productosVendidos.getProducto())) {
 				int bonificacionesPosibles = getBonificacionesPosibles(productosVendidos);
 				if(bonificacionesAplicables == -1)
@@ -64,7 +64,7 @@ public class OfertaPorVolumen extends Oferta {
 		return descuentos;
 	}
 
-	public boolean encajaEnOferta(ProductosVendidos producto) {
+	public boolean encajaEnOferta(ProductoVendido producto) {
 		return cantidadesPorProducto.containsKey(producto.getProducto());
 	}
 

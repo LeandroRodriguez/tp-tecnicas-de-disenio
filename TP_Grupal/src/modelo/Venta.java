@@ -7,19 +7,19 @@ import ofertas.OfertaPorUnidad;
 public class Venta {
 
 	private String medioDePago;
-	private ArrayList<ProductosVendidos> productos;
+	private ArrayList<ProductoVendido> productos;
 	private ArrayList<Descuento> beneficios;
 	
 	public Venta() {
 		medioDePago = "";
-		productos = new ArrayList<ProductosVendidos>();
+		productos = new ArrayList<ProductoVendido>();
 		beneficios = new ArrayList<Descuento>();
 	}
 	
 	/* Si ya lo tiene, modifica la cantidad. Caso contrario lo agrega. */
 	public void agregarProducto(Producto prod, int cantidad) {
-		ProductosVendidos nuevo = new ProductoVendido(prod, cantidad);
-		for (ProductosVendidos vendido : this.productos){
+		ProductoVendido nuevo = new ProductoVendido(prod, cantidad);
+		for (ProductoVendido vendido : this.productos){
 			if ( vendido.equals(nuevo) ) {
 				vendido.agregarUnidades(cantidad);
 				return;
@@ -42,7 +42,7 @@ public class Venta {
 
 	public float getTotal() {
 		float total = 0;
-		for (ProductosVendidos prod : this.productos) {
+		for (ProductoVendido prod : this.productos) {
 			total += prod.getPrecioTotal();
 		}
 		return total;

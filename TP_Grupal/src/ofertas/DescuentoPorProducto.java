@@ -1,14 +1,14 @@
 package ofertas;
 
 import modelo.Descuento;
-import modelo.ProductosVendidos;
+import modelo.ProductoVendido;
 
 public class DescuentoPorProducto implements Descuento {
 	
 	private float valor;
-	private ProductosVendidos productoVendido;
+	private ProductoVendido productoVendido;
 
-	public ProductosVendidos getProducto() {
+	public ProductoVendido getProducto() {
 		return productoVendido;
 	}
 	
@@ -17,7 +17,7 @@ public class DescuentoPorProducto implements Descuento {
 		return valor;
 	}
 	
-	public DescuentoPorProducto(ProductosVendidos producto, float valor){
+	public DescuentoPorProducto(ProductoVendido producto, float valor){
 		this.productoVendido = producto;
 		this.valor = valor;
 	}
