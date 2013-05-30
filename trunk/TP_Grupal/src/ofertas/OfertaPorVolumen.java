@@ -11,7 +11,7 @@ import modelo.ProductoVendido;
 import modelo.Venta;
 import excepciones.ExcepcionCantidadInvalida;
 
-public class OfertaPorVolumen extends Oferta {
+public class OfertaPorVolumen implements OfertaDeProductos {
 	
 	Map<Producto, Integer> cantidadesPorProducto;
 	Map<Producto, Float> bonificacionesPorProducto;
@@ -46,10 +46,13 @@ public class OfertaPorVolumen extends Oferta {
 		}
 		return valor;
 	}
-
+	
 	public List<Descuento> aplicarOferta(Venta venta) {
+		return aplicarOferta(venta.getProductosVendidos());
+	}
+
+	public List<Descuento> aplicarOferta(List<ProductoVendido> productos) {
 		int bonificacionesAplicables = -1; 
-		List<ProductoVendido> productos = venta.getProductosVendidos();
 		for(ProductoVendido productosVendidos: productos) {
 			if(cantidadesPorProducto.containsKey(productosVendidos.getProducto())) {
 				int bonificacionesPosibles = getBonificacionesPosibles(productosVendidos);

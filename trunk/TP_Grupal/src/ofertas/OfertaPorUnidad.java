@@ -9,7 +9,7 @@ import modelo.Venta;
 import ofertas.criterios.Criterio;
 import ofertas.criterios.ListaDeCriterios;
 
-public class OfertaPorUnidad extends Oferta {
+public class OfertaPorUnidad implements OfertaDeProductos {
 	
 	private ListaDeCriterios criterios;
 	private float porcentajeDescuento;
@@ -27,8 +27,7 @@ public class OfertaPorUnidad extends Oferta {
 		return true;
 	}
 	
-	public List<Descuento> aplicarOferta(Venta venta) {
-		List<ProductoVendido> productos = venta.getProductosVendidos();
+	public List<Descuento> aplicarOferta(List<ProductoVendido> productos) {
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 		for (ProductoVendido producto : productos) {
 			if (encajaEnOferta(producto)){
@@ -36,6 +35,10 @@ public class OfertaPorUnidad extends Oferta {
 			}
 		}
 		return descuentos;
+	}
+	
+	public List<Descuento> aplicarOferta(Venta venta) {
+		return aplicarOferta(venta.getProductosVendidos());
 	}
 
 	public boolean encajaEnOferta(ProductoVendido producto) {
@@ -62,4 +65,5 @@ public class OfertaPorUnidad extends Oferta {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
