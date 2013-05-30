@@ -5,7 +5,7 @@ import modelo.ProductoVendido;
 
 public class DescuentoPorProducto extends Descuento {
 	
-	private float valor;
+	private float valorPorcentual;
 	private ProductoVendido productoVendido;
 
 	public ProductoVendido getProducto() {
@@ -14,13 +14,13 @@ public class DescuentoPorProducto extends Descuento {
 	
 	@Override
 	public float getDescuento() {
-		return valor;
+		return (float) ((valorPorcentual / 100.0) * productoVendido.getPrecioTotal());
 	}
 	
-	public DescuentoPorProducto(ProductoVendido producto, float valor){
+	public DescuentoPorProducto(ProductoVendido producto, float valorPorcentual){
 		this.productoVendido = producto;
-		this.valor = valor;
+		this.valorPorcentual = valorPorcentual;
 		producto.agregarDescuento(this);
 	}
-
+	
 }
