@@ -108,7 +108,7 @@ public class Vista {
 	}
 
 	private void verTotalVentas() {
-		float total = mercado.getTotalVentas();
+		float total = mercado.getTotalVentasNeto();
 		System.out.format("Hasta el momento el total de las ventas es: $%.2f\n\n", total);
 	}	
 	
