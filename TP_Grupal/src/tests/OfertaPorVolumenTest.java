@@ -8,6 +8,7 @@ import junit.framework.TestCase;
 import modelo.Descuento;
 import modelo.Producto;
 import modelo.ProductoVendido;
+import modelo.Venta;
 
 import ofertas.OfertaPorVolumen;
 import org.junit.Test;
