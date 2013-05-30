@@ -18,9 +18,9 @@ import com.google.gson.JsonParser;
 public class OfertaPorUnidadFactory extends OfertaFactory {
 
 	private String nombreArchivo;
-	private ArrayList<OfertaPorUnidad> ofertas = new ArrayList<OfertaPorUnidad>();
+	private ArrayList<Oferta> ofertas = new ArrayList<Oferta>();
 	
-	public ArrayList<OfertaPorUnidad> getOfertas() {
+	public ArrayList<Oferta> getOfertas() {
 		return ofertas;
 	}
 	
