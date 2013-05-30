@@ -8,6 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ CajaTest.class, OfertaPorDiaTest.class,
 	OfertaPorVolumenFactoryTest.class,
 	OfertaPorUnidadFactoryTest.class,
+	LectorProductosTest.class,
 		OfertaPorUnidadTest.class, OfertaPorVolumenTest.class })
 public class AllTests {
 
