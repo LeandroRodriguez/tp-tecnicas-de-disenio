@@ -45,9 +45,9 @@ Por cada tipo de oferta existe un fichero distinto.
 \subsection{Aplicación de ofertas}
 Las condiciones que se deben cumplir para poder aplicar las ofertas en cada caso son diferentes. Debido a la necesidad de variar el comportamiento se implemento el patrón $Strategy$.
 
-En las ofertas, el comportamiento que varia es la decisión sobre si la oferta puede o no aplicarse a un producto. Entonces, cada oferta tiene una colección de criteriós de selección de productos (por marca, por categoria de producto, etc).
+En las ofertas, el comportamiento que varia es la decisión sobre si la oferta puede o no aplicarse a un producto. Entonces, cada oferta tiene una colección de criterios de selección de productos (por marca, por categoria de producto, etc). Para saber si una oferta aplica, se debe aplicar el metodo $encajaenOferta$ de cada uno de los criterios sobre el producto. Éste devuelve un valor lógico que se debe comparar con todos los criterios.
 
-\begin{figure}[h!]
+\begin{figure}[htbp!]
 \begin{center}
 	\includegraphics[scale=0.4]{diagramaOfertas.png}
 	\caption{Diagrama del patrón $Strategy$ aplicado a las ofertas.}
@@ -56,7 +56,17 @@ En las ofertas, el comportamiento que varia es la decisión sobre si la oferta pu
 
 
 \section{Extensión del sistema}
-Tras el objetivo de cumplir (tanto como sea posible) con el principio de una implementación clausurada ante cambios y abierta a extensiones, se desarrolló una jerárquia de ofertas en conjunto con la aplicación de patrón $Strategy$. 
+Tras el objetivo de cumplir con el principio de una implementación clausurada ante cambios y abierta a extensiones, se desarrolló una jerárquia de ofertas en conjunto con la aplicación de patrón $Strategy$. 
 Se buscó que la aparición de nuevos tipos de ofertas pueda ser tratada agregando las clases correspondientes, y sin modificar las preexistentes.  
+
+Entonces, para crear una nueva oferta, se debe crear un objeto OfertaIndividual, y agregarle los criterios que lo definen. Los criterios son, por defecto, inclusivos, es decir, representan una condición que debe cumplirse. Pero pueden definirse criterios  \textit{excluyentes}, o sea, los productos que coincidan, no entran en la oferta.
+
+A continuación damos unos ejemplos:
+
+\begin{itemize}
+	\item Supongamos que queremos una nueva oferta del 10\% en jugos \textit{Rinde dos}. Al objeto OfertaIndividual, le agregamos un criterio por marca, para la marca \textit{Rinde dos}, y le establecemos un valor del 10\%.
+	\item Ahora queremos una oferta para todas las bebidas, del 15\%. Creamos una oferta individual, y le agregamos un criterio por categoria, de la categoria \textit{Bebidas}.
+	\item Para un descuento del 12\% en bebidas, \textit{excepto} la marca Chandon, debemos crear una oferta individual, 
+\end{itemize}
 
 \end{document}
