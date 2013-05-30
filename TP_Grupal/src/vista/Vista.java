@@ -112,8 +112,21 @@ public class Vista {
 		System.out.format("Hasta el momento el total de las ventas es: $%.2f\n\n", total);
 	}	
 	
-	public void mostrarDescuentosAplicados() {
-		float total = mercado.getDescuentosAplicados();
+	public void verTotalVentaAPagar() {
+		float descuento = mercado.getDescuentosAplicados();
+		float total = mercado.getTotalVentaActual() - descuento;
+		
+		mostrarTotalVentaActual();
+		mostrarDescuentosAplicados(descuento);
+		System.out.format("El total a pagar es: $%.2f\n\n", total);
+	}
+	
+	public void mostrarTotalVentaActual() {
+		float total = mercado.getTotalVentaActual();
+		System.out.format("Hasta el momento el subtotal de las venta actual es: $%.2f\n\n", total);
+	}
+	
+	private void mostrarDescuentosAplicados(float total) {
 		System.out.format("El total de descuentos de esta venta es: $%.2f\n\n", total);	
 	}
 
@@ -126,10 +139,6 @@ public class Vista {
 		imprimirListado(medios);
 		int indice = pedirNumeroEntre(1,medios.size()) - 1;
 		return medios.get(indice);
-	}
-
-	public void mostrarTotalVentaActual(float total) {
-		System.out.format("Hasta el momento el subtotal de las venta actual es: $%.2f\n\n", total);
 	}
 
 	public void agregarProducto() {

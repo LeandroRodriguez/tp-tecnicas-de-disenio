@@ -1,12 +1,10 @@
 package tests;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
 import modelo.Descuento;
 import modelo.Producto;
-import modelo.ProductoVendido;
 import modelo.Venta;
 import ofertas.OfertaPorVentaTotal;
 import ofertas.criterios.CriterioPorMedioDePago;

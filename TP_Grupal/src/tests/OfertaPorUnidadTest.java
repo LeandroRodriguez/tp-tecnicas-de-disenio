@@ -61,12 +61,11 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorMarca("coca", true));
 		ArrayList<ProductoVendido> productos = new ArrayList<ProductoVendido>();
-		Producto coca = new Producto("Coca", "coca","bebidas", 10.0);
-		coca.setPrecio(100);
+		Producto coca = new Producto("Coca", "coca","bebidas", 50.0);
 		ProductoVendido vendido = new ProductoVendido(coca);
 		productos.add(vendido);
 		List<Descuento> descuentos = oferta.aplicarOferta(productos);
-		assertTrue(descuentos.get(0).getDescuento()==10);
+		assertEquals( descuentos.get(0).getDescuento() , 5.0, 0.001);
 	}
 
 	@Test
