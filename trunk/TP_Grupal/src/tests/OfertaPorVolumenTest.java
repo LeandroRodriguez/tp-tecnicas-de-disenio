@@ -66,5 +66,20 @@ public class OfertaPorVolumenTest extends TestCase{
 		
 		assertEquals(20, descuento, 1e-3);
 	}
+	
+	@Test
+	public void test10PorCientoEnProductoTieneElDescuentoCorrecto() throws ExcepcionCantidadInvalida {
+		Producto producto = new Producto("Coca 2L", "marca", "categoria", 10);
+		ProductoVendido productosVendidos = new ProductoVendido(producto, 3);
+		OfertaPorVolumen oferta = new OfertaPorVolumen();
+		oferta.addProducto(producto, 1, 0.1f);
+		
+		List<ProductoVendido> listaDeProductos = new ArrayList<ProductoVendido>();
+		listaDeProductos.add(productosVendidos);
+		
+		List<Descuento> descuentos = oferta.aplicarOferta(listaDeProductos);
+		
+		assertEquals(3, descuentos.get(0).getDescuento(), 1e-3);
+	}
 
 }
