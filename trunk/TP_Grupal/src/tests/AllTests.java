@@ -6,7 +6,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ CajaTest.class, OfertaPorDiaTest.class,
-		OfertaPorUnidadFactoryTest.class,
+	OfertaPorVolumenFactoryTest.class,
+	OfertaPorUnidadFactoryTest.class,
 		OfertaPorUnidadTest.class, OfertaPorVolumenTest.class })
 public class AllTests {
 

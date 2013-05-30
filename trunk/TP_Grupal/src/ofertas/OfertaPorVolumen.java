@@ -9,6 +9,9 @@ import modelo.Descuento;
 import modelo.Producto;
 import modelo.ProductoVendido;
 import modelo.Venta;
+
+import com.google.gson.Gson;
+
 import excepciones.ExcepcionCantidadInvalida;
 
 public class OfertaPorVolumen implements OfertaDeProductos {
@@ -78,6 +81,53 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 
 	public boolean encajaEnOferta(ProductoVendido producto) {
 		return cantidadesPorProducto.containsKey(producto.getProducto());
+	}
+	
+	public String serializar(){
+		Gson gson = new Gson();
+		StringBuffer res = new StringBuffer();
+		for (Producto p: cantidadesPorProducto.keySet()){
+			res.append(gson.toJson(p));
+			res.append("!");
+			res.append(cantidadesPorProducto.get(p));
+			res.append("&");
+		}
+		res.append(";");
+		for (Producto p: bonificacionesPorProducto.keySet()){
+			res.append(gson.toJson(p));
+			res.append("!");
+			res.append(bonificacionesPorProducto.get(p));
+			res.append("&");
+		}
+		return res.toString();
+	}
+
+	public void cargarDeArchivo(String datos) {
+		Gson gson = new Gson();
+		String tokens[] = datos.split(";");
+		String productos[] = tokens[0].split("&");
+		for (String tokenProducto : productos){
+			if (tokenProducto.length()==0) continue;
+			String partes[] = tokenProducto.split("!");
+			Producto p = gson.fromJson(partes[0], Producto.class);
+			cantidadesPorProducto.put(p, Integer.parseInt(partes[1]));
+		}
+		String bonificaciones[] = tokens[1].split("&");
+		for (String tokenProducto : bonificaciones){
+			if (tokenProducto.length()==0) continue;
+			String partes[] = tokenProducto.split("!");
+			Producto p = gson.fromJson(partes[0], Producto.class);
+			bonificacionesPorProducto.put(p, Float.parseFloat(partes[1]));
+		}
+	}
+	
+	public boolean equals(OfertaPorVolumen o){
+		boolean comp;
+		comp = (o.bonificacionesPorProducto.size() == this.bonificacionesPorProducto.size());
+		if (!comp) return false;
+		comp = (o.cantidadesPorProducto.size() == this.cantidadesPorProducto.size());
+		if (!comp) return false;
+		return true;
 	}
 
 }
