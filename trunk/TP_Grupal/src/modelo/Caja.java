@@ -137,9 +137,9 @@ public class Caja {
 		for (Venta ven : this.ventas) {
 			if ( res.containsKey(ven.getMedioDePago() ) ) {
 				float actual = res.get(ven.getMedioDePago());
-				res.put(ven.getMedioDePago(), actual + ven.getTotal() );
+				res.put(ven.getMedioDePago(), (float) (actual + ven.getTotalNeto()) );
 			} else {
-				res.put(ven.getMedioDePago(), ven.getTotal() );
+				res.put(ven.getMedioDePago(), (float) ven.getTotalNeto() );
 			}
 		}
 		return res;
@@ -152,6 +152,7 @@ public class Caja {
 
 	public void cargarOfertasVolumen(ArrayList<Oferta> ofertasNuevas) {
 		ofertasPorVolumen = ofertasNuevas;
+		System.out.format("Cantidad de ofertas por VOLUMEN agregadas: %d\n", ofertasNuevas.size());
 	}
 	
 	public void cargarOfertasVentaTotal(ArrayList<Oferta> ofertasNuevas) {
