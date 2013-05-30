@@ -12,11 +12,15 @@
 
 \title{75.10 Técnicas de Diseño, TP Grupal}
 \author{Awad, Lucas \and Choque, Javier \and López, Federico \and Rodriguez, Leandro}
-
+\date{ \today }
 
 \begin{document}
 
 \maketitle
+
+\newpage
+
+\setcounter{page}{1}
 
 \section{Hipótesis y supuestos}
 
@@ -39,13 +43,14 @@ Las ofertas fueron clasificadas en 3 categorías:
 \end{itemize}
 
 \subsection{Generación de ofertas}
-La casa central del hypermercado, que es la generadora de ofertas, las envía a cada sucursal para su aplicación. Dado que la modelización de dicho comportamiento no es parte del alcance del presente trabajo práctico, las ofertas están representadas en ficheros de texto. Para el agregado de nuevas ofertas se deben modificar dichos ficheros, que son cargados periódicamente durante la ejecución del programa.
-Por cada tipo de oferta existe un fichero distinto.
+La casa central del hypermercado, que es la generadora de ofertas, las envía a cada sucursal para su aplicación. Dado que la modelización de dicho comportamiento no es parte del alcance del presente trabajo práctico, las ofertas están representadas en archivos de texto. Para el agregado de nuevas ofertas se deben modificar dichos archivos, que son cargados periódicamente durante la ejecución del programa.
+
+Por cada tipo de oferta existe un archivo distinto.
 
 \subsection{Aplicación de ofertas}
 Las condiciones que se deben cumplir para poder aplicar las ofertas en cada caso son diferentes. Debido a la necesidad de variar el comportamiento se implemento el patrón $Strategy$.
 
-En las ofertas, el comportamiento que varia es la decisión sobre si la oferta puede o no aplicarse a un producto. Entonces, cada oferta tiene una colección de criterios de selección de productos (por marca, por categoria de producto, etc). Para saber si una oferta aplica, se debe aplicar el metodo $encajaenOferta$ de cada uno de los criterios sobre el producto. Éste devuelve un valor lógico que se debe comparar con todos los criterios.
+En las ofertas, el comportamiento que varia es la decisión sobre si la oferta puede o no aplicarse a un producto. Entonces, cada oferta tiene una colección de criterios de selección de productos (por marca, por categoria de producto, etc). Para saber si una oferta aplica, se debe aplicar el metodo $encajaEnOferta$ de cada uno de los criterios sobre el producto. Éste devuelve un valor lógico que se debe comparar con todos los criterios.
 
 \begin{figure}[htbp!]
 \begin{center}
@@ -67,6 +72,7 @@ A continuación damos unos ejemplos:
 	\item Supongamos que queremos una nueva oferta del 10\% en jugos \textit{Rinde dos}. Al objeto OfertaIndividual, le agregamos un criterio por marca, para la marca \textit{Rinde dos}, y le establecemos un valor del 10\%.
 	\item Ahora queremos una oferta para todas las bebidas, del 15\%. Creamos una oferta individual, y le agregamos un criterio por categoria, de la categoria \textit{Bebidas}.
 	\item Para un descuento del 12\% en bebidas, \textit{excepto} la marca Chandon, debemos crear una oferta individual, agregarle el criterio de categoria ''bebidas'', y agregarle un criterio de marca ''Chandon'', excepto que a éste criterio debemos setearle la condición de \textit{excluyente}.
+	\item Queremos una oferta de 2x1 en bebidas. Simplemente agregamos un criterio de selección de productos por categoría, a una oferta por volumen.
 \end{itemize}
 
 \end{document}
