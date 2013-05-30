@@ -66,7 +66,7 @@ A continuación damos unos ejemplos:
 \begin{itemize}
 	\item Supongamos que queremos una nueva oferta del 10\% en jugos \textit{Rinde dos}. Al objeto OfertaIndividual, le agregamos un criterio por marca, para la marca \textit{Rinde dos}, y le establecemos un valor del 10\%.
 	\item Ahora queremos una oferta para todas las bebidas, del 15\%. Creamos una oferta individual, y le agregamos un criterio por categoria, de la categoria \textit{Bebidas}.
-	\item Para un descuento del 12\% en bebidas, \textit{excepto} la marca Chandon, debemos crear una oferta individual, 
+	\item Para un descuento del 12\% en bebidas, \textit{excepto} la marca Chandon, debemos crear una oferta individual, agregarle el criterio de categoria ''bebidas'', y agregarle un criterio de marca ''Chandon'', excepto que a éste criterio debemos setearle la condición de \textit{excluyente}.
 \end{itemize}
 
 \end{document}
