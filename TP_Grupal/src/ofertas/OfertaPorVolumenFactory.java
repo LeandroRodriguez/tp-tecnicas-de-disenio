@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class OfertaPorVolumenFactory extends OfertaFactory {
 
 	private String nombreArchivo;
-	private ArrayList<OfertaPorVolumen> ofertas = new ArrayList<OfertaPorVolumen>();
+	private ArrayList<Oferta> ofertas = new ArrayList<Oferta>();
 	
-	public ArrayList<OfertaPorVolumen> getOfertas() {
+	public ArrayList<Oferta> getOfertas() {
 		return ofertas;
 	}
 	

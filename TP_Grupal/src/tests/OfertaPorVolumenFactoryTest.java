@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import junit.framework.TestCase;
 import modelo.Producto;
+import ofertas.Oferta;
 import ofertas.OfertaPorVolumen;
 import ofertas.OfertaPorVolumenFactory;
 
@@ -33,7 +34,7 @@ public class OfertaPorVolumenFactoryTest extends TestCase{
 		
 		factory.cargarOfertas();
 		
-		ArrayList<OfertaPorVolumen> ofertasCreadas = factory.getOfertas();
+		ArrayList<Oferta> ofertasCreadas = factory.getOfertas();
 		
 		boolean comparacion = true;
 		for (int i = 0; i < ofertasCreadas.size(); ++i){

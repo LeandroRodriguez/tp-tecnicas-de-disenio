@@ -2,8 +2,9 @@ package ofertas.criterios;
 
 import tests.utilidades.CalendarioDummy;
 import modelo.ProductoVendido;
+import modelo.Venta;
 
-public class CriterioPorDia implements Criterio {
+public class CriterioPorDia implements Criterio, CriterioVentaTotal {
 	
 	private String dia;
 	private Calendario calendario;
@@ -37,6 +38,14 @@ public class CriterioPorDia implements Criterio {
 	@Override
 	public void setIncluyente() {
 		incluyente = true;
+	}
+
+	@Override
+	public boolean aplicaSobre(Venta venta) {
+		if (incluyente)
+			return (dia.equals(calendario.getDiaCorriente()));
+		else
+			return (!dia.equals(calendario.getDiaCorriente()));
 	}
 
 }
