@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import ofertas.OfertaPorUnidad;
+import ofertas.OfertaPorVentaTotal;
 import ofertas.OfertaPorVolumen;
 import ofertas.criterios.Criterio;
+import ofertas.criterios.CriterioVentaTotal;
 
 import com.google.gson.Gson;
 
@@ -66,6 +68,27 @@ public class SerializarOfertas {
 		    out = new BufferedWriter(new FileWriter(nombreArchivo, apend));
 		    for (OfertaPorVolumen oferta : ofertas){
 		    	out.write(oferta.serializar());
+		    	out.write("\n");    	
+		    }
+	        out.close();
+		} catch (IOException e) {
+		    // error processing code
+		}
+	}
+
+	public void serializarOfertasPorVentaTotal(
+			ArrayList<OfertaPorVentaTotal> ofertas, boolean b) {
+		BufferedWriter out = null;
+		Gson gson = new Gson();
+		
+		try {
+		    out = new BufferedWriter(new FileWriter(nombreArchivo, true));
+		    for (OfertaPorVentaTotal oferta : ofertas){
+		    	for (CriterioVentaTotal criterio : oferta.getCriterios().getLista()){
+		    		out.write(gson.toJson(criterio)+"&");
+		    	}
+		    	out.write("/");
+		    	out.write(Float.toString(oferta.getPorcentajeDescuento()));
 		    	out.write("\n");    	
 		    }
 	        out.close();

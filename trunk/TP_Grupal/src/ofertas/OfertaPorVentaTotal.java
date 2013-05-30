@@ -3,9 +3,13 @@ package ofertas;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.sun.xml.internal.bind.v2.runtime.ClassBeanInfoImpl;
+
 import modelo.Descuento;
 import modelo.ProductoVendido;
 import modelo.Venta;
+import ofertas.criterios.CriterioPorMedioDePago;
 import ofertas.criterios.CriterioVentaTotal;
 import ofertas.criterios.ListaDeCriteriosVentaTotal;
 
@@ -30,7 +34,7 @@ public class OfertaPorVentaTotal implements OfertaDeProductos {
 	public List<Descuento> aplicarOferta(Venta venta) {
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 		if (encajaEnOferta(venta)){
-			descuentos.add(new DescuentoPorVentaTotal(venta,porcentajeDescuento));
+			descuentos.add(new DescuentoPorVentaTotal(venta,(float) (porcentajeDescuento*venta.getTotalNeto()/100.0)));
 		}
 		return descuentos;
 	}
@@ -64,6 +68,19 @@ public class OfertaPorVentaTotal implements OfertaDeProductos {
 	public boolean encajaEnOferta(ProductoVendido producto) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public void cargarDeArchivo(String datos){
+		Gson gson = new Gson();
+		criterios = new ListaDeCriteriosVentaTotal();
+		String criteriosYPorcentaje[] = datos.split("/");
+		String criterios[] = criteriosYPorcentaje[0].split("&");
+		for (String criterio : criterios){
+			if (criterio.length() == 0) continue;
+			CriterioPorMedioDePago c = gson.fromJson(criterio, CriterioPorMedioDePago.class);
+			this.criterios.agregarCriterio(c);
+		}
+		this.porcentajeDescuento = Float.parseFloat(criteriosYPorcentaje[1]);
 	}
 	
 }
