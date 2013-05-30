@@ -3,6 +3,7 @@ package tests;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
+import ofertas.Oferta;
 import ofertas.OfertaPorUnidad;
 import ofertas.OfertaPorUnidadFactory;
 import ofertas.criterios.CriterioPorCategoria;
@@ -48,11 +49,11 @@ public class OfertaPorUnidadFactoryTest extends TestCase{
 		
 		factory.cargarOfertas();
 		
-		ArrayList<OfertaPorUnidad> ofertasCreadas = factory.getOfertas();
+		ArrayList<Oferta> ofertasCreadas = factory.getOfertas();
 		
 		boolean comparacion = true;
 		for (int i = 0; i < ofertasCreadas.size(); ++i){
-			if (! ofertas.get(i).equals(ofertasCreadas.get(i))){
+			if (! ofertas.get(i).equals( (OfertaPorUnidad) ofertasCreadas.get(i) ) ) {
 				comparacion = false;
 				break;
 			}

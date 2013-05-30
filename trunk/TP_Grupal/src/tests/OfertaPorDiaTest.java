@@ -18,13 +18,13 @@ public class OfertaPorDiaTest extends TestCase{
 	public void testDia() {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
-		oferta.agregarCriterio(new CriterioPorDia("domingo", true, "domingo"));
-		Producto producto = new Producto("Coca Cola 1.5L", "Coca","Bebidas", 100.0);
+		oferta.agregarCriterio(new CriterioPorDia("miercoles", true, "miercoles"));
+		Producto producto = new Producto("Coca Cola 1.5L", "Coca","Bebidas", 50.0);
 		ProductoVendido vendido = new ProductoVendido(producto);
 		ArrayList<ProductoVendido> productos = new ArrayList<ProductoVendido>();
 		productos.add(vendido);
 		List<Descuento> descuentos = oferta.aplicarOferta(productos);
-		assertEquals(descuentos.get(0).getDescuento(), 10.0f);
+		assertEquals(descuentos.get(0).getDescuento(), 5.0f);
 	}
 
 }
