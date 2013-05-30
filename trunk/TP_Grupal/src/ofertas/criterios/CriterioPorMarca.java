@@ -1,6 +1,6 @@
 package ofertas.criterios;
 
-import modelo.ProductosVendidos;
+import modelo.ProductoVendido;
 
 public class CriterioPorMarca implements Criterio {
 	
@@ -17,7 +17,7 @@ public class CriterioPorMarca implements Criterio {
 	}
 
 	@Override
-	public boolean aplicaSobre(ProductosVendidos producto) {
+	public boolean aplicaSobre(ProductoVendido producto) {
 		if (incluyente)
 			return (producto.getMarca().equals(marca));
 		else

@@ -8,11 +8,8 @@ import junit.framework.TestCase;
 import modelo.Descuento;
 import modelo.Producto;
 import modelo.ProductoVendido;
-import modelo.ProductosVendidos;
 
 import ofertas.OfertaPorVolumen;
-import ofertas.criterios.ListaDeCriterios;
-
 import org.junit.Test;
 
 import excepciones.ExcepcionCantidadInvalida;
@@ -23,7 +20,7 @@ public class OfertaPorVolumenTest extends TestCase{
 	@Test
 	public void test2x1TieneDosBonificacionesParaCuatroProductos() throws ExcepcionCantidadInvalida {
 		Producto producto = new Producto("nombre", "marca", "categoria", 10);
-		ProductosVendidos productosVendidos = new ProductoVendido(producto, 4);
+		ProductoVendido productosVendidos = new ProductoVendido(producto, 4);
 		OfertaPorVolumen oferta = new OfertaPorVolumen();
 		oferta.addProducto(producto, 2, 1);
 		
@@ -46,10 +43,10 @@ public class OfertaPorVolumenTest extends TestCase{
 	@Test
 	public void test2x1ConDosBonificacionesDaElDobleDeDescuento() throws ExcepcionCantidadInvalida {
 		Producto producto = new Producto("nombre", "marca", "categoria", 10);
-		ProductosVendidos productosVendidos = new ProductoVendido(producto, 4);
+		ProductoVendido productosVendidos = new ProductoVendido(producto, 4);
 		OfertaPorVolumen oferta = new OfertaPorVolumen();
 		oferta.addProducto(producto, 2, 1);
-		ArrayList<ProductosVendidos> listaDeProductos = new ArrayList<ProductosVendidos>();
+		ArrayList<ProductoVendido> listaDeProductos = new ArrayList<ProductoVendido>();
 		listaDeProductos.add(productosVendidos);
 		
 		List<Descuento> descuentos = oferta.aplicarOferta(listaDeProductos);

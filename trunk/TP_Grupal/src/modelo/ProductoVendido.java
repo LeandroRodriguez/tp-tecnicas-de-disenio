@@ -1,6 +1,6 @@
 package modelo;
 
-public class ProductoVendido implements ProductosVendidos {
+public class ProductoVendido {
 
 	int cantidad;
 	Producto producto;
@@ -34,7 +34,7 @@ public class ProductoVendido implements ProductosVendidos {
 		return producto;
 	}
 	
-	public boolean equals(ProductosVendidos otro) {
+	public boolean equals(ProductoVendido otro) {
 		// El método se define para poder ser comparado con elementos de cualquier otra clase
 		if (otro instanceof ProductoVendido) { 
 			if ( this.getCategoria().equals( otro.getCategoria() ) &&

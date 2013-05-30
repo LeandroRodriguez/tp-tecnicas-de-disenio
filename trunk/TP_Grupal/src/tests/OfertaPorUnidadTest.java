@@ -7,7 +7,6 @@ import junit.framework.TestCase;
 import modelo.Descuento;
 import modelo.Producto;
 import modelo.ProductoVendido;
-import modelo.ProductosVendidos;
 import ofertas.OfertaPorUnidad;
 import ofertas.criterios.CriterioPorCategoria;
 import ofertas.criterios.CriterioPorMarca;
@@ -23,7 +22,7 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.agregarCriterio(new CriterioPorMarca("coca", true));
 		oferta.setPorcentajeDescuento(10);
 		Producto coca = new Producto("coca", "coca","bebidas", 10.0);
-		ProductosVendidos vendido = new ProductoVendido(coca);
+		ProductoVendido vendido = new ProductoVendido(coca);
 		assertTrue(oferta.encajaEnOferta(vendido));
 	}
 
@@ -33,7 +32,7 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
 		Producto coca = new Producto("coca", "coca","bebidas", 10.0);
-		ProductosVendidos vendido = new ProductoVendido(coca);
+		ProductoVendido vendido = new ProductoVendido(coca);
 		assertTrue(oferta.encajaEnOferta(vendido));
 	}
 
@@ -48,9 +47,9 @@ public class OfertaPorUnidadTest extends TestCase{
 		Producto coca = new Producto("Coca", "CocaCola","bebidas", 10.0);
 		Producto coca2 = new Producto("Coca", "CocaCola","bebidas dieteticas", 10.0);
 		Producto coca3 = new Producto("Coca", "CocaCola Zero","bebidas", 10.0);
-		ProductosVendidos vendido1 = new ProductoVendido(coca);
-		ProductosVendidos vendido2 = new ProductoVendido(coca2);
-		ProductosVendidos vendido3 = new ProductoVendido(coca3);
+		ProductoVendido vendido1 = new ProductoVendido(coca);
+		ProductoVendido vendido2 = new ProductoVendido(coca2);
+		ProductoVendido vendido3 = new ProductoVendido(coca3);
 		assertTrue(oferta.encajaEnOferta(vendido1));
 		assertFalse(oferta.encajaEnOferta(vendido2));
 		assertFalse(oferta.encajaEnOferta(vendido3));
@@ -61,10 +60,10 @@ public class OfertaPorUnidadTest extends TestCase{
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorMarca("coca", true));
-		ArrayList<ProductosVendidos> productos = new ArrayList<ProductosVendidos>();
+		ArrayList<ProductoVendido> productos = new ArrayList<ProductoVendido>();
 		Producto coca = new Producto("Coca", "coca","bebidas", 10.0);
 		coca.setPrecio(100);
-		ProductosVendidos vendido = new ProductoVendido(coca);
+		ProductoVendido vendido = new ProductoVendido(coca);
 		productos.add(vendido);
 		List<Descuento> descuentos = oferta.aplicarOferta(productos);
 		assertTrue(descuentos.get(0).getDescuento()==10);
@@ -76,17 +75,17 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorCategoria("bebidas", true));
 		oferta.agregarCriterio(new CriterioPorMarca("Chandon", false));
-		ArrayList<ProductosVendidos> productos = new ArrayList<ProductosVendidos>();
+		ArrayList<ProductoVendido> productos = new ArrayList<ProductoVendido>();
 		Producto bebida1 = new Producto("Coca", "CocaCola","bebidas", 100.0);
 		Producto bebida2 = new Producto("Coca", "Chandon","bebidas", 100.0);
 		Producto bebida3 = new Producto("Coca", "Cordoba","bebidas", 100.0);
 		Producto bebida4 = new Producto("Coca", "Pinky","bebidas", 100.0);
 		Producto bebida5 = new Producto("Coca", "Frize","bebidas", 100.0);
-		ProductosVendidos vendido1 = new ProductoVendido(bebida1);
-		ProductosVendidos vendido2 = new ProductoVendido(bebida2);
-		ProductosVendidos vendido3 = new ProductoVendido(bebida3);
-		ProductosVendidos vendido4 = new ProductoVendido(bebida4);
-		ProductosVendidos vendido5 = new ProductoVendido(bebida5);
+		ProductoVendido vendido1 = new ProductoVendido(bebida1);
+		ProductoVendido vendido2 = new ProductoVendido(bebida2);
+		ProductoVendido vendido3 = new ProductoVendido(bebida3);
+		ProductoVendido vendido4 = new ProductoVendido(bebida4);
+		ProductoVendido vendido5 = new ProductoVendido(bebida5);
 		productos.add(vendido1);
 		productos.add(vendido2);
 		productos.add(vendido3);
@@ -105,7 +104,7 @@ public class OfertaPorUnidadTest extends TestCase{
 		oferta.setPorcentajeDescuento(10);
 		oferta.agregarCriterio(new CriterioPorCategoria("retornable", false));
 		oferta.agregarCriterio(new CriterioPorMarca("CocaCola", true));
-		ArrayList<ProductosVendidos> productos = new ArrayList<ProductosVendidos>();
+		ArrayList<ProductoVendido> productos = new ArrayList<ProductoVendido>();
 		Producto bebida1 = new Producto("Coca", "CocaCola","bebidas", 100.0);
 		Producto bebida2 = new Producto("Coca", "CocaCola","retornable", 100.0);
 		Producto bebida3 = new Producto("Coca", "CocaCola","bebidas", 100.0);
@@ -116,11 +115,11 @@ public class OfertaPorUnidadTest extends TestCase{
 		bebida3.setPrecio(100);
 		bebida4.setPrecio(100);
 		bebida5.setPrecio(100);
-		ProductosVendidos vendido1 = new ProductoVendido(bebida1);
-		ProductosVendidos vendido2 = new ProductoVendido(bebida2);
-		ProductosVendidos vendido3 = new ProductoVendido(bebida3);
-		ProductosVendidos vendido4 = new ProductoVendido(bebida4);
-		ProductosVendidos vendido5 = new ProductoVendido(bebida5);
+		ProductoVendido vendido1 = new ProductoVendido(bebida1);
+		ProductoVendido vendido2 = new ProductoVendido(bebida2);
+		ProductoVendido vendido3 = new ProductoVendido(bebida3);
+		ProductoVendido vendido4 = new ProductoVendido(bebida4);
+		ProductoVendido vendido5 = new ProductoVendido(bebida5);
 		productos.add(vendido1);
 		productos.add(vendido2);
 		productos.add(vendido3);

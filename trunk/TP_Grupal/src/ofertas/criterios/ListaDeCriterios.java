@@ -2,7 +2,7 @@ package ofertas.criterios;
 
 import java.util.ArrayList;
 
-import modelo.ProductosVendidos;
+import modelo.ProductoVendido;
 
 public class ListaDeCriterios {
 	
@@ -29,7 +29,7 @@ public class ListaDeCriterios {
 		criterios.add(criterio);
 	}
 	
-	public boolean aplica(ProductosVendidos producto){
+	public boolean aplica(ProductoVendido producto){
 		if (cumplirTodos){
 			return aplicanTodosLosCriterios(producto);
 		} else{
@@ -37,7 +37,7 @@ public class ListaDeCriterios {
 		}
 	}
 	
-	private boolean aplicaAlgunCriterio(ProductosVendidos producto){
+	private boolean aplicaAlgunCriterio(ProductoVendido producto){
 		for (Criterio criterio : criterios) {
 			if (criterio.aplicaSobre(producto)) {
 				return true;
@@ -46,7 +46,7 @@ public class ListaDeCriterios {
 		return false;
 	}
 	
-	private boolean aplicanTodosLosCriterios(ProductosVendidos producto){
+	private boolean aplicanTodosLosCriterios(ProductoVendido producto){
 		for (Criterio criterio : criterios) {
 			if ( ! criterio.aplicaSobre(producto)) {
 				return false;
