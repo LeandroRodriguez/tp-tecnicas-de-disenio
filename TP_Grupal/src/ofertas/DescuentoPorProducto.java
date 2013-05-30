@@ -20,6 +20,7 @@ public class DescuentoPorProducto extends Descuento {
 	public DescuentoPorProducto(ProductoVendido producto, float valor){
 		this.productoVendido = producto;
 		this.valor = valor;
+		producto.agregarDescuento(this);
 	}
 
 }
