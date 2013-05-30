@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import ofertas.OfertaPorUnidad;
+import ofertas.OfertaPorVolumen;
 import ofertas.criterios.Criterio;
 
 import com.google.gson.Gson;
@@ -46,6 +47,25 @@ public class SerializarOfertas {
 		    	out.write(grabarTipos(criterios));
 		    	out.write("#");
 		    	out.write(Float.toString(oferta.getPorcentajeDescuento()));
+		    	out.write("\n");    	
+		    }
+	        out.close();
+		} catch (IOException e) {
+		    // error processing code
+		}
+	}
+	
+	/** Serializa un array de ofertas. Guarda en el archivo el nombre de la clase, 
+	 * para despues crear la instancia de la clase correspondiente.
+	 * @param ofertas
+	 * @param apend
+	 */
+	public void serializarOfertasPorVolumen(ArrayList<OfertaPorVolumen> ofertas, boolean apend){
+		BufferedWriter out = null;		
+		try {
+		    out = new BufferedWriter(new FileWriter(nombreArchivo, apend));
+		    for (OfertaPorVolumen oferta : ofertas){
+		    	out.write(oferta.serializar());
 		    	out.write("\n");    	
 		    }
 	        out.close();
