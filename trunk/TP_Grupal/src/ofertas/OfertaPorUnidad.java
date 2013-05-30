@@ -5,6 +5,7 @@ import java.util.List;
 
 import modelo.Descuento;
 import modelo.ProductoVendido;
+import modelo.Venta;
 import ofertas.criterios.Criterio;
 import ofertas.criterios.ListaDeCriterios;
 
@@ -26,7 +27,8 @@ public class OfertaPorUnidad extends Oferta {
 		return true;
 	}
 	
-	public List<Descuento> aplicarOferta(ArrayList<ProductoVendido> productos) {
+	public List<Descuento> aplicarOferta(Venta venta) {
+		List<ProductoVendido> productos = venta.getProductosVendidos();
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 		for (ProductoVendido producto : productos) {
 			if (encajaEnOferta(producto)){

@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-import ofertas.OfertaPorUnidad;
+import ofertas.Oferta;
 
 public class Caja {
 
 	private boolean abierta = false;
 	private ArrayList<Venta> ventas;
-	private LinkedList<OfertaPorUnidad> ofertas;
+	private LinkedList<Oferta> ofertas;
 	private Venta ventaActual = null;
 	
 	public Caja() {
 		ventas = new ArrayList<Venta>();
-		ofertas = new LinkedList<OfertaPorUnidad>();
+		ofertas = new LinkedList<Oferta>();
 	}
 	
 	/* En caso de que la caja ya esté abierta, devuelve false. */
@@ -38,13 +38,13 @@ public class Caja {
 		return true;
 	}
 	
-	public void setOfertas(List<OfertaPorUnidad> ofertasNuevas) {
-		for(OfertaPorUnidad nueva : ofertasNuevas) {
+	public void setOfertas(List<Oferta> ofertasNuevas) {
+		for(Oferta nueva : ofertasNuevas) {
 			this.ofertas.add(nueva);
 		}
 	}
 	
-	public void removerOferta(OfertaPorUnidad of) {
+	public void removerOferta(Oferta of) {
 		ofertas.remove(of);
 	}
 	
@@ -58,7 +58,7 @@ public class Caja {
 	}
 	
 	public void aplicarOfertas() {
-		for (OfertaPorUnidad oferta : this.ofertas)
+		for (Oferta oferta : this.ofertas)
 			ventaActual.aplicarOferta(oferta);
 	}
 	

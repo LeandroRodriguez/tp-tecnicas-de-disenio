@@ -2,7 +2,7 @@ package ofertas;
 
 import modelo.Descuento;
 
-public class DescuentoPorVolumen implements Descuento {
+public class DescuentoPorVolumen extends Descuento {
 
 	private float valor;
 

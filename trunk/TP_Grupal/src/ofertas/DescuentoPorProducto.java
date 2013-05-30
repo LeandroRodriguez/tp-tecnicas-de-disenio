@@ -3,7 +3,7 @@ package ofertas;
 import modelo.Descuento;
 import modelo.ProductoVendido;
 
-public class DescuentoPorProducto implements Descuento {
+public class DescuentoPorProducto extends Descuento {
 	
 	private float valor;
 	private ProductoVendido productoVendido;
