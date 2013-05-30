@@ -70,7 +70,7 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 			return descuentos;
 		for(ProductoVendido productosVendidos: productos) {
 			if(cantidadesPorProducto.containsKey(productosVendidos.getProducto())) {
-				descuentos.add(new DescuentoPorProducto(productosVendidos,
+				descuentos.add(new DescuentoPorVolumen(productosVendidos,
 						bonificacionesAplicables * bonificacionesPorProducto.get(productosVendidos.getProducto())
 						* (float) productosVendidos.getProducto().getPrecio()));
 			}
