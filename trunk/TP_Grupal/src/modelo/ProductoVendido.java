@@ -1,13 +1,22 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductoVendido {
 
 	int cantidad;
 	Producto producto;
+	List<Descuento> descuentosAplicados;
 	
+	public List<Descuento> getDescuentosAplicados() {
+		return descuentosAplicados;
+	}
+
 	public ProductoVendido(Producto producto, int cantidad) {
 		this.producto = producto;
 		this.cantidad = cantidad;
+		descuentosAplicados = new ArrayList<Descuento>();
 	}
 	
 	public ProductoVendido(Producto producto) {
@@ -47,5 +56,9 @@ public class ProductoVendido {
 
 	public void agregarUnidades(int cantidad) {
 		this.cantidad += cantidad;
+	}
+	
+	public void agregarDescuento(Descuento descuento) {
+		this.descuentosAplicados.add(descuento);
 	}
 }

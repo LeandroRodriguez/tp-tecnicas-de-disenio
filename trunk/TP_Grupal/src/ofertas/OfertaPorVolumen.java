@@ -65,7 +65,14 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 		List<Descuento> descuentos = new ArrayList<Descuento>();
 		if(bonificacionesAplicables <= 0)
 			return descuentos;
-		descuentos.add(new DescuentoPorVolumen(getValorDescuento() * bonificacionesAplicables));
+		for(ProductoVendido productosVendidos: productos) {
+			if(cantidadesPorProducto.containsKey(productosVendidos.getProducto())) {
+				descuentos.add(new DescuentoPorProducto(productosVendidos,
+						bonificacionesAplicables * bonificacionesPorProducto.get(productosVendidos.getProducto())
+						* (float) productosVendidos.getProducto().getPrecio()));
+			}
+		}
+		//descuentos.add(new DescuentoPorVolumen(getValorDescuento() * bonificacionesAplicables));
 		return descuentos;
 	}
 
