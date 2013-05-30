@@ -39,8 +39,8 @@ public class Mercado {
 		return sucursal.getTotalDescuentos();
 	}
 
-	public float getTotalVentas() {
-		return sucursal.getTotalVentas();
+	public float getTotalVentasNeto() {
+		return sucursal.getTotalVentasNeto();
 	}
 	
 	public void ejecutarVenta() {
