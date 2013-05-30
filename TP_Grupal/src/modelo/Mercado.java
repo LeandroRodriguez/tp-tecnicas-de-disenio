@@ -44,17 +44,18 @@ public class Mercado {
 	}
 	
 	public void ejecutarVenta() {
+		sucursal.cargarOfertas();
 		sucursal.iniciarVenta();
 		boolean done = false;
 		while ( ! done) {
 			agregarProducto();
-			vista.mostrarTotalVentaActual(sucursal.getTotalVentaActual());
+			vista.mostrarTotalVentaActual();
 			if ( ! continuarVenta() )
 				done = true;
 		}
 		sucursal.setMedioDePago( vista.obtenerMedioDePago() );
 		aplicarOfertas();
-		vista.mostrarDescuentosAplicados();
+		vista.verTotalVentaAPagar();
 		sucursal.finalizarVenta();
 	}
 
@@ -76,6 +77,10 @@ public class Mercado {
 
 	public float getDescuentosAplicados() {
 		return sucursal.getDescuentosAplicados();
+	}
+	
+	public float getTotalVentaActual() {
+		return sucursal.getTotalVentaActual();
 	}
 
 }

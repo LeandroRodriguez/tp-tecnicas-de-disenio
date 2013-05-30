@@ -41,10 +41,6 @@ public class Venta {
 		return medioDePago;
 	}
 
-	// En algún momento este método tenía sentido y ahora no recuerdo por qué
-	public void finalizarVenta() {
-	}
-
 	public float getTotal() {
 		float total = 0;
 		for (ProductoVendido prod : this.productos) {
@@ -60,12 +56,20 @@ public class Venta {
 		}
 		return total;
 	}
+	
+	public double getTotalNeto() {
+		return getTotal() - getTotalDescuentos();
+	}
 
 	public void aplicarOferta(Oferta oferta) {
 		// Algo tiene que devolver estas ofertas para poder calcular 
 		// los descuentos posteriormente
-		//hacer esto bien
-		this.beneficios = oferta.aplicarOferta(this);
+		agregarDescuentos( oferta.aplicarOferta(this) );
+	}
+	
+	private void agregarDescuentos(List<Descuento> descuentosNuevos) {
+		for(Descuento nuevo : descuentosNuevos)
+			this.beneficios.add(nuevo);
 	}
 
 }

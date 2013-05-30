@@ -1,7 +1,12 @@
 package modelo;
 
 import java.util.ArrayList;
+
 import java.util.Map;
+
+import ofertas.OfertaPorUnidadFactory;
+import ofertas.OfertaPorVentaTotalFactory;
+import ofertas.OfertaPorVolumenFactory;
 
 public class Sucursal {
 	
@@ -17,6 +22,19 @@ public class Sucursal {
 	public void cargarProductos() {
 		LectorProductos lector =  new LectorProductos();
 		productos = lector.cargarProductos();
+	}
+	
+	public void cargarOfertas() {
+		OfertaPorUnidadFactory unidadFactory = new OfertaPorUnidadFactory();
+		OfertaPorVolumenFactory volumenFactory = new OfertaPorVolumenFactory();
+		// TODO DESCOMENTAR!!!!!!!!!!
+		//OfertaPorVentaTotalFactory ventaTotalFactory = new OfertaPorVentaTotalFactory();
+		unidadFactory.cargarOfertas();
+		volumenFactory.cargarOfertas();
+		//ventaTotalFactory.cargarOfertas();
+		caja.cargarOfertasUnidad( unidadFactory.getOfertas() );
+		caja.cargarOfertasVolumen( volumenFactory.getOfertas() );
+		//caja.cargarOfertasVentaTotal( ventaTotalFactory.getOfertas() );
 	}
 	
 	public ArrayList<Producto> getProductos() {

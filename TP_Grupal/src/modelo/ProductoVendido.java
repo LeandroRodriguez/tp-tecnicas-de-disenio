@@ -42,7 +42,15 @@ public class ProductoVendido {
 	public Producto getProducto() {
 		return producto;
 	}
-	
+	/*
+	public double getPrecioNeto() {
+		double bruto = getPrecioTotal();
+		double totalDescuentos = 0;
+		for( Descuento descuento : this.descuentosAplicados) 
+			totalDescuentos += descuento.getDescuento();
+		return bruto - totalDescuentos;
+	}
+	*/
 	public boolean equals(ProductoVendido otro) {
 		// El método se define para poder ser comparado con elementos de cualquier otra clase
 		if (otro instanceof ProductoVendido) { 
