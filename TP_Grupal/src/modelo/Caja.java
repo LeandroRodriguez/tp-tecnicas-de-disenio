@@ -17,6 +17,9 @@ public class Caja {
 	
 	public Caja() {
 		ventas = new ArrayList<Venta>();
+		ofertasPorUnidad = new ArrayList<Oferta>();
+		ofertasPorVolumen = new ArrayList<Oferta>();
+		ofertasPorVentaTotal = new ArrayList<Oferta>();
 	}
 	
 	/* En caso de que la caja ya esté abierta, devuelve false. */
@@ -47,7 +50,7 @@ public class Caja {
 	}
 	
 	public void aplicarOfertas() {
-		if (! abierta || ventaActual != null)
+		if (! abierta || ventaActual == null)
 			return;
 		for (Oferta oferta : this.ofertasPorUnidad)
 			ventaActual.aplicarOferta(oferta);
@@ -109,6 +112,14 @@ public class Caja {
 		float total = 0;
 		for (Venta ven : this.ventas) {
 			total += ven.getTotal();
+		}
+		return total;
+	}
+	
+	public float getTotalVentasNeto() {
+		float total = 0;
+		for (Venta ven : this.ventas) {
+			total += ven.getTotalNeto();
 		}
 		return total;
 	}
