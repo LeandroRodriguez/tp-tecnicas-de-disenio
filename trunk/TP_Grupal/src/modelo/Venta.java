@@ -9,7 +9,7 @@ public class Venta {
 
 	private String medioDePago;
 	private ArrayList<ProductoVendido> productos;
-	private ArrayList<Descuento> beneficios;
+	private List<Descuento> beneficios;
 	
 	public Venta() {
 		medioDePago = "";
@@ -64,7 +64,8 @@ public class Venta {
 	public void aplicarOferta(Oferta oferta) {
 		// Algo tiene que devolver estas ofertas para poder calcular 
 		// los descuentos posteriormente
-		oferta.aplicarOferta(this);
+		//hacer esto bien
+		this.beneficios = oferta.aplicarOferta(this);
 	}
 
 }
