@@ -83,4 +83,8 @@ public class Mercado {
 		return sucursal.getTotalVentaActual();
 	}
 
+	public Map<String, Integer> getVentasTotalesPorProductos() {
+		return sucursal.getVentasTotalesPorProductos();
+	}
+
 }

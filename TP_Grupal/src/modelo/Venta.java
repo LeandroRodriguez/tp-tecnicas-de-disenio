@@ -44,7 +44,7 @@ public class Venta {
 	public float getTotal() {
 		float total = 0;
 		for (ProductoVendido prod : this.productos) {
-			total += prod.getPrecioTotal();
+			total += prod.getPrecioTotalBruto();
 		}
 		return total;
 	}

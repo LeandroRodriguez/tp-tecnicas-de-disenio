@@ -33,10 +33,12 @@ public class Producto {
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if(!(obj instanceof Producto))
 			return false;
 		Producto producto = (Producto) obj;
-		if(this.nombre == producto.getNombre() && this.marca == producto.getMarca())
+		if(this.nombre.equals(producto.getNombre()) && this.marca.equals(producto.getMarca()) &&
+				this.categoria.equals(producto.getCategoria()) && this.precio == producto.getPrecio() )
 			return true;
 		return false;
 	}

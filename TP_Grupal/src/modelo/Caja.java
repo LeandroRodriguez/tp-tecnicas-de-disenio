@@ -52,9 +52,9 @@ public class Caja {
 	public void aplicarOfertas() {
 		if (! abierta || ventaActual == null)
 			return;
-		for (Oferta oferta : this.ofertasPorUnidad)
-			ventaActual.aplicarOferta(oferta);
 		for (Oferta oferta : this.ofertasPorVolumen)
+			ventaActual.aplicarOferta(oferta);
+		for (Oferta oferta : this.ofertasPorUnidad)
 			ventaActual.aplicarOferta(oferta);
 		for (Oferta oferta : this.ofertasPorVentaTotal)
 			ventaActual.aplicarOferta(oferta);
@@ -147,15 +147,30 @@ public class Caja {
 
 	public void cargarOfertasUnidad(ArrayList<Oferta> ofertasNuevas) {
 		ofertasPorUnidad = ofertasNuevas;
-		System.out.format("Cantidad de ofertas por unidad agregadas: %d\n", ofertasNuevas.size());
 	}
 
 	public void cargarOfertasVolumen(ArrayList<Oferta> ofertasNuevas) {
 		ofertasPorVolumen = ofertasNuevas;
-		System.out.format("Cantidad de ofertas por VOLUMEN agregadas: %d\n", ofertasNuevas.size());
 	}
 	
 	public void cargarOfertasVentaTotal(ArrayList<Oferta> ofertasNuevas) {
 		ofertasPorVentaTotal = ofertasNuevas;
+	}
+	
+	
+	public Map<String, Integer> getVentasTotalesPorProductos() {
+		Map<String, Integer> productos = new HashMap<String, Integer>();
+		for (Venta venta : this.ventas) {
+			for (ProductoVendido productoVendido : venta.getProductosVendidos()) {
+				String nombre = productoVendido.getProducto().getNombre();
+				if (productos.containsKey(nombre ) ) {
+					int cantidad = productos.get(nombre) + productoVendido.getCantidadDeProductos(); 
+					productos.put(nombre, cantidad);
+				} else {
+					productos.put(nombre, productoVendido.getCantidadDeProductos() );
+				}
+			}
+		}
+		return productos;
 	}
 }
