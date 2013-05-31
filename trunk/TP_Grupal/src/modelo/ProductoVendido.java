@@ -35,10 +35,22 @@ public class ProductoVendido {
 		return producto.getMarca();
 	}
 
-	public double getPrecioTotal() {
+	public double getPrecioTotalBruto() {
 		return producto.getPrecio() * cantidad;
 	}
 
+	public double getDescuentos() {
+		double total = 0;
+		for (Descuento descuento : this.descuentosAplicados) {
+			total += descuento.getDescuento();
+		}
+		return total;
+	}
+	
+	public double getPrecioTotal() {
+		return getPrecioTotalBruto() - getDescuentos();
+	}
+	
 	public Producto getProducto() {
 		return producto;
 	}

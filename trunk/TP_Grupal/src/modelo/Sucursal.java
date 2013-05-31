@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import ofertas.OfertaPorUnidadFactory;
+import ofertas.OfertaPorVentaTotalFactory;
 //import ofertas.OfertaPorVentaTotalFactory;
 import ofertas.OfertaPorVolumenFactory;
 
@@ -27,14 +28,13 @@ public class Sucursal {
 	public void cargarOfertas() {
 		OfertaPorUnidadFactory unidadFactory = new OfertaPorUnidadFactory();
 		OfertaPorVolumenFactory volumenFactory = new OfertaPorVolumenFactory();
-		// TODO DESCOMENTAR!!!!!!!!!!
-		//OfertaPorVentaTotalFactory ventaTotalFactory = new OfertaPorVentaTotalFactory();
+		OfertaPorVentaTotalFactory ventaTotalFactory = new OfertaPorVentaTotalFactory();
 		unidadFactory.cargarOfertas();
 		volumenFactory.cargarOfertas();
-		//ventaTotalFactory.cargarOfertas();
+		ventaTotalFactory.cargarOfertas();
 		caja.cargarOfertasUnidad( unidadFactory.getOfertas() );
 		caja.cargarOfertasVolumen( volumenFactory.getOfertas() );
-		//caja.cargarOfertasVentaTotal( ventaTotalFactory.getOfertas() );
+		caja.cargarOfertasVentaTotal( ventaTotalFactory.getOfertas() );
 	}
 	
 	public ArrayList<Producto> getProductos() {
@@ -85,5 +85,9 @@ public class Sucursal {
 
 	public float getDescuentosAplicados() {
 		return caja.getTotalDescuentosVenta();
+	}
+
+	public Map<String, Integer> getVentasTotalesPorProductos() {
+		return caja.getVentasTotalesPorProductos();
 	}
 }
