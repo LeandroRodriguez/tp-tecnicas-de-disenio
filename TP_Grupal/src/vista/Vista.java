@@ -61,6 +61,7 @@ public class Vista {
 				"Visualizar total de ventas",
 				"Visualizar total de descuentos",
 				"Visualizar total por medio de pago",
+				"Visualizar ranking productos mas vendidos",
 				"Salir"));
 		imprimirListado(menu);
 		return menu.size();
@@ -83,6 +84,9 @@ public class Vista {
 			verTotalPorMedioDePago();
 			break;
 		case 5:
+			mostrarRanking();
+			break;
+		case 6:
 			mercado.salir();
 			break;	
 		}
@@ -133,7 +137,7 @@ public class Vista {
 	public String obtenerMedioDePago() {
 		ArrayList<String> medios = new ArrayList<String>(Arrays.asList(
 				"Efectivo",
-				"Crédito",
+				"Tarjeta XYZ",
 				"Débito"));
 		System.out.println("Ingrese el medio de pago a utilizar:");
 		imprimirListado(medios);
@@ -171,5 +175,28 @@ public class Vista {
 		System.out.println("Ingrese la cantidad a comprar:");
 		int cantidadMaxima = 99; 
 		return pedirNumeroEntre(1, cantidadMaxima);
+	}
+	
+	private void mostrarRanking() {
+		Map<String, Integer> productos = mercado.getVentasTotalesPorProductos();
+		int len = productos.size();
+		if (len == 0) {
+			System.out.println("No se han efectuado ventas aun");
+			return;
+		}
+		System.out.println("Ranking de productos más vendidos");
+		for (int i = 0; i < len; i++) {
+			String maximoClave = "";
+			int maximo = -1;
+			for (String clave : productos.keySet()) {
+				if (productos.get(clave) > maximo) {
+					maximo = productos.get(clave);
+					maximoClave = clave;
+				}
+			}
+			productos.remove(maximoClave);
+			System.out.format("%s - %d\n", maximoClave, maximo);
+		}
+		System.out.println("");
 	}
 }
