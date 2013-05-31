@@ -19,7 +19,7 @@ public class DescuentoPorVentaTotal extends Descuento {
 	
 	public DescuentoPorVentaTotal(Venta venta, float valor){
 		this.venta = venta;
-		this.valor = valor;
+		this.valor = (float) (valor / 100.0 * venta.getTotalNeto());;
 	}
 
 }
