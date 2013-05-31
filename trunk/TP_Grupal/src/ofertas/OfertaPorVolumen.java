@@ -39,13 +39,14 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 	}
 	
 	public int getBonificacionesPosibles(ProductoVendido productosVendidos) {
-		return productosVendidos.getCantidadDeProductos() / cantidadesPorProducto.get(productosVendidos.getProducto());
+		return productosVendidos.getCantidadDeProductos() / cantidadesPorProducto.get(this.obtenerClave( productosVendidos.getProducto() ) );
 	}
 	
 	public float getValorDescuento() {
 		float valor = 0;
 		for(Producto producto: cantidadesPorProducto.keySet()) {
-			valor += bonificacionesPorProducto.get(producto) * producto.getPrecio();
+			Producto clave = obtenerClave(producto);
+			valor += bonificacionesPorProducto.get(clave) * producto.getPrecio();
 		}
 		return valor;
 	}
@@ -57,9 +58,10 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 	public List<Descuento> aplicarOferta(List<ProductoVendido> productos) {
 		int bonificacionesAplicables = -1; 
 		for(ProductoVendido productosVendidos: productos) {
+			Producto clave = obtenerClave(productosVendidos.getProducto() );
 			if(productosVendidos.getDescuentosAplicados().size() > 0)
 				continue;
-			if(cantidadesPorProducto.containsKey(productosVendidos.getProducto())) {
+			if(cantidadesPorProducto.containsKey(clave)) {
 				int bonificacionesPosibles = getBonificacionesPosibles(productosVendidos);
 				if(bonificacionesAplicables == -1)
 					bonificacionesAplicables = bonificacionesPosibles;
@@ -71,9 +73,12 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 		if(bonificacionesAplicables <= 0)
 			return descuentos;
 		for(ProductoVendido productosVendidos: productos) {
-			if(cantidadesPorProducto.containsKey(productosVendidos.getProducto())) {
+			Producto clave = obtenerClave(productosVendidos.getProducto() );
+			if(cantidadesPorProducto.containsKey(clave)) {
+				clave = obtenerClaveBonificacion(productosVendidos.getProducto() );
+				float valor = bonificacionesPorProducto.get(clave);
 				descuentos.add(new DescuentoPorVolumen(productosVendidos,
-						bonificacionesAplicables * bonificacionesPorProducto.get(productosVendidos.getProducto())
+						bonificacionesAplicables * valor
 						* (float) productosVendidos.getProducto().getPrecio()));
 			}
 		}
@@ -82,7 +87,25 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 	}
 
 	public boolean encajaEnOferta(ProductoVendido producto) {
-		return cantidadesPorProducto.containsKey(producto.getProducto());
+		Producto clave = obtenerClave(producto.getProducto() );
+		return cantidadesPorProducto.containsKey(clave);
+	}
+	
+	private Producto obtenerClaveBonificacion(Producto p) {
+		for(Producto clave : bonificacionesPorProducto.keySet()) {
+			if ( clave.equals(p) )
+				return clave;
+		}
+		return null;
+	}
+	
+	
+	private Producto obtenerClave(Producto p) {
+		for(Producto clave : cantidadesPorProducto.keySet()) {
+			if ( clave.equals(p) )
+				return clave;
+		}
+		return null;
 	}
 	
 	public String serializar(){
