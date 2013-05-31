@@ -50,6 +50,6 @@ public class OfertaPorVentaTotalTest extends TestCase{
 		
 		List<Descuento> descuentos = oferta.aplicarOferta(venta);
 		
-		assertTrue(descuentos.get(0).getDescuento()==10*0.1);
+		assertTrue(descuentos.get(0).getDescuento()==20*0.05);
 	}
 }

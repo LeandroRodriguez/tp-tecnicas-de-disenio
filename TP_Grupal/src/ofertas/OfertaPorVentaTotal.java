@@ -34,7 +34,7 @@ public class OfertaPorVentaTotal implements OfertaDeProductos {
 	public List<Descuento> aplicarOferta(Venta venta) {
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 		if (encajaEnOferta(venta)){
-			descuentos.add(new DescuentoPorVentaTotal(venta,(float) (porcentajeDescuento*venta.getTotalNeto()/100.0)));
+			descuentos.add(new DescuentoPorVentaTotal(venta,porcentajeDescuento));
 		}
 		return descuentos;
 	}
