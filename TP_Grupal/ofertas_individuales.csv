@@ -1,3 +1,3 @@
-[{"marca":"Coca Cola","incluyente":true}]#ofertas.criterios.CriterioPorMarca;#15.0
+[{"marca":"Coca","incluyente":true}]#ofertas.criterios.CriterioPorMarca;#15.0
 [{"categoria":"lacteos","incluyente":true},{"categoria":"congelados","incluyente":true},{"categoria":"pastas","incluyente":true}]#ofertas.criterios.CriterioPorCategoria;ofertas.criterios.CriterioPorCategoria;ofertas.criterios.CriterioPorCategoria;#10.0
 [{"categoria":"bebidas","incluyente":true},{"marca":"7Up","incluyente":true},{"categoria":"Almacen","incluyente":true}]#ofertas.criterios.CriterioPorCategoria;ofertas.criterios.CriterioPorMarca;ofertas.criterios.CriterioPorCategoria;#5.0
