@@ -15,7 +15,7 @@ public class OfertaJubiladosTest {
 	public void test() {
 		OfertaPorVentaTotal oferta = new OfertaPorVentaTotal();
 		oferta.agregarCriterio(new CriterioPorDia("martes", true, "martes"));
-		oferta.agregarCriterio(new CriterioPorPregunta("Es jubilado"));
+		oferta.agregarCriterio(new CriterioPorPregunta("Es jubilado?"));
 		oferta.setPorcentajeDescuento(10);
 		Producto maceta = new Producto("Maceta", "Macetin", "ferreteria", 10.0);
 		Producto lamparita = new Producto("Lampara", "Lamparin", "iluminacion", 15.0);

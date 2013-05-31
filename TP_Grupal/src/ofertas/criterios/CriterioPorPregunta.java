@@ -1,7 +1,6 @@
 package ofertas.criterios;
 
-import java.util.Scanner;
-
+import vista.Vista;
 import modelo.Venta;
 
 public class CriterioPorPregunta implements CriterioVentaTotal {
@@ -15,21 +14,8 @@ public class CriterioPorPregunta implements CriterioVentaTotal {
 
 	@Override
 	public boolean aplicaSobre(Venta venta) {
-		System.out.println(pregunta+"?");	
-		Scanner sc = new Scanner(System.in);
-		String aux = "";
-		int i = -1;
-		boolean done = false;
-		while ( ! done) {
-			try {
-				aux = sc.next();
-				done = true;
-			} catch (NumberFormatException e){
-			}
-		}
-		respuesta = (aux.equals("s"));
-		return respuesta;
-	
+		Vista vista = new Vista();
+		return vista.pedirConfirmacion(pregunta);
 	}
 
 	@Override
