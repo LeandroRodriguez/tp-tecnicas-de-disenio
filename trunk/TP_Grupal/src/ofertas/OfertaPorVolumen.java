@@ -145,7 +145,7 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 			bonificacionesPorProducto.put(p, Float.parseFloat(partes[1]));
 		}
 	}
-	
+
 	public boolean equals(OfertaPorVolumen o){
 		boolean comp;
 		comp = (o.bonificacionesPorProducto.size() == this.bonificacionesPorProducto.size());

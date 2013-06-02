@@ -5,11 +5,11 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ CajaTest.class, LectorProductosTest.class,
-		OfertaPorDiaTest.class, OfertaPorUnidadFactoryTest.class,
-		OfertaPorUnidadTest.class, OfertaPorVentaTotalFactoryTest.class,
-		OfertaPorVentaTotalTest.class, OfertaPorVolumenFactoryTest.class,
-		OfertaPorVolumenTest.class })
+@SuiteClasses({ CajaTest.class, CuponTest.class, LectorProductosTest.class,
+		OfertaJubiladosTest.class, OfertaPorDiaTest.class,
+		OfertaPorUnidadFactoryTest.class, OfertaPorUnidadTest.class,
+		OfertaPorVentaTotalFactoryTest.class, OfertaPorVentaTotalTest.class,
+		OfertaPorVolumenFactoryTest.class, OfertaPorVolumenTest.class })
 public class AllTests {
 
 }

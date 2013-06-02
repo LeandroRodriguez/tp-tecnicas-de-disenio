@@ -7,14 +7,25 @@ public class CriterioPorPregunta implements CriterioVentaTotal {
 	
 	String pregunta;
 	boolean respuesta;
+	Vista vista;
 	
 	public CriterioPorPregunta(String pregunta){
 		this.pregunta = pregunta;
+		respuesta = false;
+	}
+	
+	public CriterioPorPregunta(String pregunta, Vista vista){
+		this.pregunta = pregunta;
+		this.respuesta = false;
+		this.vista = vista;
+	}
+	
+	public boolean getRespuesta(){
+		return respuesta;
 	}
 
 	@Override
 	public boolean aplicaSobre(Venta venta) {
-		Vista vista = new Vista();
 		return vista.pedirConfirmacion(pregunta);
 	}
 

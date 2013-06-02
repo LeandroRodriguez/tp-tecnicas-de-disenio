@@ -82,7 +82,7 @@ public class SerializarOfertas {
 		Gson gson = new Gson();
 		
 		try {
-		    out = new BufferedWriter(new FileWriter(nombreArchivo, true));
+		    out = new BufferedWriter(new FileWriter(nombreArchivo, false));
 		    for (OfertaPorVentaTotal oferta : ofertas){
 		    	for (CriterioVentaTotal criterio : oferta.getCriterios().getLista()){
 		    		out.write(gson.toJson(criterio)+"&");
