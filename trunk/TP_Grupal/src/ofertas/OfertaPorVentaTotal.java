@@ -3,15 +3,14 @@ package ofertas;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.sun.xml.internal.bind.v2.runtime.ClassBeanInfoImpl;
-
 import modelo.Descuento;
 import modelo.ProductoVendido;
 import modelo.Venta;
 import ofertas.criterios.CriterioPorMedioDePago;
 import ofertas.criterios.CriterioVentaTotal;
 import ofertas.criterios.ListaDeCriteriosVentaTotal;
+
+import com.google.gson.Gson;
 
 public class OfertaPorVentaTotal implements OfertaDeProductos {
 	

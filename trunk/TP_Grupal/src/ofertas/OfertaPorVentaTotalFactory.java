@@ -9,13 +9,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import ofertas.criterios.CriterioPorMedioDePago;
-import ofertas.criterios.CriterioVentaTotal;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-
 public class OfertaPorVentaTotalFactory extends OfertaFactory {
 
 	private String nombreArchivo;
@@ -31,36 +24,6 @@ public class OfertaPorVentaTotalFactory extends OfertaFactory {
 	
 	public OfertaPorVentaTotalFactory() {
 		nombreArchivo = "ofertas_venta_total.csv";
-	}
-
-	private ArrayList<Class<?>> generarTipos(String s){
-		ArrayList<Class<?>> clases = new ArrayList<Class<?>>();
-		String nombres[] = s.split(";");
-		for (String nombre : nombres){
-			if (nombre.length() > 0){
-				try {
-					Class<?> clase = Class.forName(nombre);
-					clases.add(clase);
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return clases;
-	}
-	
-	private ArrayList<CriterioVentaTotal> crearCriterios(String ser, String nombres){
-		ArrayList<CriterioVentaTotal> criterios = new ArrayList<CriterioVentaTotal>();
-		ArrayList<Class<?>> clases = generarTipos(nombres);
-		Gson gson = new Gson();
-	    JsonParser parser = new JsonParser();
-	    JsonArray array = parser.parse(ser).getAsJsonArray();
-	    //int i = 0;
-	    for (int i=0; i<array.size(); ++i ){
-	    	Object criterio = gson.fromJson(array.get(i), CriterioPorMedioDePago.class);
-	    	criterios.add( (CriterioVentaTotal) criterio);
-	    }
-		return criterios;
 	}
 	
 	public void cargarOfertas(){
