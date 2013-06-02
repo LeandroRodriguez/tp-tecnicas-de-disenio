@@ -75,4 +75,16 @@ A continuación damos unos ejemplos:
 	\item Queremos una oferta de 2x1 en bebidas. Simplemente agregamos un criterio de selección de productos por categoría, a una oferta por volumen.
 \end{itemize}
 
+\section{Aplicación de múltiples ofertas}
+
+Una de las restricciones del trabajo práctico es la de no aplicar más de una oferta a un mismo producto si ya se aplico una oferta del mismo tipo, es decir, sobre un producto no se pueden aplicar dos ofertas 2x1 al mismo tiempo (sino, al comprar 4, se pagaría uno solo).
+
+Sin embargo, sí debe ser posible aplicar ofertas de distinto tipo, por ejemplo, el ejemplo anterior de oferta 2x1 no impide aplicar sobre ése mismo producto una oferta por categoría ''Bebidas''. Entonces, ¿como diferenciar unas de otras?
+
+Para resolver esto, cada clase de oferta tiene un metodo que determina si un descuento es del mismo tipo que ésta genera, es decir, la Oferta Por Volumen reconoce Descuentos Por Volumen, para el resto, ésta función devuelve False. Luego, al aplicar una oferta sobre un Producto Vendido, éste comprueba no tener aplicado ya un descuento del tipo de descuentos que generan la oferta que se quiere aplicar, lo cual indicaría que ya se aplico una oferta similar, y por lo tanto la aplicación de la oferta no es válida.
+
+Por ejemplo, al aplicar una Oferta Por Unidad, el Producto Vendido le pide a la oferta comprobar si alguno de los descuentos que tiene aplicados no es del tipo que éste genera, o sea, Descuentos Por Unidad.
+
+Esto implica que, cuando hay dos ofertas del mismo tipo sobre un mismo producto, \textbf{la primera que se pudo aplicar} será la que finalmente determinará el precio a pagar.
+
 \end{document}
