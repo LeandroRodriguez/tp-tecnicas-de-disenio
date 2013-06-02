@@ -37,6 +37,7 @@ public class Vista {
 				System.out.println("ERROR: Debe ingresar valores numéricos");
 			}
 		}
+		sc.close();
 		return i;
 	}
 	
@@ -49,8 +50,8 @@ public class Vista {
 			aux = sc.next();
 			done = ( aux.equals("s") || aux.equals("n") );
 		}
+		sc.close();
 		return aux.equals("s");
-		
 	}
 	
 	private void mostrarProductos() {

@@ -6,8 +6,6 @@ import junit.framework.TestCase;
 import ofertas.Oferta;
 import ofertas.OfertaPorVentaTotal;
 import ofertas.OfertaPorVentaTotalFactory;
-import ofertas.criterios.CriterioPorCategoria;
-import ofertas.criterios.CriterioPorMarca;
 import ofertas.criterios.CriterioPorMedioDePago;
 
 import org.junit.Test;
