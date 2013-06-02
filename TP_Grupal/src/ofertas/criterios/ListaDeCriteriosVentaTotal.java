@@ -18,11 +18,17 @@ public class ListaDeCriteriosVentaTotal {
 		cumplirTodos = true;
 	}
 	
-	public boolean equals(Object lista){
-		if(!(lista instanceof ListaDeCriteriosVentaTotal))
+	public boolean equals(Object _lista){
+		if(!(_lista instanceof ListaDeCriteriosVentaTotal))
 			return false;
-		ListaDeCriteriosVentaTotal _lista = (ListaDeCriteriosVentaTotal) lista;
-		return (criterios.size() == _lista.criterios.size());
+		ListaDeCriteriosVentaTotal lista = (ListaDeCriteriosVentaTotal) _lista;
+		int i = 0;
+		for (CriterioVentaTotal criterio : criterios){
+			if (!(criterio).equals(lista.getLista().get(i)))
+				return false;
+			++i;
+		}
+		return true;
 	}
 	
 	public void agregarCriterio(CriterioVentaTotal criterio){

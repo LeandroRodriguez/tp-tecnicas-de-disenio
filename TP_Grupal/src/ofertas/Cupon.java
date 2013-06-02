@@ -26,7 +26,9 @@ public class Cupon {
 			suma += descuento.getDescuento();
 		}
 		double limite = this.limite * venta.getTotalNeto(); 
-		Descuento descuento = new DescuentoPorVentaTotal(venta, (float) Math.min(limite, suma));
+		double menor = Math.min(limite, suma);
+		float porcentajeMenor = (float) (menor / venta.getTotalNeto() * 100);
+		Descuento descuento = new DescuentoPorVentaTotal(venta, porcentajeMenor);
 		return descuento;
 	}
 

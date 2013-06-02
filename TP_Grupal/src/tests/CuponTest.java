@@ -9,9 +9,12 @@ import modelo.Venta;
 import ofertas.Cupon;
 import ofertas.CuponFactory;
 import ofertas.OfertaPorUnidad;
+import ofertas.OfertaPorVolumen;
 import ofertas.criterios.CriterioPorMarca;
 
 import org.junit.Test;
+
+import excepciones.ExcepcionCantidadInvalida;
 
 public class CuponTest extends TestCase{
 
@@ -31,7 +34,7 @@ public class CuponTest extends TestCase{
 	}
 
 	@Test
-	public void testValorDeCupon() {
+	public void testValorDeCupon() throws ExcepcionCantidadInvalida {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.agregarCriterio(new CriterioPorMarca("Coca Cola", true));
 		oferta.setPorcentajeDescuento(10);
@@ -40,10 +43,13 @@ public class CuponTest extends TestCase{
 		venta.setMedioDePago("efectivo");
 		venta.agregarProducto(coca, 2);
 		venta.aplicarOferta(oferta);
-		CuponFactory cuponFactory = new CuponFactory();
-		ArrayList<Cupon> cupones  = cuponFactory.buscarCupones(venta.getProductosVendidos());
-		Descuento descuento = cupones.get(0).aplicarDescuento(venta);
-		assertEquals(descuento.getDescuento(), 4);
+
+		OfertaPorVolumen ofertaCoca = new OfertaPorVolumen();
+		ofertaCoca.addProducto(coca, 2, 1);
+		Cupon cupon = new Cupon(0.2,ofertaCoca);
+		
+		Descuento descuento = cupon.aplicarDescuento(venta);
+		assertEquals(descuento.getDescuento(), venta.getTotalNeto()*0.2, 0.01);
 	}
 
 }

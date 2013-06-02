@@ -34,7 +34,7 @@ public class OfertaPorVentaTotalFactory extends OfertaFactory {
 			fis = new FileInputStream(nombreArchivo);
 			br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {
-				
+				if (line.length() == 0) continue;
 				OfertaPorVentaTotal oferta = new OfertaPorVentaTotal();
 				oferta.cargarDeArchivo(line);
 				ofertas.add(oferta);
