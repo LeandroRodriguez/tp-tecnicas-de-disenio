@@ -34,7 +34,18 @@ Para la realización del trabajo práctico se tomaron las siguientes hipótesis:
 
 \section{Ofertas}
 
-\subsection{Tipos}
+\subsection{Patrones de análisis}
+
+Utilizamos el patrón de análisis ''ItemEspecifico - LineItem'' para la venta de productos. Los Productos son objetos que representan a los productos disponibles para venta. La clase Producto Vendido es la que toma un producto y le asocia la información sobre cuantas unidades se esta comprando, cuantos descuentos y ofertas fueron aplicados sobre ese producto (para evitar repetición de ofertas, ver más adelante), etc.
+
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[width=\textwidth]{productos_vendidos.png}
+	\caption{Diagrama del patrón ItemEspecifico - LineItem, aplicado a la venta de productos.}
+
+\end{figure}
+
+\subsection{Tipos de ofertas}
 Las ofertas fueron clasificadas en 3 categorías:
 \begin{itemize}
 	\item Por unidad, ya sea marca, categoría o producto.
