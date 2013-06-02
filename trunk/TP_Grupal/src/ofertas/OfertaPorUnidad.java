@@ -30,7 +30,7 @@ public class OfertaPorUnidad implements OfertaDeProductos {
 	public List<Descuento> aplicarOferta(List<ProductoVendido> productos) {
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 		for (ProductoVendido producto : productos) {
-			if (encajaEnOferta(producto)){
+			if (encajaEnOferta(producto) && ! producto.seAplicoOfertaSimilar(this)){
 				descuentos.add(new DescuentoPorProducto(producto,porcentajeDescuento));
 			}
 		}
