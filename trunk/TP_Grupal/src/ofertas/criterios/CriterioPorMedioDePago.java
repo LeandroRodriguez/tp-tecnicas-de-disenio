@@ -11,6 +11,13 @@ public class CriterioPorMedioDePago implements CriterioVentaTotal {
 		incluyente = true;
 	}
 	
+	public boolean equals(Object _criterio){
+		CriterioPorMedioDePago criterio = (CriterioPorMedioDePago) _criterio;
+		boolean comp = this.medioDePago.equals(criterio.medioDePago);
+		comp &= (this.incluyente == criterio.incluyente);
+		return comp;
+	}
+	
 	public CriterioPorMedioDePago(String medioDePago, boolean incluyente){
 		this.medioDePago = medioDePago;
 		this.incluyente = incluyente;

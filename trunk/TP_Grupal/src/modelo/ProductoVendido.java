@@ -3,6 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import ofertas.Oferta;
+
 public class ProductoVendido {
 
 	int cantidad;
@@ -80,5 +82,18 @@ public class ProductoVendido {
 	
 	public void agregarDescuento(Descuento descuento) {
 		this.descuentosAplicados.add(descuento);
+	}
+	
+	/** Devuelve True si el producto vendido ya tuvo una oferta del mismo tipo.
+	 * @param oferta
+	 * @return
+	 */
+	public boolean seAplicoOfertaSimilar(Oferta oferta){
+		for (Descuento descuento: descuentosAplicados){
+			if (oferta.esDescuentoPosible(descuento)){
+				return true;
+			}
+		}
+		return false;
 	}
 }

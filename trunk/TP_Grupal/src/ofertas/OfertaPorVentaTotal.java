@@ -81,5 +81,13 @@ public class OfertaPorVentaTotal implements OfertaDeProductos {
 		}
 		this.porcentajeDescuento = Float.parseFloat(criteriosYPorcentaje[1]);
 	}
+
+	@Override
+	public boolean esDescuentoPosible(Descuento descuento) {
+		if (descuento instanceof DescuentoPorVentaTotal) {
+			return true;
+		} else
+			return false;
+	}
 	
 }

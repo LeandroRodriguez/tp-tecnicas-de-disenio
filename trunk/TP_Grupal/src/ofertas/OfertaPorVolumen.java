@@ -59,7 +59,7 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 		int bonificacionesAplicables = -1; 
 		for(ProductoVendido productosVendidos: productos) {
 			Producto clave = obtenerClave(productosVendidos.getProducto() );
-			if(productosVendidos.getDescuentosAplicados().size() > 0)
+			if(productosVendidos.seAplicoOfertaSimilar(this))
 				continue;
 			if(cantidadesPorProducto.containsKey(clave)) {
 				int bonificacionesPosibles = getBonificacionesPosibles(productosVendidos);
@@ -153,6 +153,14 @@ public class OfertaPorVolumen implements OfertaDeProductos {
 		comp = (o.cantidadesPorProducto.size() == this.cantidadesPorProducto.size());
 		if (!comp) return false;
 		return true;
+	}
+
+	@Override
+	public boolean esDescuentoPosible(Descuento descuento) {
+		if (descuento instanceof DescuentoPorVolumen) {
+			return true;
+		} else
+			return false;
 	}
 
 }

@@ -65,5 +65,13 @@ public class OfertaPorUnidad implements OfertaDeProductos {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean esDescuentoPosible(Descuento descuento) {
+		if (descuento instanceof DescuentoPorProducto){
+			return true;
+		}
+		return false;
+	}
 	
 }
