@@ -38,7 +38,7 @@ public class OfertaPorVolumenFactoryTest extends TestCase{
 		
 		boolean comparacion = true;
 		for (int i = 0; i < ofertasCreadas.size(); ++i){
-			if (! ofertas.get(i).equals(ofertasCreadas.get(i))){
+			if (! ofertas.get(i).equals((OfertaPorVolumen)ofertasCreadas.get(i))){
 				comparacion = false;
 				break;
 			}

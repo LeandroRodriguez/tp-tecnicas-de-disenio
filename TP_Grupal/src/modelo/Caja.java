@@ -156,6 +156,10 @@ public class Caja {
 	public void cargarOfertasVentaTotal(ArrayList<Oferta> ofertasNuevas) {
 		ofertasPorVentaTotal = ofertasNuevas;
 	}
+
+	public Venta getVenta() {
+		return ventaActual;
+	}
 	
 	
 	public Map<String, Integer> getVentasTotalesPorProductos() {

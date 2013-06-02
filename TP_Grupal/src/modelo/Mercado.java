@@ -3,6 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Map;
 
+import ofertas.Cupon;
+import ofertas.CuponFactory;
 import vista.Vista;
 
 public class Mercado {
@@ -10,6 +12,7 @@ public class Mercado {
 	private Sucursal sucursal;
 	private Vista vista;
 	private boolean done;
+	ArrayList<Cupon> cupones;
 	
 	public Mercado() {
 		sucursal = new Sucursal();
@@ -56,7 +59,14 @@ public class Mercado {
 		sucursal.setMedioDePago( vista.obtenerMedioDePago() );
 		aplicarOfertas();
 		vista.verTotalVentaAPagar();
+		// Buscar cupones
+		CuponFactory cuponFactory = new CuponFactory();
+		this.cupones = cuponFactory.buscarCupones(sucursal.getCaja().getVenta().getProductosVendidos());
 		sucursal.finalizarVenta();
+	}
+
+	public ArrayList<Cupon> getCupones() {
+		return cupones;
 	}
 
 	private void aplicarOfertas() {
