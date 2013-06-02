@@ -27,6 +27,23 @@ public class OfertaPorUnidadTest extends TestCase{
 	}
 
 	@Test
+	public void testAplicarDosOfertasDelMismoTipoSoloAplicaUna() {
+		OfertaPorUnidad oferta1 = new OfertaPorUnidad();
+		oferta1.agregarCriterio(new CriterioPorMarca("coca", true));
+		oferta1.setPorcentajeDescuento(10);
+		OfertaPorUnidad oferta2 = new OfertaPorUnidad();
+		oferta2.agregarCriterio(new CriterioPorMarca("coca", true));
+		oferta2.setPorcentajeDescuento(10);
+		Producto coca = new Producto("coca", "coca","bebidas", 10.0);
+		ProductoVendido vendido = new ProductoVendido(coca);
+		ArrayList<ProductoVendido> productos = new ArrayList<ProductoVendido>();
+		productos.add(vendido);
+		List<Descuento> descuentos1 = oferta1.aplicarOferta(productos);
+		List<Descuento> descuentos2 = oferta2.aplicarOferta(productos);
+		assertEquals(0, descuentos2.size());
+	}
+
+	@Test
 	public void testAplicarSobreCategoria() {
 		OfertaPorUnidad oferta = new OfertaPorUnidad();
 		oferta.setPorcentajeDescuento(10);
