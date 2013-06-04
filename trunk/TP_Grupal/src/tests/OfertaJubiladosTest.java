@@ -1,6 +1,8 @@
 package tests;
 
 import static org.junit.Assert.assertTrue;
+
+import modelo.MediadorPregunta;
 import modelo.Producto;
 import modelo.Venta;
 import ofertas.OfertaPorVentaTotal;
@@ -17,10 +19,11 @@ public class OfertaJubiladosTest {
 	public void testOfertaJubilados() {
 		OfertaPorVentaTotal oferta = new OfertaPorVentaTotal();
 		oferta.agregarCriterio(new CriterioPorDia("martes", true, "martes"));
-		oferta.agregarCriterio(new CriterioPorPregunta("Es jubilado?", new VistaDummy(true)));
+		oferta.agregarCriterio(new CriterioPorPregunta("Es jubilado?"));
 		oferta.setPorcentajeDescuento(10);
 		Producto maceta = new Producto("Maceta", "Macetin", "ferreteria", 10.0);
 		Producto lamparita = new Producto("Lampara", "Lamparin", "iluminacion", 15.0);
+		MediadorPregunta.setVista(new VistaDummy(true));
 		Venta venta = new Venta();
 		venta.setMedioDePago("efectivo");
 		venta.agregarProducto(maceta, 1);
@@ -34,10 +37,11 @@ public class OfertaJubiladosTest {
 	public void testNoAplicaOfertaJubilados() {
 		OfertaPorVentaTotal oferta = new OfertaPorVentaTotal();
 		oferta.agregarCriterio(new CriterioPorDia("martes", true, "martes"));
-		oferta.agregarCriterio(new CriterioPorPregunta("Es jubilado?", new VistaDummy(false)));
+		oferta.agregarCriterio(new CriterioPorPregunta("Es jubilado?"));
 		oferta.setPorcentajeDescuento(10);
 		Producto maceta = new Producto("Maceta", "Macetin", "ferreteria", 10.0);
 		Producto lamparita = new Producto("Lampara", "Lamparin", "iluminacion", 15.0);
+		MediadorPregunta.setVista(new VistaDummy(false));
 		Venta venta = new Venta();
 		venta.setMedioDePago("efectivo");
 		venta.agregarProducto(maceta, 1);

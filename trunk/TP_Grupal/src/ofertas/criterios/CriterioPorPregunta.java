@@ -1,23 +1,16 @@
 package ofertas.criterios;
 
-import vista.Vista;
+import modelo.MediadorPregunta;
 import modelo.Venta;
 
 public class CriterioPorPregunta implements CriterioVentaTotal {
 	
 	String pregunta;
 	boolean respuesta;
-	Vista vista;
 	
 	public CriterioPorPregunta(String pregunta){
 		this.pregunta = pregunta;
 		respuesta = false;
-	}
-	
-	public CriterioPorPregunta(String pregunta, Vista vista){
-		this.pregunta = pregunta;
-		this.respuesta = false;
-		this.vista = vista;
 	}
 	
 	public boolean getRespuesta(){
@@ -26,7 +19,8 @@ public class CriterioPorPregunta implements CriterioVentaTotal {
 
 	@Override
 	public boolean aplicaSobre(Venta venta) {
-		return vista.pedirConfirmacion(pregunta);
+		MediadorPregunta med = MediadorPregunta.getInstance();
+		return med.pedirConfirmacion(pregunta);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ public class VistaDummy extends Vista {
 	private boolean respuesta;
 	
 	public VistaDummy(boolean respuesta){
+		super(null);
 		this.respuesta = respuesta;
 	}
 	
