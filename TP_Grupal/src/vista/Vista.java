@@ -12,10 +12,6 @@ public class Vista {
 	
 	private Mercado mercado;
 	
-	public Vista() {
-		this.mercado = null;
-	}
-	
 	public Vista(Mercado mercado) {
 		this.mercado = mercado;
 	}

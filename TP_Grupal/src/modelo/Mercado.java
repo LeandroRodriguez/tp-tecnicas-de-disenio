@@ -18,6 +18,7 @@ public class Mercado {
 		sucursal = new Sucursal();
 		vista = new Vista(this);
 		done = false;
+		MediadorPregunta.setVista(vista);
 	}
 	
 	public void correr() {
