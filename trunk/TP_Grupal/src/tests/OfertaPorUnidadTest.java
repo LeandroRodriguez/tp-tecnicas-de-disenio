@@ -38,9 +38,9 @@ public class OfertaPorUnidadTest extends TestCase{
 		ProductoVendido vendido = new ProductoVendido(coca);
 		ArrayList<ProductoVendido> productos = new ArrayList<ProductoVendido>();
 		productos.add(vendido);
-		List<Descuento> descuentos1 = oferta1.aplicarOferta(productos);
-		List<Descuento> descuentos2 = oferta2.aplicarOferta(productos);
-		assertEquals(0, descuentos2.size());
+		List<Descuento> descuentos = oferta1.aplicarOferta(productos);
+		descuentos = oferta2.aplicarOferta(productos);
+		assertEquals(0, descuentos.size());
 	}
 
 	@Test
