@@ -45,15 +45,14 @@ public class Vista {
 	}
 	
 	public boolean pedirConfirmacion(String pregunta) {	
-		Scanner sc = new Scanner(System.in);
 		String aux = "";
 		boolean done = false;
 		while ( ! done) {
 			System.out.println(pregunta + " [s/n]");
-			aux = sc.next();
+			scanner.reset();
+			aux = scanner.next();
 			done = ( aux.equals("s") || aux.equals("n") );
 		}
-		sc.close();
 		return aux.equals("s");
 	}
 	
