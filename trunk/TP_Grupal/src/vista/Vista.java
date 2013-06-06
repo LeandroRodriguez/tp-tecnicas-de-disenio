@@ -3,6 +3,7 @@ package vista;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import modelo.Mercado;
@@ -11,18 +12,22 @@ import modelo.Producto;
 public class Vista {
 	
 	private Mercado mercado;
+	private Scanner scanner;
 	
 	public Vista(Mercado mercado) {
 		this.mercado = mercado;
+		this.scanner = new Scanner(System.in);
 	}
 	
 	private int pedirNumeroEntre(int menor, int mayor) {
-		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(System.in);
 		int i = -1;
+		String aux = "-1";
 		boolean done = false;
 		while ( ! done) {
 			try {
-				String aux = sc.next();
+				scanner.reset();
+				aux = scanner.next();
 				i = Integer.parseInt(aux);
 				if (i >= menor && i <= mayor)
 					done = true;
@@ -31,9 +36,11 @@ public class Vista {
 							menor, mayor);
 			} catch (NumberFormatException e){
 				System.out.println("ERROR: Debe ingresar valores numéricos");
+			} catch (NoSuchElementException e){
+				System.out.println("ERROR: Debe ingresar valores numéricos");
 			}
 		}
-		sc.close();
+		//sc.close();
 		return i;
 	}
 	
@@ -182,7 +189,8 @@ public class Vista {
 	
 	private int pedirNumeroProducto() {
 		System.out.println("Ingrese el número del producto a comprar:");
-		return pedirNumeroEntre(1,mercado.getProductos().size() );
+		int len = mercado.getProductos().size();
+		return pedirNumeroEntre(1, len );
 	}
 	
 	private int pedirCantidadProducto() {
