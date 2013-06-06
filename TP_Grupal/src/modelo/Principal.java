@@ -6,5 +6,4 @@ public final class Principal {
 		Mercado mercado = new Mercado();
 		mercado.correr();
 	}
-
 }
