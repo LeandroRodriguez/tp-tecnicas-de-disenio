@@ -21,10 +21,11 @@ public class BonificacionPuntos extends Bonificacion {
 		
 		ArrayList<Producto> descuentos= new ArrayList<Producto>();
 		for (Producto prod : misproducts) {
-			System.out.format("Pasa por el for\n");
+			//System.out.format("Pasa por el for\n");
 			boolean cumple = true;
 			for (Restriccion res : restricciones ) {
-				res.reset();
+				if(res.isActiva())
+					res.reset();
 				if ( ! res.cumpleRestriccion(prod)) {
 					cumple = false;
 					break;
