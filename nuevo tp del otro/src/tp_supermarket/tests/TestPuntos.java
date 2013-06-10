@@ -94,4 +94,26 @@ public class TestPuntos {
 		Assert.assertEquals(2, total);
 	}	
 	
+	@Test
+	public void testEscenario2SeCanjeanLos12Puntos() {
+		TarjetaDePuntos tarjeta = new TarjetaDePuntos("cliente");
+		tarjeta.sumarPuntos(12);
+		float monto = 16;
+		
+		tarjeta.canjearPuntosSobreMonto(monto);
+		
+		Assert.assertEquals(0, tarjeta.getPuntos());
+	}
+	
+	@Test
+	public void testEscenario2SeDescuentan12PesosDelMonto() {
+		TarjetaDePuntos tarjeta = new TarjetaDePuntos("cliente");
+		tarjeta.sumarPuntos(12);
+		float monto = 16;
+		
+		float nuevoMonto = tarjeta.canjearPuntosSobreMonto(monto);
+		
+		Assert.assertEquals(4, nuevoMonto, 1e-6);
+	}
+	
 }
