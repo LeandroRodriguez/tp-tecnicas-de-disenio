@@ -1,0 +1,55 @@
+% Facultad de Ingeniería, Universidad de Buenos Aires
+% 75.10 Técnicas de diseño
+
+\documentclass[a4paper,10pt, notitlepage]{article}
+\usepackage[utf8]{inputenc} 
+\usepackage[spanish]{babel} 
+\usepackage{listings}
+\usepackage{color} 
+
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+\pagestyle{plain} %o pagestyle{plain} , valor defecto   {headings}
+% define the title
+\title{\textbf{75.10 Técnicas de Diseño, TP Grupal}}
+% \author{Rodriguez Genaro, Leandro \and Padron: 92098 \\ 
+\author{Awad, Lucas \and Choque, Javier \and López, Federico \and Rodriguez, Leandro}
+\date{}
+
+
+\begin{document}
+% generates the title
+\maketitle
+
+\thispagestyle{empty}
+
+\newpage
+
+\section{Analisis Tp}
+
+\subsection{Pros:}
+\begin{itemize}
+\item Interfaz de usuario muy amigable. 
+\item El modelo estaba clausurado ante cambios (no asi la vista) por lo que era relativamente sencillo aplicar el cambio pedido 
+sobre el modelo, asi como tambien agregar nuevos tipos de ofertas.
+\end{itemize}
+
+\subsection{Contras:}
+\begin{itemize}
+\item No pasaba todos los test unitarios, ademas de que tenía pocos.
+\item Los productos se creaban hardcodeados en una clase.
+\item La vista no estaba bien separada del modelo. Prueba de esto, por ejemplo, es que los test, imprimen por consola la compra 
+como cuando se corre el programa con la interfaz gráfica.
+\item Modelaron los descuentos como productos, en los que el nombre describe el tipo de descuento que es.
+\item Codigo poco legible. En algunas clases se utilizaban variables nombradas con una sola letra, lo cual no nos daba idea de que 
+hacía, por lo que teníamos que leer el codigo para intentar entender para que servía. Tambien se definían métodos adentro de otros 
+métodos, haciendo incómoda la lectura del código.
+\item Malas prácticas de código. Mas allá de lo antes mencionado, un ejemplo podría ser el siguiente: Un metodo declarado en una 
+clase, retornaba como valor una clase hijo. Claro está que este método devolvía null en esta clase, y en la clase hijo tenía 
+definido otro comportamiento.
+\item Dependencia de clases externas. Por ejemplo, para manejo de fechas de las ofertas, usaron directo la clase Calendar de java, 
+en lugar de usar una clase propia que encapsule el acceso a la clase Calendar.
+\end{itemize}
+
+\end{document}
